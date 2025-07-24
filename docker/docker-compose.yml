@@ -1,18 +1,18 @@
 services:
-  frontend:
-    platform: linux/arm64
-    build:
-      context: ../frontend
-      dockerfile: ../docker/Dockerfile.frontend
-    ports:
-      - "3000:3000"
-    volumes:
-      - ../frontend:/usr/app:cached
-      - /usr/app/node_modules
-    environment:
-      API_URL: ${API_URL}
-    networks:
-      - strapi
+  # frontend:
+  #   platform: linux/arm64
+  #   build:
+  #     context: ../frontend
+  #     dockerfile: ../docker/Dockerfile.frontend
+  #   ports:
+  #     - "3000:3000"
+  #   volumes:
+  #     - ../frontend:/usr/app:cached
+  #     - /usr/app/node_modules
+  #   environment:
+  #     API_URL: ${API_URL}
+  #   networks:
+  #     - strapi
   cms:
     platform: linux/arm64
     build:
