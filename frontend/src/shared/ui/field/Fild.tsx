@@ -9,7 +9,7 @@ export const Field = forwardRef<HTMLInputElement, IField>(
     ref: Ref<HTMLInputElement>
   ) => {
     return (
-      <div className="w-[80%] mx-auto">
+      <div className="">
         {title && (
           <SubText
             text={title}
@@ -19,7 +19,7 @@ export const Field = forwardRef<HTMLInputElement, IField>(
         <label
           htmlFor={id}
           className={clsx(
-            "w-full border p-1.5 block my-0.5 rounded-[0.5rem]",
+            "w-full border p-1.5  my-0.5 rounded-[0.5rem] h-12 flex ",
             isError && "border-[var(--red)]",
             className
           )}
@@ -28,7 +28,10 @@ export const Field = forwardRef<HTMLInputElement, IField>(
             type={type}
             id={id}
             {...inputProps}
-            className={clsx(isError && "placeholder:text-[var(--red)]")}
+            className={clsx(
+              "outline-none w-full",
+              isError && "placeholder:text-[var(--red)]"
+            )}
           />
         </label>
       </div>

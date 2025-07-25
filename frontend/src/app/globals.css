@@ -37,4 +37,9 @@
 body {
   background-color: var(--background);
   font-family: var(--font-dm-sans), Helvetica;
+  /* min-height: 97vh; */
+}
+
+input:-webkit-autofill {
+  box-shadow: 0 0 0px 1000px var(--background) inset !important;
 }
