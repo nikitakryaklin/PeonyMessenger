@@ -27,6 +27,7 @@ export const Field = forwardRef<HTMLInputElement, IField>(
           <input
             type={type}
             id={id}
+            ref={ref}
             {...inputProps}
             className={clsx(
               "outline-none w-full",
@@ -38,4 +39,3 @@ export const Field = forwardRef<HTMLInputElement, IField>(
     );
   }
 );
-// ref={ref}
