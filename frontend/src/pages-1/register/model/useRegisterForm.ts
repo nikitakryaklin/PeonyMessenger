@@ -1,9 +1,11 @@
+"use client";
+
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useRegisterMutation } from "../api/useRegisterMutation";
 import { IRegister } from "./registerForm-interface";
 
 export function useRegisterForm() {
-  const { createRegisterMutation, mutationError } = useRegisterMutation();
+  const { mutate, isLoading, mutateError } = useRegisterMutation();
 
   const {
     handleSubmit,
@@ -15,7 +17,7 @@ export function useRegisterForm() {
   });
 
   const onSubmit: SubmitHandler<IRegister> = (data) => {
-    createRegisterMutation.mutate({ ...data });
+    mutate({ ...data });
     reset();
   };
 
@@ -23,6 +25,7 @@ export function useRegisterForm() {
     onSubmit: handleSubmit(onSubmit),
     errors,
     register,
-    mutationError,
+    mutateError,
+    isLoading,
   };
 }

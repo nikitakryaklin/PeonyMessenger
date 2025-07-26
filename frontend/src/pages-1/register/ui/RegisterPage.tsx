@@ -12,13 +12,12 @@ import {
 import { ShieldAlert } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
 import { useRegisterForm } from "../model/useRegisterForm";
+import clsx from "clsx";
 
 export const RegisterPage = () => {
-  const [buttonText, setButtonText] = useState("Continue");
-
-  const { onSubmit, register, errors, mutationError } = useRegisterForm();
+  const { onSubmit, register, errors, mutateError, isLoading } =
+    useRegisterForm();
 
   return (
     <div className="w-96 mt-24 mx-auto">
@@ -52,36 +51,35 @@ export const RegisterPage = () => {
           {...register("password", { ...getValidateError("Password") })}
         />
 
-        {!!Object.values(errors).length ||
-          (mutationError && (
-            <div className="bg-red-200 flex gap-2 p-2 rounded-[0.5rem]">
-              <ShieldAlert
-                style={{ stroke: "var(--red)" }}
-                className="min-w-7"
-              />
-              <div>
-                {Object.entries(errors).map((el) => (
-                  <Text key={el[0]} text={el[0] + " - " + el[1].message} />
-                ))}
-              </div>
-              <Text text={mutationError.message} />
+        {(!!Object.values(errors).length || mutateError) && (
+          <div className="bg-red-200 flex gap-2 p-2 rounded-[0.5rem]">
+            <ShieldAlert style={{ stroke: "var(--red)" }} className="min-w-7" />
+            <div>
+              {Object.entries(errors).map((el) => (
+                <Text key={el[0]} text={el[0] + " - " + el[1].message} />
+              ))}
             </div>
-          ))}
+            <Text text={mutateError?.message || ""} />
+          </div>
+        )}
 
         <Button
-          text={buttonText}
-          type="button"
-          className="bg-[var(--black)] text-[var(--white)] w-full h-12 mt-4"
+          text="Create account"
+          type="submit"
+          disabled={isLoading}
+          promise={{ loading: isLoading }}
+          className={clsx(
+            "bg-[var(--black)] text-[var(--white)] w-full h-12",
+            isLoading && "bg-[var(--gray)] cursor-default"
+          )}
         />
       </form>
-      {buttonText === "Continue" && (
-        <div className="flex gap-1 items-center justify-center">
-          <Text text="Already have an account?" />
-          <Link href={ROUTES.login} className="underline font-semibold mr-5">
-            Sing in
-          </Link>
-        </div>
-      )}
+      <div className="flex gap-1 items-center justify-center">
+        <Text text="Already have an account?" />
+        <Link href={ROUTES.login} className="underline font-semibold mr-5">
+          Sing in
+        </Link>
+      </div>
     </div>
   );
 };

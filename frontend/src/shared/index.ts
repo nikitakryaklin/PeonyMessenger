@@ -5,5 +5,7 @@ export { Tag } from "./ui/tag/Tag";
 export { Field } from "./ui/field/Fild";
 export * from "./routes/routes";
 export { API } from "./config/api";
+export { AUTH_ROUTES } from "./config/authRoutes";
+export { LOCAL_STORAGE } from "./config/localStorage";
 export { getValidateError } from "./lib/getValidateError";
 export { QueryClientCastomProvider } from "./providers/queryClientCastomProvider";

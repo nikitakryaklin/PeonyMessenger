@@ -1,3 +1,5 @@
+import { ProfilePage } from "@/pages-1";
+
 export default function Page() {
-  return <div>Profile</div>;
+  return <ProfilePage />;
 }

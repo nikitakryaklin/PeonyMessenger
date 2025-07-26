@@ -1,17 +1,19 @@
-import { API, ROUTES } from "@/shared";
+import { AUTH_ROUTES, LOCAL_STORAGE, ROUTES } from "@/shared";
 import { useMutation } from "@tanstack/react-query";
 import { IRegister } from "../model/registerForm-interface";
 import { useRouter } from "next/navigation";
+import { IRegisterUser } from "../model/registeredUser-interface";
 
 export function useRegisterMutation() {
   const router = useRouter();
 
   const createRegisterMutation = useMutation({
-    mutationFn: async (data: IRegister) => {
-      const response = await fetch(API + "/auth/local/register", {
+    mutationFn: async (data: IRegister): Promise<IRegisterUser> => {
+      const response = await fetch(AUTH_ROUTES.register, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          credentials: "include",
         },
         credentials: "include",
         body: JSON.stringify({ ...data }),
@@ -22,16 +24,23 @@ export function useRegisterMutation() {
       if (!response.ok) {
         throw new Error(response_JSON.error.message);
       }
+      return response_JSON;
     },
-    onSuccess: () => {
-      router.replace(ROUTES.login);
-      //   localStorage.setItem("token", data.jwt);
-      //   localStorage.setItem("user_id", `${data.user.id}`);
-      //   localStorage.setItem("user_ducumentID", `${data.user.documentID}`);
+
+    onSuccess: ({ data }) => {
+      router.replace(ROUTES.account);
+      localStorage.setItem(LOCAL_STORAGE.token, data.jwt);
+      localStorage.setItem(LOCAL_STORAGE.userId, `${data.user.id}`);
+      localStorage.setItem(
+        LOCAL_STORAGE.userDocumentId,
+        `${data.user.documentId}`
+      );
     },
   });
 
-  const mutationError = createRegisterMutation.error;
-
-  return { createRegisterMutation, mutationError };
+  return {
+    mutate: createRegisterMutation.mutate,
+    mutateError: createRegisterMutation.error,
+    isLoading: createRegisterMutation.isPending,
+  };
 }
