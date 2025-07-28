@@ -1,3 +1,5 @@
+"use client";
+
 import { AUTH_ROUTES, LOCAL_STORAGE, ROUTES } from "@/shared";
 import { useMutation } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";

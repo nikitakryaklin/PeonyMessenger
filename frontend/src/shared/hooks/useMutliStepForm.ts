@@ -1,9 +1,18 @@
+"use client";
+
+import { useEffect } from "react";
+
 export function useMutliStepForm(
   total: number,
   step: number,
   nextStep: () => void,
-  callBack: () => void
+  callBack: () => void,
+  clearErrors: () => void
 ) {
+  useEffect(() => {
+    clearErrors();
+  }, [step]);
+
   const formSubmit = () => {
     callBack();
   };
@@ -13,6 +22,7 @@ export function useMutliStepForm(
       formSubmit();
       return;
     }
+
     nextStep();
   };
 

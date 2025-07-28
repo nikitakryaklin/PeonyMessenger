@@ -12,8 +12,9 @@ export function useRegisterForm() {
     register,
     reset,
     formState: { errors },
+    clearErrors,
   } = useForm<IRegister>({
-    mode: "onBlur",
+    mode: "onChange",
   });
 
   const onFormSubmit: SubmitHandler<IRegister> = (data) => {
@@ -27,5 +28,6 @@ export function useRegisterForm() {
     register,
     mutateError,
     isLoading,
+    clearErrors,
   };
 }

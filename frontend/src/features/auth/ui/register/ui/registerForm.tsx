@@ -7,28 +7,25 @@ import clsx from "clsx";
 import { useFromStepStore } from "../model/useFormStepStore";
 
 export const RegisterForm = () => {
-  const { onSubmit, register, errors, mutateError, isLoading } =
+  const { onSubmit, register, errors, mutateError, isLoading, clearErrors } =
     useRegisterForm();
 
   const step = useFromStepStore((s) => s.step);
   const total = useFromStepStore((s) => s.total);
   const nextStep = useFromStepStore((s) => s.nextStep);
-  const prevStep = useFromStepStore((s) => s.prevStep);
 
   const { formAction, formSubmit } = useMutliStepForm(
     total,
     step,
     nextStep,
-    onSubmit
+    onSubmit,
+    clearErrors
   );
 
   const disabled = isLoading || !!Object.values(errors).length;
 
   return (
     <form onSubmit={formSubmit} className="mb-6 flex flex-col gap-4">
-      <button type="button" onClick={prevStep}>
-        back
-      </button>
       <Field
         title="Email address"
         className="w-full"

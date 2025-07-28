@@ -1,5 +1,6 @@
 export * from "./ui/text";
 export { Button } from "./ui/button/button";
+export { IconButton } from "./ui/button/IconButton";
 export { SidebarLink } from "./ui/link/SidebarLink";
 export { Tag } from "./ui/tag/Tag";
 export { Field } from "./ui/field/Fild";

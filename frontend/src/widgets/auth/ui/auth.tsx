@@ -26,7 +26,10 @@ export const AuthWidget = ({
 
       <div className="flex gap-1 items-center justify-center">
         <Text text={AUTH_DATA.linkText[pageType]} />
-        <Link href={ROUTES[pageType]} className="underline font-semibold mr-5">
+        <Link
+          href={pageType === "register" ? ROUTES.login : ROUTES.register}
+          className="underline font-semibold mr-5"
+        >
           {AUTH_DATA.linkValue[pageType]}
         </Link>
       </div>

@@ -1,3 +1,5 @@
+"use client";
+
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useLoginMutation } from "../api/useLoginMutation";
 import { ILoginForm } from "./loginForm-interface";
