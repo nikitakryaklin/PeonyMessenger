@@ -1,13 +1,15 @@
 import { AUTH_ROUTES, LOCAL_STORAGE, ROUTES } from "@/shared";
 import { useMutation } from "@tanstack/react-query";
-import { ILoginForm } from "../model/loginForm-interface";
 import { useRouter } from "next/navigation";
+import { ILoginForm } from "../model/loginForm-interface";
+import { IRegisterUser } from "@/features/auth/model/registeredUser-interface";
+import { login } from "@/features/auth/model/login";
 
 export const useLoginMutation = () => {
   const router = useRouter();
 
   const createLoginMutation = useMutation({
-    mutationFn: async (data: ILoginForm) => {
+    mutationFn: async (data: ILoginForm): Promise<IRegisterUser> => {
       const response = await fetch(AUTH_ROUTES.login, {
         method: "POST",
         headers: {
@@ -26,23 +28,15 @@ export const useLoginMutation = () => {
       }
       return response_JSON;
     },
-    onSuccess: async ({ data }) => {
-      const login = (data: any) => {
-        router.replace(ROUTES.account);
-        localStorage.setItem(LOCAL_STORAGE.token, data.jwt);
-        localStorage.setItem(LOCAL_STORAGE.userId, `${data.user.id}`);
-        localStorage.setItem(
-          LOCAL_STORAGE.userDocumentId,
-          `${data.user.documentId}`
-        );
-      };
-      login(data);
+    async onSuccess(data) {
+      await router.replace(ROUTES.account);
+      await login(data);
     },
   });
 
   return {
     mutate: createLoginMutation.mutate,
-    mutateError: createLoginMutation.error,
+    mutateError: createLoginMutation.error?.message,
     isLoading: createLoginMutation.isPending,
   };
 };

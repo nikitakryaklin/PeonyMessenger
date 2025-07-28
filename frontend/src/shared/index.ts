@@ -9,3 +9,4 @@ export { AUTH_ROUTES } from "./config/authRoutes";
 export { LOCAL_STORAGE } from "./config/localStorage";
 export { getValidateError } from "./lib/getValidateError";
 export { QueryClientCastomProvider } from "./providers/queryClientCastomProvider";
+export { useMutliStepForm } from "./hooks/useMutliStepForm";

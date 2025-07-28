@@ -10,10 +10,3 @@ export interface IUser {
   updatedAt: string;
   publishedAt: string;
 }
-
-export interface IRegisterUser {
-  data: {
-    jwt: string;
-    user: IUser;
-  };
-}

@@ -13,16 +13,16 @@ export function useRegisterForm() {
     reset,
     formState: { errors },
   } = useForm<IRegister>({
-    mode: "onSubmit",
+    mode: "onBlur",
   });
 
-  const onSubmit: SubmitHandler<IRegister> = (data) => {
+  const onFormSubmit: SubmitHandler<IRegister> = (data) => {
     mutate({ ...data });
     reset();
   };
 
   return {
-    onSubmit: handleSubmit(onSubmit),
+    onSubmit: handleSubmit(onFormSubmit),
     errors,
     register,
     mutateError,

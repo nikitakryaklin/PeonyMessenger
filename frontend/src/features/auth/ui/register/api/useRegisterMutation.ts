@@ -1,8 +1,10 @@
 import { AUTH_ROUTES, LOCAL_STORAGE, ROUTES } from "@/shared";
 import { useMutation } from "@tanstack/react-query";
-import { IRegister } from "../model/registerForm-interface";
 import { useRouter } from "next/navigation";
-import { IRegisterUser } from "../model/registeredUser-interface";
+import { IRegister } from "../model/registerForm-interface";
+import { IRegisterUser } from "@/features/auth/model/registeredUser-interface";
+import { removeFormStore } from "../model/useFormStepStore";
+import { login } from "@/features/auth/model/login";
 
 export function useRegisterMutation() {
   const router = useRouter();
@@ -21,20 +23,17 @@ export function useRegisterMutation() {
 
       const response_JSON = await response.json();
 
-      if (!response.ok) {
-        throw new Error(response_JSON.error.message);
+      if (response.ok) {
+        return response_JSON;
       }
-      return response_JSON;
+
+      throw new Error(response_JSON.error);
     },
 
-    onSuccess: ({ data }) => {
-      router.replace(ROUTES.account);
-      localStorage.setItem(LOCAL_STORAGE.token, data.jwt);
-      localStorage.setItem(LOCAL_STORAGE.userId, `${data.user.id}`);
-      localStorage.setItem(
-        LOCAL_STORAGE.userDocumentId,
-        `${data.user.documentId}`
-      );
+    async onSuccess(data) {
+      await login(data);
+      await router.replace(ROUTES.account);
+      await removeFormStore();
     },
   });
 
