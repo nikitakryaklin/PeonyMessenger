@@ -2,7 +2,7 @@
 
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useRegisterMutation } from "../api/useRegisterMutation";
-import { IRegister } from "./registerForm-interface";
+import { IRegisterForm } from "./registerForm-interface";
 
 export function useRegisterForm() {
   const { mutate, isLoading, mutateError } = useRegisterMutation();
@@ -13,11 +13,11 @@ export function useRegisterForm() {
     reset,
     formState: { errors },
     clearErrors,
-  } = useForm<IRegister>({
+  } = useForm<IRegisterForm>({
     mode: "onChange",
   });
 
-  const onFormSubmit: SubmitHandler<IRegister> = (data) => {
+  const onFormSubmit: SubmitHandler<IRegisterForm> = (data) => {
     mutate({ ...data });
     reset();
   };

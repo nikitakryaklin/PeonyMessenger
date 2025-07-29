@@ -4,15 +4,23 @@ import { Button, Field, getValidateError, useMutliStepForm } from "@/shared";
 import { useRegisterForm } from "../model/useRegisterForm";
 import { ErrorField } from "@/entities";
 import clsx from "clsx";
-import { useFromStepStore } from "../model/useFormStepStore";
+import { removeFormStore, useFromStepStore } from "../model/useFormStepStore";
+import { useEffect } from "react";
+import { usePathname } from "next/navigation";
 
 export const RegisterForm = () => {
+  const pathName = usePathname();
+
   const { onSubmit, register, errors, mutateError, isLoading, clearErrors } =
     useRegisterForm();
 
   const step = useFromStepStore((s) => s.step);
   const total = useFromStepStore((s) => s.total);
   const nextStep = useFromStepStore((s) => s.nextStep);
+
+  useEffect(() => {
+    return () => removeFormStore();
+  }, [pathName]);
 
   const { formAction, formSubmit } = useMutliStepForm(
     total,
