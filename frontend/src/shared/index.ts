@@ -11,3 +11,5 @@ export { getValidateError } from "./lib/getValidateError";
 export { QueryClientCastomProvider } from "./providers/queryClientCastomProvider";
 export { useMutliStepForm } from "./hooks/useMutliStepForm";
 export { api } from "./api";
+export { PageWrapper } from "./ui/pageWrapper/pageWrapper";
+export { getTitleByPathName } from "./lib/getTitleByPathName";
