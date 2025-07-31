@@ -1,3 +1,7 @@
 export const PrivateHeader = () => {
-  return <header>privateHeader</header>;
+  return (
+    <header className="h-24 border-b">
+      <div></div>
+    </header>
+  );
 };

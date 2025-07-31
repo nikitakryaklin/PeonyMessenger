@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { HTMLProps, ReactNode } from "react";
-import { CaphionTitle } from "@/shared";
+import { CaphionTitle, LinkTitle } from "@/shared";
 import clsx from "clsx";
 
 export const SidebarLink = ({
@@ -17,22 +17,42 @@ export const SidebarLink = ({
   icon: ReactNode;
   tag?: ReactNode;
 } & HTMLProps<HTMLLinkElement>) => {
+  const render = (isClose: boolean) => {
+    if (isClose) {
+      return (
+        <>
+          <div className={clsx("flex items-center justify-center relative")}>
+            {icon}
+            {tag}
+          </div>
+        </>
+      );
+    }
+
+    if (!isClose) {
+      return (
+        <>
+          <div className="flex items-center gap-1.5">
+            <div className={clsx("flex items-center justify-center")}>
+              {icon}
+            </div>
+            <LinkTitle text={text} />
+          </div>
+          {tag}
+        </>
+      );
+    }
+  };
+
   return (
     <Link
       href={href}
       className={clsx(
-        "group w-full h-14 px-[10%] flex justify-between items-center hover:bg-[var(--primery-light)] transition-colors duration-200",
+        "group w-full h-14 px-[5%] flex justify-between items-center hover:bg-[var(--primery-light)] transition-colors duration-200",
         isClose && "justify-center"
       )}
     >
-      <div className="flex items-center gap-1.5">
-        <div className={clsx("flex items-center justify-center")}>
-          {icon}
-          {/* {isClose && <>{tag}</>} */}
-        </div>
-        {!isClose && <CaphionTitle text={text} />}
-      </div>
-      {!isClose && <>{tag}</>}
+      {render(isClose)}
     </Link>
   );
 };
