@@ -13,3 +13,8 @@ export { useMutliStepForm } from "./hooks/useMutliStepForm";
 export { api } from "./api";
 export { PageWrapper } from "./ui/pageWrapper/pageWrapper";
 export { getTitleByPathName } from "./lib/getTitleByPathName";
+export type { strapiImage } from "./types/api/strapiImage-inteface";
+export type { IUser } from "./types/api/user-inteface";
+export type { IAbout } from "./types/api/about-interface";
+export type { IPagination } from "./types/api/pagination-interface";
+export { getImageUrl } from "./lib/getImageURL";

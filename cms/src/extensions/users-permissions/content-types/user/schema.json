@@ -78,11 +78,11 @@
       "target": "api::chat.chat",
       "mappedBy": "participants"
     },
-    "message": {
+    "messages": {
       "type": "relation",
-      "relation": "oneToOne",
+      "relation": "oneToMany",
       "target": "api::message.message",
-      "inversedBy": "sender"
+      "mappedBy": "sender"
     }
   }
 }

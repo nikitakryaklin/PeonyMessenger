@@ -22,9 +22,9 @@
     },
     "sender": {
       "type": "relation",
-      "relation": "oneToOne",
+      "relation": "manyToOne",
       "target": "plugin::users-permissions.user",
-      "mappedBy": "message"
+      "inversedBy": "messages"
     }
   }
 }

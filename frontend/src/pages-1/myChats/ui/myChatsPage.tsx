@@ -1,7 +1,7 @@
-import { ChatItem } from "@/entities";
-import { PageWrapper, ROUTES } from "@/shared";
-import { nanoid } from "nanoid";
-import Link from "next/link";
+"use client";
+
+import { useSearchChat } from "@/features";
+import { ChatList } from "@/widgets";
 
 export const MyChatsPage = () => {
   const chatArray = [
@@ -22,18 +22,13 @@ export const MyChatsPage = () => {
     },
   ];
 
+  const { chatList } = useSearchChat("");
+
+  console.log(chatList);
+
   return (
     <div className="w-full flex flex-col">
-      {chatArray.map((el) => (
-        <ChatItem
-          chatId={el.link}
-          key={el.link}
-          avatar={""}
-          userName={""}
-          lastMassage={""}
-          date={""}
-        />
-      ))}
+      <ChatList chats={chatList!} />
     </div>
   );
 };

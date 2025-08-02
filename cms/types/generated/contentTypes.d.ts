@@ -376,7 +376,7 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
 export interface ApiAbooutAboout extends Struct.CollectionTypeSchema {
   collectionName: 'aboouts';
   info: {
-    displayName: 'aboout';
+    displayName: 'about';
     pluralName: 'aboouts';
     singularName: 'aboout';
   };
@@ -495,7 +495,7 @@ export interface ApiMessageMessage extends Struct.CollectionTypeSchema {
     massange: Schema.Attribute.Text;
     publishedAt: Schema.Attribute.DateTime;
     sender: Schema.Attribute.Relation<
-      'oneToOne',
+      'manyToOne',
       'plugin::users-permissions.user'
     >;
     updatedAt: Schema.Attribute.DateTime;
@@ -980,7 +980,7 @@ export interface PluginUsersPermissionsUser
       'plugin::users-permissions.user'
     > &
       Schema.Attribute.Private;
-    message: Schema.Attribute.Relation<'oneToOne', 'api::message.message'>;
+    messages: Schema.Attribute.Relation<'oneToMany', 'api::message.message'>;
     password: Schema.Attribute.Password &
       Schema.Attribute.Private &
       Schema.Attribute.SetMinMaxLength<{
