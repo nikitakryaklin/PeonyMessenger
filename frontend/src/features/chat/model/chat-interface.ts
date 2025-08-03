@@ -8,5 +8,5 @@ export interface IChat {
   updatedAt: string;
   publishedAt: string;
   participants: (IUser & { about: IAbout | null })[];
-  messanges: IMassage[];
+  messages: IMassage[];
 }

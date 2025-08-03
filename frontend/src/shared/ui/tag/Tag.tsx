@@ -11,7 +11,7 @@ export const Tag = ({
   return (
     <span
       className={clsx(
-        "px-1.5 bg-[var(--primery)] rounded-4xl group-hover:bg-[var(--white)]  transition-colors duration-200",
+        "px-2 bg-[var(--primery)] rounded-4xl group-hover:bg-[var(--white)]  transition-colors duration-200",
         className
       )}
     >

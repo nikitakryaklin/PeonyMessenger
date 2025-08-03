@@ -18,3 +18,4 @@ export type { IUser } from "./types/api/user-inteface";
 export type { IAbout } from "./types/api/about-interface";
 export type { IPagination } from "./types/api/pagination-interface";
 export { getImageUrl } from "./lib/getImageURL";
+export { AvatarCircle } from "./ui/avatar/avatarCircle";

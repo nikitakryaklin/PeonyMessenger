@@ -1,4 +1,4 @@
-import { HTMLProps, Ref } from "react";
+import { HTMLProps, ReactNode, Ref } from "react";
 import { SubText } from "../text";
 import clsx from "clsx";
 
@@ -9,13 +9,15 @@ export const Field = ({
   elementClassName,
   type = "text",
   id,
+  icon,
   ref,
   ...inputProps
 }: {
   title?: string;
   isError?: boolean;
   elementClassName?: string;
-  ref: Ref<HTMLInputElement>;
+  icon?: ReactNode;
+  ref?: Ref<HTMLInputElement>;
 } & HTMLProps<HTMLInputElement>) => {
   return (
     <div className={clsx(elementClassName)}>
@@ -28,11 +30,12 @@ export const Field = ({
       <label
         htmlFor={id}
         className={clsx(
-          "w-full border p-1.5  my-0.5 rounded-[0.5rem] h-12 flex ",
+          "w-full border p-1.5  my-0.5 rounded-[0.5rem] flex items-center gap-1",
           isError && "border-[var(--red)]",
           className
         )}
       >
+        {icon && <>{icon}</>}
         <input
           type={type}
           id={id}

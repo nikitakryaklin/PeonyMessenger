@@ -7,9 +7,10 @@ export const chatService = {
       "chats/?filtres[participants][id][$eq]" +
         `=${localStorage.getItem(LOCAL_STORAGE.userId)}` +
         `&filters[participants][username][$containsi]=${userName}` +
-        "&populate[participants][populate][aboout][populate][avatar]=true" +
+        "&populate[participants][populate][about][populate][avatar]=true" +
         "&populate[messages][populate][sender][sort][0]=createdAt:desc" +
-        `&pagination[page]=${page}`
+        `&pagination[page]=${page}` +
+        "&pagination[pageSize]=5"
     );
   },
 };

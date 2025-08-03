@@ -961,7 +961,7 @@ export interface PluginUsersPermissionsUser
     draftAndPublish: false;
   };
   attributes: {
-    aboout: Schema.Attribute.Relation<'oneToOne', 'api::aboout.aboout'>;
+    about: Schema.Attribute.Relation<'oneToOne', 'api::aboout.aboout'>;
     blocked: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
     chat: Schema.Attribute.Relation<'manyToMany', 'api::chat.chat'>;
     confirmationToken: Schema.Attribute.String & Schema.Attribute.Private;

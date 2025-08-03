@@ -3,21 +3,20 @@ import { IChat } from "@/features";
 import { ChatItem } from "./chatItem";
 
 export const ChatList = ({ chats }: { chats: IChat[] }) => {
-  console.log(chats[0].participants[1].about?.avatar[0]?.url);
+  console.log(chats);
 
   return (
     <div>
-      {/* {chats.map((chat, idx) => (
+      {chats.map((chat, idx) => (
         <ChatItem
           key={idx}
           chatId={chat.documentId}
-          avatar={null}
+          avatar={chat.participants[1].about?.avatar?.[0].url}
           userName={chat.participants[1].username}
-          lastMessage={chat.messanges[0].massange}
-          date={chat.messanges[0].publishedAt}
+          lastMessage={chat.messages[0].massange}
+          date={chat.messages[0].publishedAt}
         />
-      ))} */}
+      ))}
     </div>
   );
 };
-// "participants
