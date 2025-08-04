@@ -37,7 +37,7 @@ export const SidebarGroup = ({
                     " absolute top-[-0.75rem] left-0 border-2 border-[var(--white)]"
                 )}
               >
-                <SubText text={el.tag} />
+                <SubText text={el.tag} className="whitespace-nowrap" />
               </Tag>
             )
           }

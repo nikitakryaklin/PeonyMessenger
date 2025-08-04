@@ -1,4 +1,4 @@
-import { HTMLProps, ReactNode, Ref } from "react";
+import { ChangeEvent, HTMLProps, ReactNode, Ref } from "react";
 import { SubText } from "../text";
 import clsx from "clsx";
 
@@ -10,6 +10,7 @@ export const Field = ({
   type = "text",
   id,
   icon,
+  onChange,
   ref,
   ...inputProps
 }: {
@@ -17,6 +18,7 @@ export const Field = ({
   isError?: boolean;
   elementClassName?: string;
   icon?: ReactNode;
+  onChange: (e: ChangeEvent<HTMLInputElement>) => void;
   ref?: Ref<HTMLInputElement>;
 } & HTMLProps<HTMLInputElement>) => {
   return (
@@ -40,6 +42,7 @@ export const Field = ({
           type={type}
           id={id}
           ref={ref}
+          {...(onChange ? { onChange: (e) => onChange(e) } : {})}
           {...inputProps}
           className={clsx(
             "outline-none w-full",

@@ -36,7 +36,7 @@ export const SidebarLink = ({
             <div className={clsx("flex items-center justify-center")}>
               {icon}
             </div>
-            <LinkTitle text={text} />
+            <LinkTitle text={text} className="whitespace-nowrap" />
           </div>
           {tag}
         </>

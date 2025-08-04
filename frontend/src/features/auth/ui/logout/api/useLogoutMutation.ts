@@ -13,6 +13,7 @@ export const useLogoutMutation = () => {
     mutationFn: authService.logout,
     onSuccess: async () => {
       await queryClient.clear();
+      console.log("logout");
       localStorage.removeItem(LOCAL_STORAGE.userId);
       localStorage.removeItem(LOCAL_STORAGE.token);
       localStorage.removeItem(LOCAL_STORAGE.userDocumentId);

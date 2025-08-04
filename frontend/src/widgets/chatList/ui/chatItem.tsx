@@ -1,11 +1,5 @@
-import {
-  AvatarCircle,
-  CaphionTitle,
-  ROUTES,
-  SubText,
-  Tag,
-  Text,
-} from "@/shared";
+import { AvatarCircle } from "@/entities";
+import { ROUTES, SubText, Tag, Text } from "@/shared";
 import dayjs from "dayjs";
 import Link from "next/link";
 import { ReactNode } from "react";

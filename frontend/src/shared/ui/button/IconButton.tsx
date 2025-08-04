@@ -1,12 +1,17 @@
+import clsx from "clsx";
 import { HTMLAttributes, ReactNode } from "react";
 
 export const IconButton = ({
   icon,
+  className,
   ...buttonProps
 }: { icon: ReactNode } & HTMLAttributes<HTMLButtonElement>) => {
   return (
     <button
-      className=" min-w-11 min-h-11 items-center flex justify-center"
+      className={clsx(
+        "w-11 h-11 items-center flex justify-center cursor-pointer",
+        className
+      )}
       {...buttonProps}
     >
       {icon}

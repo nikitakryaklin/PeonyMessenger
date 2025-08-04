@@ -7,28 +7,36 @@ import { ArrowLeft, MessageCircleMoreIcon, UsersRound } from "lucide-react";
 import { useState } from "react";
 import { SidebarGroup } from "./sidebarGroup";
 import { SIDEBAR_DATA } from "../config/sedibar-data";
+import { m } from "motion/react";
 
 export const Sidebar = () => {
   const [isClose, setIsClose] = useState(false);
 
   return (
-    <div
+    <m.aside
       className={clsx(
-        "bg-[var(--white)] min-h-[100dvh] border-r flex flex-col",
-        !isClose && "max-w-75 w-75 min-w-75",
-        isClose && "w-12 min-w-16 max-w-16"
+        "bg-[var(--white)] min-h-[100dvh] border-r flex flex-col"
       )}
+      animate={{ width: isClose ? 74 : 400 }}
+      transition={{
+        type: "spring",
+        stiffness: 400,
+        damping: 23,
+      }}
     >
       <div
         className={clsx(
-          "h-24 flex px-3 bg-[var(--light-gray)] border-b",
+          "h-24 flex px-3 bg-[var(--light-gray)] border-b items-center",
           !isClose && "justify-between",
           isClose && "justify-center"
         )}
       >
         {!isClose && <Logo />}
         <IconButton
-          className={clsx(isClose && "rotate-180")}
+          className={clsx(
+            "transition-transform duration-300",
+            isClose && "rotate-180"
+          )}
           icon={<ArrowLeft />}
           onClick={() => setIsClose(!isClose)}
         />
@@ -44,7 +52,7 @@ export const Sidebar = () => {
         button={
           <Button
             className={clsx(
-              "bg-[var(--primery)] text-[1.25rem] leading-[140%] text-semibold mx-auto mt-2 hover:bg-[var(--primery-light)]",
+              "bg-[var(--primery)] text-[1.25rem] leading-[140%] text-semibold mx-auto mt-2 hover:bg-[var(--primery-light)] overflow-hidden",
               !isClose && "w-[90%]",
               isClose && "text-[1.75rem] w-[60%]"
             )}
@@ -67,6 +75,6 @@ export const Sidebar = () => {
       <div className="h-24 bg-[var(--light-gray)] mt-auto">
         <Button text="" />
       </div>
-    </div>
+    </m.aside>
   );
 };

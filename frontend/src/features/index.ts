@@ -5,3 +5,4 @@ export { Logout } from "./auth/ui/logout/ui/logout";
 export { usePublicRegisterFormStore } from "./auth/ui/register/model/usePublicRegisterFormStore";
 export { useSearchChat } from "./chat/chatList/model/useSearchChat";
 export type { IChat } from "./chat/model/chat-interface";
+export { useUserAbout } from "./user/getUserAbout/api/useUserAbout";

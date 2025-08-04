@@ -70,7 +70,7 @@
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::aboout.aboout",
-      "mappedBy": "users_permissions_user"
+      "mappedBy": "user"
     },
     "chat": {
       "type": "relation",
