@@ -439,6 +439,41 @@ export interface ApiChatChat extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiContactContact extends Struct.CollectionTypeSchema {
+  collectionName: 'contacts';
+  info: {
+    displayName: ' contact';
+    pluralName: 'contacts';
+    singularName: 'contact';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    contact: Schema.Attribute.Relation<
+      'manyToOne',
+      'plugin::users-permissions.user'
+    >;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::contact.contact'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    user: Schema.Attribute.Relation<
+      'manyToOne',
+      'plugin::users-permissions.user'
+    >;
+  };
+}
+
 export interface ApiGlobalGlobal extends Struct.SingleTypeSchema {
   collectionName: 'globals';
   info: {
@@ -966,6 +1001,7 @@ export interface PluginUsersPermissionsUser
     chat: Schema.Attribute.Relation<'manyToMany', 'api::chat.chat'>;
     confirmationToken: Schema.Attribute.String & Schema.Attribute.Private;
     confirmed: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
+    contacts: Schema.Attribute.Relation<'oneToMany', 'api::contact.contact'>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -981,6 +1017,7 @@ export interface PluginUsersPermissionsUser
     > &
       Schema.Attribute.Private;
     messages: Schema.Attribute.Relation<'oneToMany', 'api::message.message'>;
+    owner: Schema.Attribute.Relation<'oneToMany', 'api::contact.contact'>;
     password: Schema.Attribute.Password &
       Schema.Attribute.Private &
       Schema.Attribute.SetMinMaxLength<{
@@ -1017,6 +1054,7 @@ declare module '@strapi/strapi' {
       'admin::user': AdminUser;
       'api::aboout.aboout': ApiAbooutAboout;
       'api::chat.chat': ApiChatChat;
+      'api::contact.contact': ApiContactContact;
       'api::global.global': ApiGlobalGlobal;
       'api::message.message': ApiMessageMessage;
       'plugin::content-releases.release': PluginContentReleasesRelease;

@@ -83,6 +83,18 @@
       "relation": "oneToMany",
       "target": "api::message.message",
       "mappedBy": "sender"
+    },
+    "contacts": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::contact.contact",
+      "mappedBy": "user"
+    },
+    "owner": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::contact.contact",
+      "mappedBy": "contact"
     }
   }
 }

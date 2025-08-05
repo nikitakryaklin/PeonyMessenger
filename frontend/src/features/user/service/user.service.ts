@@ -1,10 +1,44 @@
-import { api, IAbout, LOCAL_STORAGE } from "@/shared";
+import { api, IAbout, IUser, LOCAL_STORAGE } from "@/shared";
 
 export const userService = {
-  get: () =>
+  getAbout: () =>
     api().get<{ data: IAbout[] }>(
       `aboouts/?filters[user][id][$eq]=${localStorage.getItem(
         LOCAL_STORAGE.userId
       )}&populate=avatar`
+    ),
+
+  // getNotMyContacts: async () => {
+  //   const userHasContacts = await api().get<
+  //     {
+  //       data: (IUser & { about: IAbout | null })[];
+  //     }[]
+  //   >(
+  //     "users/?populate[contacts]=true" +
+  //       "&populate[about][populate][avatar]=true" +
+  //       `&filters[contacts][contact][id][$ne]=${localStorage.getItem(
+  //         LOCAL_STORAGE.userId
+  //       )}` +
+  //       `&filters[id][$ne]=${localStorage.getItem(LOCAL_STORAGE.userId)}`
+  //   );
+
+  //   const userHasNotContacts = await api().get<
+  //     {
+  //       data: (IUser & { about: IAbout | null })[];
+  //     }[]
+  //   >(
+  //     `users?filters[contacts][id][$null]=true&filters[id][$ne]=${localStorage.getItem(
+  //       LOCAL_STORAGE.userId
+  //     )}&populate[about][populate][avatar]=true`
+  //   );
+  //   return [...userHasContacts, ...userHasNotContacts];
+  // },
+  getNotMyContacts: async () =>
+    await api().get<{
+      data: (IUser & { about: IAbout | null })[];
+    }>(
+      `users/?populate[about][populate][avatar]=true&filters[$or][0][chat][id][$null]=true&filters[$or][1][contacts][contact][id][$ne]=${localStorage.getItem(
+        LOCAL_STORAGE.userId
+      )}&filters[id][$ne]=${localStorage.getItem(LOCAL_STORAGE.userId)}`
     ),
 };
