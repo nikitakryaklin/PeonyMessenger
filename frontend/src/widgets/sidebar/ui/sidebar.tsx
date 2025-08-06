@@ -1,26 +1,21 @@
 "use client";
 
-import { Logo, Modal, SidebarLink } from "@/entities";
-import { Button, IconButton, SubText, Tag, Text } from "@/shared";
+import { Logo } from "@/entities";
+import { Button, IconButton } from "@/shared";
 import clsx from "clsx";
-import { ArrowLeft, MessageCircleMoreIcon, UsersRound } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 import { useState } from "react";
 import { SidebarGroup } from "./sidebarGroup";
 import { SIDEBAR_DATA } from "../config/sedibar-data";
 import { m } from "motion/react";
-import { useNotMyContacts } from "@/features";
+import { useCreateChatModal } from "@/features";
 
 export const Sidebar = () => {
   const [isClose, setIsClose] = useState(false);
-  const [isOpen, setIsOpen] = useState(false);
 
-  const onOpen = () => {
-    setIsOpen(false);
-  };
-
-  const { data } = useNotMyContacts();
-
-  console.log(data, "dsa");
+  const onOpenCreateChatModal = useCreateChatModal(
+    (s) => s.onOpenCreateChatModal
+  );
 
   return (
     <m.aside
@@ -60,20 +55,15 @@ export const Sidebar = () => {
           { ...SIDEBAR_DATA.chat[1], tag: "99" },
         ]}
         button={
-          <>
-            <Button
-              className={clsx(
-                "bg-[var(--primery)] text-[1.25rem] leading-[140%] text-semibold mx-auto mt-2 hover:bg-[var(--primery-light)] overflow-hidden",
-                !isClose && "w-[90%]",
-                isClose && "text-[1.75rem] w-[60%]"
-              )}
-              text={isClose ? "+" : "+ Create chat"}
-              onClick={() => setIsOpen(true)}
-            />
-            <Modal isOpen={isOpen} onClose={onOpen}>
-              <div>dsa</div>
-            </Modal>
-          </>
+          <Button
+            className={clsx(
+              "bg-[var(--primery)] text-[1.25rem] leading-[140%] text-semibold mx-auto mt-2 hover:bg-[var(--primery-light)] overflow-hidden",
+              !isClose && "w-[90%]",
+              isClose && "text-[1.75rem] w-[60%]"
+            )}
+            text={isClose ? "+" : "+ Create chat"}
+            onClick={onOpenCreateChatModal}
+          />
         }
       />
 

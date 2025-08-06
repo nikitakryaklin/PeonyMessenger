@@ -31,7 +31,7 @@ export const Modal = ({
     <div
       onClick={modalClose}
       data-type="modal"
-      className="fixed bg-black/20 inset-0 flex justify-center pt-72"
+      className="fixed bg-black/20 inset-0 flex justify-center"
     >
       {children}
     </div>,
