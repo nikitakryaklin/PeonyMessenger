@@ -1,6 +1,6 @@
 "use client";
 
-import { useSearchChat } from "@/features";
+import { useCreateChatModal, useSearchChat } from "@/features";
 import { ChangeEvent, useState } from "react";
 
 export function useMyChatPage() {
@@ -10,5 +10,10 @@ export function useMyChatPage() {
   const setInputValue = (e: ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value);
   };
-  return { chatList, setInputValue, value };
+
+  const onOpenCreateChatModal = useCreateChatModal(
+    (s) => s.onOpenCreateChatModal
+  );
+
+  return { chatList, setInputValue, value, onOpenCreateChatModal };
 }

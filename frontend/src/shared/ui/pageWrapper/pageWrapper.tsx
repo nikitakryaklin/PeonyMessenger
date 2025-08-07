@@ -9,7 +9,7 @@ export function PageWrapper({
   return (
     <div
       className={clsx(
-        "w-full h-full bg-[var(--white)] pt-3 border-r border-[var(--gray)]",
+        "w-full h-[calc(100dvh-96px)] bg-[var(--white)] pt-3 border-r border-[var(--gray)]",
         className
       )}
       {...divProps}

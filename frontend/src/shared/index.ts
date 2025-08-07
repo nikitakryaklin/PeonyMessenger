@@ -23,3 +23,6 @@ export { filtredParticipants } from "./lib/filtredParticipants";
 export { DropDown } from "./ui/dropDown/dropDown";
 export * from "./lib/dropDown";
 export { useCreateChatModal } from "./hooks/useCreateChatModal";
+
+// ui
+export { CheckBox } from "./ui/checkBox/checkBox";

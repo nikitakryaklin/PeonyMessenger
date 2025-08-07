@@ -1,7 +1,12 @@
 "use client";
 
 import { Modal } from "@/entities";
-import { useCreateChatModal, useFindUsers } from "@/features";
+import {
+  useCreateChatModal,
+  useCreateChatMutation,
+  useCreateContactsMutation,
+  useFindUsers,
+} from "@/features";
 import { PageWrapper } from "@/shared";
 import { CreateDialog, Sidebar } from "@/widgets";
 import { Header } from "@/widgets";
@@ -29,27 +34,43 @@ export const AccountPage = ({
 
   const { data, isPending } = useFindUsers(userName);
 
+  const { createChatMutate } = useCreateChatMutation();
+  const { createContactMutate } = useCreateContactsMutation();
+
+  const onCreateChatMetation = async (userId: number | number[]) => {
+    console.log("вызов", userId);
+    if (userId === 0 || Array.isArray(userId)) {
+      return;
+    }
+
+    await createChatMutate({ userId });
+    await createContactMutate({ userId });
+
+    onCloseCreateChatModal();
+  };
+
   return (
     <div className="flex">
       <Sidebar />
       <div className="w-full">
         <Header />
-        <main className="w-full h-full flex">
+        <main className="w-full h-[calc(100dvh-96px)] flex">
           <PageWrapper>{children}</PageWrapper>
           <Modal
             onClose={onCloseCreateChatModal}
             isOpen={isCreateChatModalOpen}
           >
             <CreateDialog
+              type="chat"
               title="chat"
               onClose={onCloseCreateChatModal}
               value={userName}
               data={data}
               onChange={onChange}
-              onClick={() => {}}
+              onClick={onCreateChatMetation}
             />
           </Modal>
-          <div className="w-3/4 min-w-3/4 h-full bg-[var(--primery-light)] ml-auto">
+          <div className="w-3/4 min-w-3/4 h-[calc(100dvh-96px)] bg-[var(--primery-light)] ml-auto">
             <Suspense fallback={<>loading...</>}>{panel}</Suspense>
           </div>
         </main>

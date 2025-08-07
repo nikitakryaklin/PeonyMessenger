@@ -1,7 +1,7 @@
 "use client";
 
 import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
-import { chatService } from "../service/chat.service";
+import { chatService } from "../../../service/chat.service";
 import { LOCAL_STORAGE } from "@/shared";
 
 export function useSearchChat(userName: string) {

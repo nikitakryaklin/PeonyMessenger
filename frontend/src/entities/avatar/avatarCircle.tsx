@@ -1,7 +1,6 @@
 import { Loader } from "@/shared";
 import { getImageUrl } from "@/shared/lib/getImageURL";
 import clsx from "clsx";
-import { div } from "motion/react-client";
 import Image from "next/image";
 
 export const AvatarCircle = ({
@@ -21,7 +20,7 @@ export const AvatarCircle = ({
     return (
       <div
         className={clsx(
-          "size-full flex items-center justify-center rounded-full border-2 border-[var(--primery)]",
+          "h-full aspect-square flex items-center justify-center rounded-full border-2 border-[var(--primery)]",
           className
         )}
       >
@@ -32,12 +31,19 @@ export const AvatarCircle = ({
 
   if (url) {
     return (
-      <Image
-        className={clsx(" object-cover rounded-full", className)}
-        src={getImageUrl(url)}
-        alt="avatar"
-        fill
-      />
+      <div
+        className={clsx(
+          "rounded-full h-full aspect-square overflow-hidden relative",
+          className
+        )}
+      >
+        <Image
+          className={clsx(" object-cover")}
+          src={getImageUrl(url)}
+          alt="avatar"
+          fill
+        />
+      </div>
     );
   }
 };

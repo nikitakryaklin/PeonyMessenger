@@ -4,17 +4,13 @@ import { CaphionTitle, Field, Text } from "@/shared";
 import { ChatList } from "@/widgets";
 import { Search } from "lucide-react";
 import { useMyChatPage } from "../hook/useMyChatPage";
-import { useCreateChatModal } from "@/features";
 
 export const MyChatsPage = () => {
-  const { chatList, setInputValue, value } = useMyChatPage();
-
-  const onOpenCreateChatModal = useCreateChatModal(
-    (s) => s.onOpenCreateChatModal
-  );
+  const { chatList, setInputValue, value, onOpenCreateChatModal } =
+    useMyChatPage();
 
   return (
-    <div className="w-full flex flex-col">
+    <div className="size-full flex flex-col min-w-72">
       <div className="flex justify-between px-2 items-center">
         <Text text="All Chats" />
         <button
@@ -31,9 +27,15 @@ export const MyChatsPage = () => {
         elementClassName="px-2 my-2"
         value={value}
         onChange={setInputValue}
+        disabled={!chatList?.length}
       />
 
       {chatList && <ChatList chats={chatList} />}
+      {!chatList?.length && (
+        <div className="size-full flex items-center">
+          <Text text="You do not have any chats" className="mx-auto" />
+        </div>
+      )}
     </div>
   );
 };

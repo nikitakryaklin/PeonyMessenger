@@ -16,7 +16,7 @@ export function ChatItem({
   avatar: string | undefined | null;
   userName: string;
   lastMessage: string;
-  date: string;
+  date: string | undefined;
   tag?: ReactNode;
 }) {
   return (
@@ -35,10 +35,14 @@ export function ChatItem({
             className="max-w-[99%] overflow-ellipsis whitespace-nowrap overflow-hidden"
           />
         </div>
-        <div className="h-full w-full flex flex-col items-center">
-          {dayjs(date).format("HH:mm")}
-          <Tag children={2} />
-        </div>
+        {date && (
+          <>
+            <div className="h-full w-full flex flex-col items-center">
+              {dayjs(date).format("HH:mm")}
+              <Tag children={2} />
+            </div>
+          </>
+        )}
       </div>
     </Link>
   );

@@ -80,12 +80,9 @@ export class FetchClient {
   public get<T>(endpoint: string, options: Omit<RequestOptions, "body"> = {}) {
     return this.request<T>(endpoint, "GET", options);
   }
+  // Record<string, string>
 
-  public post<T>(
-    endpoint: string,
-    body?: Record<string, string>,
-    options: RequestOptions = {}
-  ) {
+  public post<T, K>(endpoint: string, body?: K, options: RequestOptions = {}) {
     return this.request<T>(endpoint, "POST", {
       ...options,
       headers: {
