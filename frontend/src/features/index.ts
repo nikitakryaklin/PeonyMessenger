@@ -10,6 +10,7 @@ export { useSearchChat } from "./chat/api/list/api/useSearchChat";
 export type { IChat } from "./chat/model/chat-interface";
 export { useCreateChatModal } from "./chat/api/create/store/useCreateChatModal";
 export { useCreateChatMutation } from "./chat/api/create/api/useCreateChatMutation";
+export { useChatGetById } from "./chat/api/get/api/useChatGetById";
 
 //user
 export { useUserAbout } from "./user/api/useUserAbout";

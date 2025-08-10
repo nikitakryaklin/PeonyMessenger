@@ -54,7 +54,7 @@ export const AccountPage = ({
       <Sidebar />
       <div className="w-full">
         <Header />
-        <main className="w-max-[90vw] h-[calc(100dvh-96px)] flex">
+        <main className="w-full h-[calc(100dvh-96px)] flex">
           <PageWrapper>{children}</PageWrapper>
           <Modal
             onClose={onCloseCreateChatModal}
@@ -70,7 +70,7 @@ export const AccountPage = ({
               onClick={onCreateChatMetation}
             />
           </Modal>
-          <div className="w-3/4 min-w-3/4 h-[calc(100dvh-96px)] bg-[var(--primery-light)] ml-auto">
+          <div className="w-3/4 min-w-3/4 max-w-[60vw] h-[calc(100dvh-96px)] bg-[var(--primery-light)] ml-auto">
             <Suspense fallback={<>loading...</>}>{panel}</Suspense>
           </div>
         </main>

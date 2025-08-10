@@ -27,4 +27,11 @@ export const chatService = {
         },
       }
     ),
+
+  getByid: async (chatId: string) =>
+    api().get<{ data: IChat }>(
+      "chats/" +
+        chatId +
+        "?populate[participants][populate][about][populate][avatar]=true"
+    ),
 };
