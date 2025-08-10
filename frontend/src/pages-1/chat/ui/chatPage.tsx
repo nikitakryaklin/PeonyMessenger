@@ -35,6 +35,7 @@ export const ChatPage = ({ id }: { id: string }) => {
           }
         />
       }
+      type="group"
       dialogId={id}
       messages={messages}
     />
