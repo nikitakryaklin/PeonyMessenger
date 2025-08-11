@@ -15,7 +15,7 @@ export const DialogContainer = ({
   messages,
 }: {
   header: ReactNode;
-  dialogId: string;
+  dialogId: number;
   type: "chat" | "group";
   messages: (TChatMessange[] & TGroupMessange[]) | undefined;
 }) => {
@@ -71,7 +71,7 @@ export const DialogContainer = ({
           }[type]
         }
       </div>
-      <DialogForm />
+      <DialogForm chatId={dialogId} />
     </div>
   );
 };

@@ -11,3 +11,4 @@ export type {
 } from "./message/model/massage-interface";
 export { MessageContainer } from "./message/ui/message-container";
 export { useMessageGetByChatId } from "./message/api/useMessageGetByChatId";
+export { useSendMessage } from "./message/api/useSendMessage";

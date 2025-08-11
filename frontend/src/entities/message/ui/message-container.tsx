@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 import { Message } from "./message";
-import { SubText, Text } from "@/shared";
+import { SubText } from "@/shared";
 import clsx from "clsx";
 
 export function MessageContainer({
