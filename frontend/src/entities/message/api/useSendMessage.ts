@@ -8,7 +8,7 @@ export function useSendMessage(chatId: number) {
     useMutation({
       mutationFn: sendMessage,
       onSettled: () => {
-        queryClient.invalidateQueries({ queryKey: ["messange"] });
+        queryClient.invalidateQueries({ queryKey: ["message"] });
       },
     });
   return { metateMessage, isPendingSendMessage };

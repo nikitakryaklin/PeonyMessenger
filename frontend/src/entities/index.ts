@@ -6,8 +6,8 @@ export { Modal } from "./modal/modal";
 
 // messange
 export type {
-  TChatMessange,
-  TGroupMessange,
+  IMassageEntity,
+  TMessage,
 } from "./message/model/massage-interface";
 export { MessageContainer } from "./message/ui/message-container";
 export { useMessageGetByChatId } from "./message/api/useMessageGetByChatId";

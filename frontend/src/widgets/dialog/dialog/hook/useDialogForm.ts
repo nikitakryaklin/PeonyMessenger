@@ -11,7 +11,7 @@ export const useDialogForm = (chatId: number) => {
 
   const onFormSubmut: SubmitHandler<{ message: string }> = (data) => {
     metateMessage({
-      massange: data.message,
+      massage: data.message,
       sender: Number(localStorage.getItem(LOCAL_STORAGE.userId)),
       chat: chatId,
     });

@@ -1,11 +1,6 @@
 import { ReactNode } from "react";
 import { DialogForm } from "./dialog.form";
-import {
-  AvatarCircle,
-  MessageContainer,
-  TChatMessange,
-  TGroupMessange,
-} from "@/entities";
+import { AvatarCircle, MessageContainer, TMessage } from "@/entities";
 import { LOCAL_STORAGE } from "@/shared";
 
 export const DialogContainer = ({
@@ -17,7 +12,7 @@ export const DialogContainer = ({
   header: ReactNode;
   dialogId: number;
   type: "chat" | "group";
-  messages: (TChatMessange[] & TGroupMessange[]) | undefined;
+  messages: TMessage[] | undefined;
 }) => {
   return (
     <div className="flex flex-col h-full">
@@ -34,10 +29,10 @@ export const DialogContainer = ({
           {
             chat: (
               <>
-                {messages?.map((message: TChatMessange) => (
+                {messages?.map((message) => (
                   <MessageContainer
                     key={message.documentId}
-                    text={message.massange}
+                    text={message.massage}
                     isIncoming={
                       localStorage.getItem(LOCAL_STORAGE.userDocumentId) !==
                       message.sender.documentId
@@ -48,10 +43,10 @@ export const DialogContainer = ({
             ),
             group: (
               <>
-                {messages?.map((message: TGroupMessange) => (
+                {messages?.map((message) => (
                   <MessageContainer
                     key={message.documentId}
-                    text={message.massange}
+                    text={message.massage}
                     info={{
                       avatar: (
                         <AvatarCircle

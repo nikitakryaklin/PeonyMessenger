@@ -1,7 +1,8 @@
 import { api } from "@/shared";
+import { TMessage } from "../model/massage-interface";
 
 export const sendMessage = (data: {
-  massange: string;
+  massage: string;
   chat: number;
   sender: number;
-}) => api().post<any, any>("messages", { data: { ...data } });
+}) => api().post<{ data: TMessage }, any>("messages", { data });

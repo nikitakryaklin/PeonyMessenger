@@ -1,4 +1,4 @@
-import { TChatMessange } from "@/entities";
+import { TMessage } from "@/entities";
 import { IAbout, IUser } from "@/shared";
 
 export interface IEmptyChat {
@@ -11,5 +11,5 @@ export interface IEmptyChat {
 
 export interface IChat extends IEmptyChat {
   participants: (IUser & { about: IAbout | null })[];
-  messages: TChatMessange[];
+  messages: TMessage[];
 }

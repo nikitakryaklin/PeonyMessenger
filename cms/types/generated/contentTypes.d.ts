@@ -527,7 +527,7 @@ export interface ApiMessageMessage extends Struct.CollectionTypeSchema {
       'api::message.message'
     > &
       Schema.Attribute.Private;
-    massange: Schema.Attribute.Text;
+    massage: Schema.Attribute.Text;
     publishedAt: Schema.Attribute.DateTime;
     sender: Schema.Attribute.Relation<
       'manyToOne',

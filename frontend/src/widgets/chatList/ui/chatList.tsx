@@ -13,7 +13,7 @@ export const ChatList = ({ chats }: { chats: IChat[] }) => {
             filtredParticipants(chat.participants)[0].about?.avatar?.[0].url
           }
           userName={filtredParticipants(chat.participants)[0].username}
-          lastMessage={chat.messages[0]?.massange || "no messages"}
+          lastMessage={chat.messages[0]?.massage || "no messages"}
           date={chat?.messages[0]?.publishedAt}
         />
       ))}
