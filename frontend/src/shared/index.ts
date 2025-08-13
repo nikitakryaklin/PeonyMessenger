@@ -26,3 +26,4 @@ export { useCreateChatModal } from "./hooks/useCreateChatModal";
 
 // ui
 export { CheckBox } from "./ui/checkBox/checkBox";
+export { PrimeryLink } from "./ui/link/primeryLink";
