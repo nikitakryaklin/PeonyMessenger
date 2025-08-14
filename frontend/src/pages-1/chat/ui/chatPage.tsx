@@ -8,12 +8,10 @@ import { EllipsisVertical, Phone, Search, Star } from "lucide-react";
 
 export const ChatPage = ({ id }: { id: string }) => {
   const { chat, isPendingChat } = useChatGetById(id);
-  const { messages, isPendingMessage } = useMessageGetByChatId(id);
 
   if (!chat) {
     return null;
   }
-
   const participant = filtredParticipants(chat?.participants)[0];
 
   return (
@@ -37,7 +35,7 @@ export const ChatPage = ({ id }: { id: string }) => {
       }
       type="chat"
       dialogId={chat.id}
-      messages={messages}
+      params={id}
     />
   );
 };

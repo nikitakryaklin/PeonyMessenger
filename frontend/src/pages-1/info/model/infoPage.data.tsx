@@ -1,4 +1,4 @@
-import { Globe, Mail } from "lucide-react";
+import { BookText, Globe, Mail } from "lucide-react";
 import { nanoid } from "nanoid";
 
 export const INFO_PAGE_DATA = [
@@ -18,6 +18,6 @@ export const INFO_PAGE_DATA = [
     id: nanoid(),
     text: "Rules if Usage",
     url: "#",
-    icon: <Globe size={15} />,
+    icon: <BookText size={15} />,
   },
 ];

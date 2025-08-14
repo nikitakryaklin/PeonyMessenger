@@ -18,7 +18,7 @@ export const PrimeryLink = ({
     <Link
       href={url}
       className={clsx(
-        "w-full h-12 flex items-center justify-center gap-2 border-[var(--primery)] border-2 rounded-xl",
+        "w-full h-12 flex items-center justify-center gap-2 border-[var(--primery)] border-2 rounded-xl hover:bg-[var(--primery)] transition-colors duration-150",
         className
       )}
       {...linkProps}

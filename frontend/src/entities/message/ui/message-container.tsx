@@ -16,7 +16,12 @@ export function MessageContainer({
   };
 }) {
   return (
-    <div className={clsx("flex gap-2 items-end", !isIncoming && "justify-end")}>
+    <div
+      className={clsx(
+        "flex gap-2 items-end mt-3",
+        !isIncoming && "justify-end"
+      )}
+    >
       {isIncoming && <>{info?.avatar}</>}
       <Message
         text={text}

@@ -18,5 +18,5 @@ export const useDialogForm = (chatId: number) => {
     reset();
   };
 
-  return { onsubmit: handleSubmit(onFormSubmut), register };
+  return { onSubmit: handleSubmit(onFormSubmut), register };
 };

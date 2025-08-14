@@ -5,7 +5,6 @@ import { IUser } from "../types/api/user-inteface";
 export const filtredParticipants = (
   participants: (IUser & { about: IAbout | null })[]
 ) => {
-  console.log(participants, localStorage.getItem(LOCAL_STORAGE.userDocumentId));
   return participants.filter(
     (participant) =>
       participant.documentId !==

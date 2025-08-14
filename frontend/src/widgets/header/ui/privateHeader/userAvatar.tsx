@@ -6,8 +6,6 @@ export const UserAvatar = () => {
   const { data, isPending } = useUserAbout();
   const { onOpen, onClose, isOpen } = useDropDownOnHover();
 
-  console.log(data);
-
   return (
     <>
       <button

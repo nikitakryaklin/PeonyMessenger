@@ -1,10 +1,12 @@
 import { PrimeryLink } from "@/shared";
-import { Globe } from "lucide-react";
+import { INFO_PAGE_DATA } from "../model/infoPage.data";
 
 export const InfoPage = () => {
   return (
-    <div className="px-2">
-      <PrimeryLink url="#" text="Visit Website" icon={<Globe size={15} />} />
+    <div className="px-3 flex flex-col gap-3">
+      {INFO_PAGE_DATA.map((el) => (
+        <PrimeryLink key={el.id} url={el.url} text={el.text} icon={el.icon} />
+      ))}
     </div>
   );
 };

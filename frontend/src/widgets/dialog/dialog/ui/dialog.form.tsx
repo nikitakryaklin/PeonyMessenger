@@ -1,15 +1,22 @@
-import { MicIcon, Paperclip, Smile } from "lucide-react";
+import { MicIcon, Paperclip, Send, Smile } from "lucide-react";
 import { useId } from "react";
 import { useDialogForm } from "../hook/useDialogForm";
+import { IconButton } from "@/shared";
 
-export const DialogForm = ({ chatId }: { chatId: number }) => {
+export const DialogForm = ({
+  chatId,
+  scrollToBottom,
+}: {
+  chatId: number;
+  scrollToBottom: (variant: ScrollBehavior) => void;
+}) => {
   const textMessageId = useId();
 
-  const { onsubmit, register } = useDialogForm(chatId);
+  const { onSubmit, register } = useDialogForm(chatId);
 
   return (
     <form
-      onSubmit={onsubmit}
+      onSubmit={onSubmit}
       className="bg-[var(--white)] h-16 flex gap-4 px-5 items-center"
     >
       <Paperclip />
@@ -24,7 +31,7 @@ export const DialogForm = ({ chatId }: { chatId: number }) => {
         <Smile />
       </label>
       <MicIcon />
-      <button type="submit">send</button>
+      <IconButton icon={<Send />} onClick={() => scrollToBottom("smooth")} />
     </form>
   );
 };
