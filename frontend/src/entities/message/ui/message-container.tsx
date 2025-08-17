@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import { ReactNode, RefObject } from "react";
 import { Message } from "./message";
 import { SubText } from "@/shared";
 import clsx from "clsx";
@@ -6,10 +6,12 @@ import clsx from "clsx";
 export function MessageContainer({
   text,
   isIncoming,
+  Ref,
   info,
 }: {
   text: string;
   isIncoming: boolean;
+  Ref?: (el: HTMLDivElement | null) => void;
   info?: {
     avatar: ReactNode;
     title: string;
@@ -21,6 +23,7 @@ export function MessageContainer({
         "flex gap-2 items-end mt-3",
         !isIncoming && "justify-end"
       )}
+      ref={Ref}
     >
       {isIncoming && <>{info?.avatar}</>}
       <Message

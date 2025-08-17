@@ -4,7 +4,7 @@ import {
   TMessage,
   useMessageGetByChatId,
 } from "@/entities";
-import { Loader, LOCAL_STORAGE, Stub } from "@/shared";
+import { Loader, LOCAL_STORAGE, Stub, useIntersection } from "@/shared";
 import { RefObject } from "react";
 
 export function DialogMessages({
@@ -19,6 +19,8 @@ export function DialogMessages({
   const { messages, isPendingMessage, nextPage } =
     useMessageGetByChatId(params);
 
+  const observerRef = useIntersection(nextPage.fetchNextPage);
+
   if (isPendingMessage) {
     return <Loader color="#999" />;
   }
@@ -28,13 +30,15 @@ export function DialogMessages({
   }
 
   return (
-    <div ref={Ref} className=" overflow-y-auto max-h-full px-5">
-      <div></div>
+    <div
+      ref={Ref}
+      className="flex flex-col-reverse overflow-y-auto max-h-full px-5"
+    >
       {
         {
           chat: (
             <>
-              {messages?.map((message) => (
+              {messages?.map((message, idx) => (
                 <MessageContainer
                   key={message.documentId}
                   text={message.massage}
@@ -42,6 +46,7 @@ export function DialogMessages({
                     localStorage.getItem(LOCAL_STORAGE.userDocumentId) !==
                     message.sender.documentId
                   }
+                  {...(idx === messages.length - 3 && { Ref: observerRef })}
                 />
               ))}
             </>

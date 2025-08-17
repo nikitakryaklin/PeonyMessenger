@@ -28,3 +28,6 @@ export { useCreateChatModal } from "./hooks/useCreateChatModal";
 export { CheckBox } from "./ui/checkBox/checkBox";
 export { PrimeryLink } from "./ui/link/primeryLink";
 export { Stub } from "./ui/stub/stub";
+
+// hook
+export { useIntersection } from "./hooks/useIntersection";
