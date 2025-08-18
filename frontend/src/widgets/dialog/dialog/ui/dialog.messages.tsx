@@ -53,7 +53,7 @@ export function DialogMessages({
           ),
           group: (
             <>
-              {messages?.map((message) => (
+              {messages?.map((message, idx) => (
                 <MessageContainer
                   key={message.documentId}
                   text={message.massage}
@@ -69,6 +69,7 @@ export function DialogMessages({
                     localStorage.getItem(LOCAL_STORAGE.userDocumentId) !==
                     message.sender.documentId
                   }
+                  {...(idx === messages.length - 3 && { Ref: observerRef })}
                 />
               ))}
             </>
