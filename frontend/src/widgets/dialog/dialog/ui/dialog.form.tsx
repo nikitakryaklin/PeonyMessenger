@@ -1,18 +1,45 @@
 import { MicIcon, Paperclip, Send, Smile } from "lucide-react";
-import { useId } from "react";
+import { useEffect, useId, useRef } from "react";
 import { useDialogForm } from "../hook/useDialogForm";
 import { IconButton } from "@/shared";
 
 export const DialogForm = ({
   chatId,
   scrollToBottom,
+  sendMessage,
+  onMessage,
 }: {
   chatId: number;
   scrollToBottom: (variant: ScrollBehavior) => void;
+  sendMessage: (message: { message: string }) => void;
+  onMessage: (isTyping: boolean) => void;
 }) => {
-  const textMessageId = useId();
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
-  const { onSubmit, register } = useDialogForm(chatId);
+  const textMessageId = useId();
+  const { onSubmit, register } = useDialogForm(chatId, sendMessage);
+
+  const hendleClick = () => {
+    scrollToBottom("smooth");
+    // sendMessage();
+  };
+
+  const onInput = () => {
+    onMessage(true);
+
+    if (timeoutRef.current) clearTimeout(timeoutRef.current);
+
+    timeoutRef.current = setTimeout(() => {
+      onMessage(false);
+    }, 1000);
+  };
+
+  useEffect(() => {
+    return () => {
+      if (timeoutRef.current) clearTimeout(timeoutRef.current);
+      onMessage(false);
+    };
+  }, []);
 
   return (
     <form
@@ -27,11 +54,12 @@ export const DialogForm = ({
           type="text"
           placeholder="White a message..."
           {...register("message")}
+          onInput={onInput}
         />
         <Smile />
       </label>
       <MicIcon />
-      <IconButton icon={<Send />} onClick={() => scrollToBottom("smooth")} />
+      <IconButton icon={<Send />} onClick={hendleClick} />
     </form>
   );
 };

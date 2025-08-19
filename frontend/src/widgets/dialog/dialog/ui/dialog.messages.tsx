@@ -6,20 +6,35 @@ import {
 } from "@/entities";
 import { Loader, LOCAL_STORAGE, Stub, useIntersection } from "@/shared";
 import { RefObject } from "react";
+import { TParticipants } from "../model/dialog-interface";
 
 export function DialogMessages({
   type,
   Ref,
   params,
+  participants,
+  messages,
 }: {
   type: "chat" | "group";
   Ref: RefObject<HTMLDivElement | null>;
   params: string;
+  participants: TParticipants;
+  messages: TMessage[] | undefined;
 }) {
-  const { messages, isPendingMessage, nextPage } =
-    useMessageGetByChatId(params);
+  const { isPendingMessage, nextPage } = useMessageGetByChatId(params);
 
   const observerRef = useIntersection(nextPage.fetchNextPage);
+
+  console.log(messages);
+
+  const senderInfo = (id: string) => {
+    const sender = participants.filter((p) => p.documentId === id);
+
+    return {
+      avatar: sender[0].about?.avatar?.[0].url,
+      userName: sender[0].username,
+    };
+  };
 
   if (isPendingMessage) {
     return <Loader color="#999" />;
@@ -60,10 +75,10 @@ export function DialogMessages({
                   info={{
                     avatar: (
                       <AvatarCircle
-                        url={message.sender.about?.avatar?.[0].url}
+                        url={senderInfo(message.sender.documentId).avatar}
                       />
                     ),
-                    title: message.sender.username,
+                    title: senderInfo(message.sender.documentId).userName,
                   }}
                   isIncoming={
                     localStorage.getItem(LOCAL_STORAGE.userDocumentId) !==
