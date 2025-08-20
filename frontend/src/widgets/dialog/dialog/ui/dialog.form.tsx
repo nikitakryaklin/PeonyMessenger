@@ -5,23 +5,22 @@ import { IconButton } from "@/shared";
 
 export const DialogForm = ({
   chatId,
+  dialog,
   scrollToBottom,
-  sendMessage,
   onMessage,
 }: {
   chatId: number;
+  dialog: string;
   scrollToBottom: (variant: ScrollBehavior) => void;
-  sendMessage: (message: { message: string }) => void;
   onMessage: (isTyping: boolean) => void;
 }) => {
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   const textMessageId = useId();
-  const { onSubmit, register } = useDialogForm(chatId, sendMessage);
+  const { onSubmit, register } = useDialogForm(chatId, dialog);
 
   const hendleClick = () => {
     scrollToBottom("smooth");
-    // sendMessage();
   };
 
   const onInput = () => {

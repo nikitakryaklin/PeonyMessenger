@@ -3,6 +3,7 @@ import {
   MessageContainer,
   TMessage,
   useMessageGetByChatId,
+  useMessageSubscription,
 } from "@/entities";
 import { Loader, LOCAL_STORAGE, Stub, useIntersection } from "@/shared";
 import { RefObject } from "react";
@@ -13,19 +14,18 @@ export function DialogMessages({
   Ref,
   params,
   participants,
-  messages,
 }: {
   type: "chat" | "group";
   Ref: RefObject<HTMLDivElement | null>;
   params: string;
   participants: TParticipants;
-  messages: TMessage[] | undefined;
 }) {
   const { isPendingMessage, nextPage } = useMessageGetByChatId(params);
+  const { messages } = useMessageGetByChatId(params);
 
   const observerRef = useIntersection(nextPage.fetchNextPage);
 
-  console.log(messages);
+  useMessageSubscription(params);
 
   const senderInfo = (id: string) => {
     const sender = participants.filter((p) => p.documentId === id);
@@ -57,6 +57,7 @@ export function DialogMessages({
                 <MessageContainer
                   key={message.documentId}
                   text={message.massage}
+                  createdAt={message.createdAt}
                   isIncoming={
                     localStorage.getItem(LOCAL_STORAGE.userDocumentId) !==
                     message.sender.documentId
@@ -72,6 +73,7 @@ export function DialogMessages({
                 <MessageContainer
                   key={message.documentId}
                   text={message.massage}
+                  createdAt={message.createdAt}
                   info={{
                     avatar: (
                       <AvatarCircle

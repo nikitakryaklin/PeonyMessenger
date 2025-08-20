@@ -2,18 +2,18 @@
 
 import { useSendMessage } from "@/entities";
 import { LOCAL_STORAGE } from "@/shared";
+import { dialog } from "motion/react-client";
 import { SubmitHandler, useForm } from "react-hook-form";
 
-export const useDialogForm = (
-  chatId: number,
-  sendMessage: (message: { message: string }) => void
-) => {
+export const useDialogForm = (chatId: number, dialog: string) => {
   const { handleSubmit, reset, register } = useForm<{ message: string }>();
 
-  const { metateMessage, isPendingSendMessage } = useSendMessage(chatId);
+  const { metateMessage, isPendingSendMessage } = useSendMessage(
+    chatId,
+    dialog
+  );
 
   const onFormSubmut: SubmitHandler<{ message: string }> = (data) => {
-    sendMessage({ message: data.message });
     metateMessage({
       massage: data.message,
       sender: Number(localStorage.getItem(LOCAL_STORAGE.userId)),

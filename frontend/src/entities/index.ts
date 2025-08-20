@@ -4,7 +4,7 @@ export { SidebarLink } from "./sidebarLink/SidebarLink";
 export { AvatarCircle } from "./avatar/avatarCircle";
 export { Modal } from "./modal/modal";
 
-// messange
+// message
 export type {
   IMassageEntity,
   TMessage,
@@ -12,3 +12,4 @@ export type {
 export { MessageContainer } from "./message/ui/message-container";
 export { useMessageGetByChatId } from "./message/api/useMessageGetByChatId";
 export { useSendMessage } from "./message/api/useSendMessage";
+export { useMessageSubscription } from "./message/hook/useMessageSubscription";

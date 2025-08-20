@@ -1,6 +1,5 @@
 import { AvatarCircle } from "@/entities";
-import { ROUTES, SubText, Tag, Text } from "@/shared";
-import dayjs from "dayjs";
+import { getHour, ROUTES, SubText, Tag, Text } from "@/shared";
 import Link from "next/link";
 import { ReactNode } from "react";
 
@@ -38,7 +37,7 @@ export function ChatItem({
         {date && (
           <>
             <div className="h-full w-full flex flex-col items-center">
-              {dayjs(date).format("HH:mm")}
+              {getHour(date)}
               <Tag children={2} />
             </div>
           </>

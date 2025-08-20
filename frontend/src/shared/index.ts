@@ -11,7 +11,6 @@ export { LOCAL_STORAGE } from "./config/localStorage";
 export { getValidateError } from "./lib/getValidateError";
 export { QueryClientCastomProvider } from "./providers/queryClientCastomProvider";
 export { useMutliStepForm } from "./hooks/useMutliStepForm";
-export { api } from "./api";
 export { PageWrapper } from "./ui/pageWrapper/pageWrapper";
 export { getTitleByPathName } from "./lib/getTitleByPathName";
 export type { strapiImage } from "./types/api/strapiImage-inteface";
@@ -31,3 +30,10 @@ export { Stub } from "./ui/stub/stub";
 
 // hook
 export { useIntersection } from "./hooks/useIntersection";
+
+//api
+export { useSocket } from "./api";
+export { api } from "./api";
+
+//lib
+export { getHour } from "./lib/date/getHour";

@@ -12,7 +12,6 @@ export const ChatPage = ({ id }: { id: string }) => {
     return null;
   }
   const participant = filtredParticipants(chat?.participants)[0];
-  console.log(participant);
   return (
     <DialogContainer
       headerInfo={{

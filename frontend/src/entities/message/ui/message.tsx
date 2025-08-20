@@ -1,4 +1,4 @@
-import { Text } from "@/shared";
+import { getHour, SubText, Text } from "@/shared";
 import clsx from "clsx";
 import { ReactNode } from "react";
 
@@ -6,9 +6,11 @@ export const Message = ({
   text,
   className,
   title,
+  createdAt,
 }: {
   text: string;
   className: string;
+  createdAt: string;
   title?: ReactNode;
 }) => {
   return (
@@ -20,6 +22,7 @@ export const Message = ({
     >
       {title}
       <Text text={text} className="whitespace-normal break-words" />
+      <SubText text={getHour(createdAt)} />
     </div>
   );
 };

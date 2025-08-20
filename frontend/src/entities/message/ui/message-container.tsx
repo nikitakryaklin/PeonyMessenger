@@ -6,11 +6,13 @@ import clsx from "clsx";
 export function MessageContainer({
   text,
   isIncoming,
+  createdAt,
   Ref,
   info,
 }: {
   text: string;
   isIncoming: boolean;
+  createdAt: string;
   Ref?: (el: HTMLDivElement | null) => void;
   info?: {
     avatar: ReactNode;
@@ -28,6 +30,7 @@ export function MessageContainer({
       {isIncoming && <>{info?.avatar}</>}
       <Message
         text={text}
+        createdAt={createdAt}
         className={clsx(
           isIncoming && Message.left,
           !isIncoming && Message.right
