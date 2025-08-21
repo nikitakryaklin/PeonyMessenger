@@ -28,17 +28,12 @@ export const AccountPage = ({
 
   const [userName, setUserName] = useState("");
 
-  const onChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setUserName(e.target.value);
-  };
-
   const { data, isPending } = useFindUsers(userName);
 
   const { createChatMutate } = useCreateChatMutation();
   const { createContactMutate } = useCreateContactsMutation();
 
   const onCreateChatMetation = async (userId: number | number[]) => {
-    console.log("вызов", userId);
     if (userId === 0 || Array.isArray(userId)) {
       return;
     }
@@ -64,9 +59,9 @@ export const AccountPage = ({
               type="chat"
               title="chat"
               onClose={onCloseCreateChatModal}
-              value={userName}
+              userName={userName}
               data={data}
-              onChange={onChange}
+              setSearchUser={setUserName}
               onClick={onCreateChatMetation}
             />
           </Modal>

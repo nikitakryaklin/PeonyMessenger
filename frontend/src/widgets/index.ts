@@ -9,3 +9,4 @@ export { ChatList } from "./chatList/ui/chatList";
 export { CreateDialog } from "./dialog/createDialog/ui";
 export { DialogContainer } from "./dialog/dialog/ui/dialog.container";
 export { DialogHeader } from "./dialog/dialog/ui/dialog.header";
+export { DialogSidebar } from "./dialog/dialogsSidebar/ui/dialogSidebar";

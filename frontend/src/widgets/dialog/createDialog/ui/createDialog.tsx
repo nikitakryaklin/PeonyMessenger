@@ -11,19 +11,23 @@ export const CreateDialog = ({
   type,
   onClose,
   data,
-  value,
-  onChange,
+  userName,
+  setSearchUser,
   onClick,
 }: {
   type: "chat" | "group";
   title: string;
-  value: string;
   data: (IUser & { about: IAbout | null })[] | undefined;
-  onChange: (e: ChangeEvent<HTMLInputElement>) => void;
+  userName: string;
+  setSearchUser: (userName: string) => void;
   onClick: (userId: number | number[]) => void;
   onClose: () => void;
 }) => {
   const { select, button } = useCreateDialog(type);
+
+  const onChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setSearchUser(e.target.value);
+  };
 
   return (
     <div className="bg-[var(--white)] w-3/4 xl:w-1/3 h-3/5 rounded-xl overflow-hidden mt-56 flex flex-col">
@@ -41,7 +45,7 @@ export const CreateDialog = ({
         />
       </div>
       <div className="p-3 flex flex-col flex-1 gap-3 max-h-9/10">
-        <Field value={value} onChange={onChange} />
+        <Field value={userName} onChange={onChange} />
         <div className="flex-1 overflow-y-scroll max-h-4/5">
           {data &&
             data.map((user) => (

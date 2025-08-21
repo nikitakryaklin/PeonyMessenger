@@ -17,7 +17,10 @@ export const DropDown = ({
 
   return (
     <div
-      className={clsx("bg-[var(--white)] p-2 rounded-xl absolute", className)}
+      className={clsx(
+        "bg-[var(--white)] p-2 rounded-xl absolute z-50",
+        className
+      )}
       {...divProps}
     >
       {children}

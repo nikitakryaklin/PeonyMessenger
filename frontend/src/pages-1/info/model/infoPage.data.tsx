@@ -5,19 +5,19 @@ export const INFO_PAGE_DATA = [
   {
     id: nanoid(),
     text: "Visit Website",
-    url: "#",
+    url: "https://github.com/nikitakryaklin/PeonyMessenger",
     icon: <Globe size={15} />,
   },
   {
     id: nanoid(),
     text: "Send us Email",
-    url: "#",
+    url: `mailto:peony@gmail.com?subject=Questions&body=I want to ask about `,
     icon: <Mail size={15} />,
   },
   {
     id: nanoid(),
     text: "Rules if Usage",
-    url: "#",
+    url: "/rules",
     icon: <BookText size={15} />,
   },
 ];

@@ -1,41 +1,31 @@
 "use client";
 
-import { CaphionTitle, Field, Text } from "@/shared";
-import { ChatList } from "@/widgets";
-import { Search } from "lucide-react";
+import { CaphionTitle, Text } from "@/shared";
+import { ChatList, DialogSidebar } from "@/widgets";
 import { useMyChatPage } from "../hook/useMyChatPage";
 
 export const MyChatsPage = () => {
-  const { chatList, setInputValue, value, onOpenCreateChatModal } =
-    useMyChatPage();
+  const { chatList, value, setValue, onOpenCreateChatModal } = useMyChatPage();
 
   return (
-    <div className="size-full flex flex-col min-w-72">
-      <div className="flex justify-between px-2 items-center">
-        <Text text="All Chats" />
+    <DialogSidebar
+      title="Chat"
+      actions={
         <button
           onClick={onOpenCreateChatModal}
-          className=" size-11 cursor-pointer"
+          className=" size-11 cursor-pointer hover:bg-[var(--primery-light)] rounded-xl"
         >
           <CaphionTitle text="+" />
         </button>
-      </div>
-
-      <Field
-        icon={<Search />}
-        type="search"
-        elementClassName="px-2 my-2"
-        value={value}
-        onChange={setInputValue}
-        disabled={!chatList?.length}
-      />
-
+      }
+      searchParams={value}
+      setSearchParams={setValue}
+      isSearchSisabled={!chatList?.length}
+    >
       {chatList && <ChatList chats={chatList} />}
       {!chatList?.length && (
-        <div className="size-full flex items-center">
-          <Text text="You do not have any chats" className="mx-auto" />
-        </div>
+        <DialogSidebar.notFound text="You do not have any chats" />
       )}
-    </div>
+    </DialogSidebar>
   );
 };
