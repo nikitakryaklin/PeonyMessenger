@@ -1,27 +1,16 @@
 "use client";
 
+import { useSearchGroup } from "@/features";
 import { useState } from "react";
 
 export const useMyGroupPage = () => {
   const [searchGroup, setSearchGroup] = useState("");
-  const [searchContact, setSearchContact] = useState("");
 
-  const groupList: string[] = [];
-
-  const onOpenCreateGroupModal = () => {};
+  const { groupList } = useSearchGroup(searchGroup);
 
   return {
-    contact: {
-      contactList: [],
-      searchContact,
-      setSearchContact,
-    },
-
-    group: {
-      groupList,
-      searchGroup,
-      setSearchGroup,
-    },
-    onOpenCreateGroupModal,
+    groupList,
+    searchGroup,
+    setSearchGroup,
   };
 };

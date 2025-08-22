@@ -1,17 +1,17 @@
 import { TMessage } from "@/entities";
 import { IAbout, IUser } from "@/shared";
 
-export interface IEmptyChat {
+export interface IEmptyGroup {
   id: number;
   documentId: string;
   createdAt: string;
   updatedAt: string;
   publishedAt: string;
   name: string;
-  type: "chat" | "group";
+  type: "group" | "chat";
 }
 
-export interface IChat extends IEmptyChat {
+export interface IGroup extends IEmptyGroup {
   participants: (IUser & { about: IAbout | null })[];
   messages: TMessage[];
 }

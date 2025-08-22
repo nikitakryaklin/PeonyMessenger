@@ -28,7 +28,10 @@ export function ChatItem({
           <AvatarCircle url={avatar} />
         </div>
         <div className="h-full w-full flex flex-col justify-center gap-2">
-          <Text text={userName} className="font-bold" />
+          <Text
+            text={userName}
+            className="font-bold max-w-4/5 overflow-hidden whitespace-nowrap overflow-ellipsis"
+          />
           <SubText
             text={lastMessage}
             className="max-w-[99%] overflow-ellipsis whitespace-nowrap overflow-hidden"

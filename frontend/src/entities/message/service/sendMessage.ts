@@ -3,6 +3,9 @@ import { TMessage } from "../model/massage-interface";
 
 export const sendMessage = (data: {
   massage: string;
-  chat: number;
+  chat: number | string;
   sender: number;
-}) => api().post<{ data: TMessage }, any>("messages", { data });
+}) => {
+  console.log(data);
+  return api().post<{ data: TMessage }, any>("messages", { data });
+};

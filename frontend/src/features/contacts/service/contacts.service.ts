@@ -1,4 +1,5 @@
-import { api, LOCAL_STORAGE } from "@/shared";
+import { api, IPagination, LOCAL_STORAGE } from "@/shared";
+import { IMycontacts } from "../model/contacts.inteface";
 
 export const contactService = {
   create: (data: { userId: number }) => {
@@ -17,4 +18,14 @@ export const contactService = {
       }),
     ]);
   },
+
+  get: (userName: string) =>
+    api().get<{ data: IMycontacts[] } & IPagination>(
+      `contacts?filters[user][id][$eq]=${localStorage.getItem(
+        LOCAL_STORAGE.userId
+      )}` +
+        "&populate[contact][populate][about][populate][avatar]=true" +
+        `&filters[contact][username][$contains]=${userName}`
+      // "users/me?populate[contacts][populate][contact][populate][about][populate][avatar]=true"
+    ),
 };

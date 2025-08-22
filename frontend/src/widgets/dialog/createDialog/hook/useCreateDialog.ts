@@ -1,21 +1,26 @@
 import { useState } from "react";
 
+interface ISelect {
+  id: number;
+  userName: string;
+}
+
 export function useCreateDialog(type: "chat" | "group") {
-  const [select, setSelect] = useState<number | number[]>(
+  const [select, setSelect] = useState<number | ISelect[]>(
     type === "chat" ? 0 : []
   );
 
-  const selectItem = (id: number) => {
+  const selectItem = (select: ISelect) => {
     if (type === "chat") {
-      setSelect((prev) => (prev === id ? 0 : id));
+      setSelect((prev) => (prev === select.id ? 0 : select.id));
     }
     if (type === "group") {
       setSelect((prev) =>
         Array.isArray(prev)
-          ? prev.includes(id)
-            ? prev.filter((prevId) => prevId !== id)
-            : [...prev, id]
-          : [prev, id]
+          ? prev.some((prev) => prev.id === select.id)
+            ? prev.filter((prevId) => prevId.id !== select.id)
+            : [...prev, select]
+          : [select]
       );
     }
   };
@@ -27,7 +32,7 @@ export function useCreateDialog(type: "chat" | "group") {
 
     if (type === "group") {
       return Array.isArray(select)
-        ? select.includes(id)
+        ? select.some((prev) => prev.id === id)
           ? true
           : false
         : false;

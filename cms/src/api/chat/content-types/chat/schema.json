@@ -22,6 +22,16 @@
       "relation": "oneToMany",
       "target": "api::message.message",
       "mappedBy": "chat"
+    },
+    "name": {
+      "type": "string"
+    },
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "chat",
+        "group"
+      ]
     }
   }
 }

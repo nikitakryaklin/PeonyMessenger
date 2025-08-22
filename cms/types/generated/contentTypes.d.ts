@@ -428,11 +428,13 @@ export interface ApiChatChat extends Struct.CollectionTypeSchema {
     localizations: Schema.Attribute.Relation<'oneToMany', 'api::chat.chat'> &
       Schema.Attribute.Private;
     messages: Schema.Attribute.Relation<'oneToMany', 'api::message.message'>;
+    name: Schema.Attribute.String;
     participants: Schema.Attribute.Relation<
       'manyToMany',
       'plugin::users-permissions.user'
     >;
     publishedAt: Schema.Attribute.DateTime;
+    type: Schema.Attribute.Enumeration<['chat', 'group']>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;

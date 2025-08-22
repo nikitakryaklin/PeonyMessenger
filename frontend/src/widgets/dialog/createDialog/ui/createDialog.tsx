@@ -20,7 +20,7 @@ export const CreateDialog = ({
   data: (IUser & { about: IAbout | null })[] | undefined;
   userName: string;
   setSearchUser: (userName: string) => void;
-  onClick: (userId: number | number[]) => void;
+  onClick: (userId: number | Array<{ id: number; userName: string }>) => void;
   onClose: () => void;
 }) => {
   const { select, button } = useCreateDialog(type);
@@ -54,7 +54,9 @@ export const CreateDialog = ({
                 avatarURL={user.about?.avatar?.[0].url}
                 userName={user.username}
                 isActive={select.isSelect(user.id)}
-                onClick={() => select.selectItem(user.id)}
+                onClick={() =>
+                  select.selectItem({ id: user.id, userName: user.username })
+                }
               />
             ))}
           {!data?.length && (

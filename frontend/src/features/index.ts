@@ -18,3 +18,8 @@ export { useFindUsers } from "./user/api/useFindUsers";
 
 //contacts
 export { useCreateContactsMutation } from "./contacts/api/create/useCreateContactsMutation";
+export { useGetContact } from "./contacts/api/get/useGetContact";
+
+//groups
+export { useSearchGroup } from "./group/api/list/api/useSearchGroup";
+export { useCreateGroup } from "./group/api/create/api/useCreateGroup";

@@ -1,12 +1,12 @@
 import { api, IPagination, LOCAL_STORAGE } from "@/shared";
-import { IChat, IEmptyChat } from "../model/chat-interface";
+import { IGroup } from "../model/group-interface";
 
-export const chatService = {
-  get: async (userName: string, page: number) => {
-    return await api().get<{ data: IChat[] } & IPagination>(
-      "chats/?filters[type][$eq]=chat&filters[$and][0][participants][id][$eq]" +
+export const groupService = {
+  get: async (name: string, page: number) => {
+    return await api().get<{ data: IGroup[] } & IPagination>(
+      "chats/?filters[type][$eq]=group&filters[$and][0][participants][id][$eq]" +
         `=${localStorage.getItem(LOCAL_STORAGE.userId)}` +
-        `&filters[$and][1][participants][username][$contains]=${userName}` +
+        `&filters[$and][1][name][$contains]=${name}` +
         "&populate[participants][populate][about][populate][avatar]=true" +
         "&populate[messages][populate][sender][sort][0]=createdAt:desc" +
         "&sort[0]=updatedAt:desc" +
@@ -15,22 +15,25 @@ export const chatService = {
     );
   },
 
-  create: async (data: { userId: number }) =>
-    api().post<
-      { data: IEmptyChat },
-      { data: { participants: Number[]; type: "chat" } }
-    >("chats", {
+  create: (
+    users: {
+      id: number;
+      userName: string;
+    }[]
+  ) =>
+    api().post<any, any>("chats", {
       data: {
         participants: [
           Number(localStorage.getItem(LOCAL_STORAGE.userId)),
-          data.userId,
+          users.map((user) => user.id),
         ],
-        type: "chat",
+        type: "group",
+        name: users.map((user) => user.userName).join(", "),
       },
     }),
 
   getByid: async (chatId: string) =>
-    api().get<{ data: IChat }>(
+    api().get<{ data: IGroup }>(
       "chats/" +
         chatId +
         "?populate[participants][populate][about][populate][avatar]=true"

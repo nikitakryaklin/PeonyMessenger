@@ -4,40 +4,45 @@ import { CaphionTitle } from "@/shared";
 import { ChatList, CreateDialog, DialogSidebar } from "@/widgets";
 import { useMyGroupPage } from "../hook/useMyGroupPage";
 import { Modal } from "@/entities";
+import { useGroupPageModal } from "../hook/useGroupPageModal";
 
 export const MyGroupsPage = () => {
-  const { contact, group, onOpenCreateGroupModal } = useMyGroupPage();
+  const { searchGroup, setSearchGroup, groupList } = useMyGroupPage();
+  const { contacts, modal } = useGroupPageModal();
 
   return (
     <DialogSidebar
       title="Group"
       actions={
         <button
-          onClick={onOpenCreateGroupModal}
+          onClick={modal.onOpenCreateGroupModal}
           className=" size-11 cursor-pointer hover:bg-[var(--primery-light)] rounded-xl"
         >
           <CaphionTitle text="+" />
         </button>
       }
-      searchParams={group.searchGroup}
-      setSearchParams={group.setSearchGroup}
-      isSearchSisabled={!group.groupList?.length}
+      searchParams={searchGroup}
+      setSearchParams={setSearchGroup}
+      isSearchSisabled={!groupList?.length}
     >
-      {/* {chatList && <ChatList chats={chatList} />}
-      {!chatList?.length && (
-    )} */}
-      <Modal onClose={() => {}} isOpen={true}>
+      {groupList && <ChatList chats={groupList} />}
+      {!groupList?.length && (
+        <DialogSidebar.notFound text="You are not a member of any groups" />
+      )}
+      <Modal
+        onClose={modal.onCloseCreateGroupModal}
+        isOpen={modal.isCreateGroupModalOpen}
+      >
         <CreateDialog
           type="group"
           title={"Group"}
-          userName={contact.searchContact}
-          data={undefined}
-          setSearchUser={contact.setSearchContact}
-          onClick={() => {}}
-          onClose={() => {}}
+          userName={contacts.searchContact}
+          data={contacts.contacts}
+          setSearchUser={contacts.setSearchContact}
+          onClick={contacts.selectedContacts}
+          onClose={modal.onCloseCreateGroupModal}
         />
       </Modal>
-      <DialogSidebar.notFound text="You are not a member of any groups" />
     </DialogSidebar>
   );
 };

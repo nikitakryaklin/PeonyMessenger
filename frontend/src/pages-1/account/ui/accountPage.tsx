@@ -33,7 +33,9 @@ export const AccountPage = ({
   const { createChatMutate } = useCreateChatMutation();
   const { createContactMutate } = useCreateContactsMutation();
 
-  const onCreateChatMetation = async (userId: number | number[]) => {
+  const onCreateChatMetation = async (
+    userId: number | Array<{ id: number; userName: string }>
+  ) => {
     if (userId === 0 || Array.isArray(userId)) {
       return;
     }
