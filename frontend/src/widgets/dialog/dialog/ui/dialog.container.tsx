@@ -19,6 +19,7 @@ export const DialogContainer = ({
   headerInfo: {
     avatar: string;
     title: string;
+    description: string | "";
     options: ReactNode;
   };
   participants: TParticipants;
@@ -36,7 +37,11 @@ export const DialogContainer = ({
         info={{
           avatar: headerInfo.avatar,
           title: headerInfo.title,
-          description: <SubText text={isTypingServer ? "typing..." : ""} />,
+          description: (
+            <SubText
+              text={isTypingServer ? "typing..." : headerInfo.description}
+            />
+          ),
         }}
         actions={headerInfo.options}
       />

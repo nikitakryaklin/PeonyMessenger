@@ -1,7 +1,6 @@
 export { ErrorField } from "./errors/ui/errorField";
 export { Logo } from "./logo/ui/logo";
 export { SidebarLink } from "./sidebarLink/SidebarLink";
-export { AvatarCircle } from "./avatar/avatarCircle";
 export { Modal } from "./modal/modal";
 
 // message
@@ -13,3 +12,7 @@ export { MessageContainer } from "./message/ui/message-container";
 export { useMessageGetByChatId } from "./message/api/useMessageGetByChatId";
 export { useSendMessage } from "./message/api/useSendMessage";
 export { useMessageSubscription } from "./message/hook/useMessageSubscription";
+
+//avatar
+export { AvatarCircle } from "./avatar/avatarCircle";
+export { AvatarSquare } from "./avatar/avatarSquare";

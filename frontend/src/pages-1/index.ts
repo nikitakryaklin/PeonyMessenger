@@ -9,3 +9,4 @@ export { ChatPage } from "./chat/ui/chatPage";
 export { InfoPage } from "./info/ui/infoPage";
 export { DefaultPage } from "./default/ui/defaultPage";
 export { MyGroupsPage } from "./myGroups/ui/MyGroupsPage";
+export { GroupPage } from "./group/ui/groupPage";

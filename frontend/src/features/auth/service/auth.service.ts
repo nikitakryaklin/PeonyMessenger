@@ -5,17 +5,17 @@ import { IRegisterForm } from "../ui/register/model/registerForm-interface";
 
 export const authService = {
   login: async (data: ILoginForm) => {
-    return await api(
-      false,
-      process.env.NEXT_PUBLIC_CLIENT_URL
-    ).post<IRegisterUser>("api/login", { ...data });
+    return await api(false, process.env.NEXT_PUBLIC_CLIENT_URL).post<
+      IRegisterUser,
+      any
+    >("api/login", { ...data });
   },
 
   lregister: async (data: IRegisterForm) =>
-    await api(false, process.env.NEXT_PUBLIC_CLIENT_URL).post<IRegisterUser>(
-      "api/register",
-      { ...data }
-    ),
+    await api(false, process.env.NEXT_PUBLIC_CLIENT_URL).post<
+      IRegisterUser,
+      any
+    >("api/register", { ...data }),
 
   logout: () =>
     api(false, process.env.NEXT_PUBLIC_CLIENT_URL).post("api/logout"),
@@ -29,5 +29,6 @@ export const authService = {
       LOCAL_STORAGE.userDocumentId,
       `${data.user.documentId}`
     );
+    localStorage.setItem(LOCAL_STORAGE.userName, `${data.user.username}`);
   },
 };

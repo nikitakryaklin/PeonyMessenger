@@ -18,7 +18,7 @@ export const Field = ({
   isError?: boolean;
   elementClassName?: string;
   icon?: ReactNode;
-  onChange: (e: ChangeEvent<HTMLInputElement>) => void;
+  onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
   ref?: Ref<HTMLInputElement>;
 } & HTMLProps<HTMLInputElement>) => {
   return (

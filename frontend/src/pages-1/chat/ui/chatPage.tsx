@@ -17,6 +17,7 @@ export const ChatPage = ({ id }: { id: string }) => {
       headerInfo={{
         avatar: participant.about?.avatar?.[0].url || "",
         title: participant.username,
+        description: "",
         options: (
           <div className="flex gap-4">
             <Phone />

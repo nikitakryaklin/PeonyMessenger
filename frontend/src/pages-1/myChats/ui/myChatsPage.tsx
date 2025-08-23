@@ -22,7 +22,7 @@ export const MyChatsPage = () => {
       setSearchParams={setValue}
       isSearchSisabled={!chatList?.length}
     >
-      {chatList && <ChatList chats={chatList} />}
+      {chatList && <ChatList chats={chatList} type="chat" />}
       {!chatList?.length && (
         <DialogSidebar.notFound text="You do not have any chats" />
       )}

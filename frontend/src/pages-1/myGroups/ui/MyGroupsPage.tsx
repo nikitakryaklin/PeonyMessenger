@@ -25,7 +25,7 @@ export const MyGroupsPage = () => {
       setSearchParams={setSearchGroup}
       isSearchSisabled={!groupList?.length}
     >
-      {groupList && <ChatList chats={groupList} />}
+      {groupList && <ChatList chats={groupList} type="group" />}
       {!groupList?.length && (
         <DialogSidebar.notFound text="You are not a member of any groups" />
       )}

@@ -1,14 +1,27 @@
 import { IChat } from "@/features";
 import { ChatItem } from "./chatItem";
-import { filtredParticipants } from "@/shared";
+import { filtredParticipants, ROUTES } from "@/shared";
+import { group } from "console";
+import { dialog } from "motion/react-client";
 
-export const ChatList = ({ chats }: { chats: IChat[] }) => {
+export const ChatList = ({
+  chats,
+  type,
+}: {
+  chats: IChat[];
+  type: "chat" | "group";
+}) => {
+  const dialogUrl = {
+    chat: (dialogId: string) => ROUTES.chatById(dialogId),
+    group: (dialogId: string) => ROUTES.groupById(dialogId),
+  };
+
   return (
     <div>
       {chats.map((chat, idx) => (
         <ChatItem
           key={idx}
-          chatId={chat.documentId}
+          DialogIdUrl={dialogUrl[type](chat.documentId)}
           avatar={
             filtredParticipants(chat.participants)[0].about?.avatar?.[0].url
           }

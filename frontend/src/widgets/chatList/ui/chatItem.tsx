@@ -4,14 +4,14 @@ import Link from "next/link";
 import { ReactNode } from "react";
 
 export function ChatItem({
-  chatId,
+  DialogIdUrl,
   avatar,
   userName,
   lastMessage,
   date,
   tag,
 }: {
-  chatId: string;
+  DialogIdUrl: string;
   avatar: string | undefined | null;
   userName: string;
   lastMessage: string;
@@ -20,7 +20,7 @@ export function ChatItem({
 }) {
   return (
     <Link
-      href={ROUTES.chatById(chatId)}
+      href={DialogIdUrl}
       className="group w-full h-18 flex items-center hover:bg-[var(--primery-light)] px-5"
     >
       <div className="w-full grid grid-cols-[56px_1fr_40px] gap-2 h-14">

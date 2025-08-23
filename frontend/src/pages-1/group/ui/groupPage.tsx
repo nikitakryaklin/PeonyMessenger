@@ -1,0 +1,35 @@
+"use client";
+
+import { useChatGetById, useGetGroupById } from "@/features";
+import { filtredParticipants } from "@/shared";
+import { DialogContainer } from "@/widgets";
+import { EllipsisVertical, Phone, Search, Star } from "lucide-react";
+
+export const GroupPage = ({ id }: { id: string }) => {
+  const { group, isGroupPending } = useGetGroupById(id);
+
+  if (!group || !group.participants) {
+    return null;
+  }
+  // const participant = filtredParticipants(group?.participants)[0];
+  return (
+    <DialogContainer
+      headerInfo={{
+        avatar: "",
+        title: group.name,
+        description: `${group.participants.length} members`,
+        options: (
+          <div className="flex gap-4">
+            <Search />
+            <Star />
+            <EllipsisVertical />
+          </div>
+        ),
+      }}
+      type="group"
+      dialogId={group.id}
+      params={id}
+      participants={group.participants}
+    />
+  );
+};

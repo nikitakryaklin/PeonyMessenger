@@ -11,4 +11,5 @@ export const ROUTES = {
   recommendation: "/account/recommendation",
   chat: "/account/chat",
   chatById: (id: string | number) => `/account/chat/${id}`,
+  groupById: (id: string | number) => `/account/group/${id}`,
 } as const;
