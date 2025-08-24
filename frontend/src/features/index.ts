@@ -13,8 +13,10 @@ export { useCreateChatMutation } from "./chat/api/create/api/useCreateChatMutati
 export { useChatGetById } from "./chat/api/get/api/useChatGetById";
 
 //user
-export { useUserAbout } from "./user/api/useUserAbout";
+export { useUserAbout } from "./user/api/about/get/useUserAbout";
 export { useFindUsers } from "./user/api/useFindUsers";
+export { useCreateAboutMutation } from "./user/api/about/create/useCreateAboutMutation";
+export { useUpdateAboutMutation } from "./user/api/about/update/useUpdateAboutMutation";
 
 //contacts
 export { useCreateContactsMutation } from "./contacts/api/create/useCreateContactsMutation";

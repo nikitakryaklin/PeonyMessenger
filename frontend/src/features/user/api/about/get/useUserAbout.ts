@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
-import { userService } from "../service/user.service";
 import { LOCAL_STORAGE } from "@/shared";
+import { userService } from "@/features/user/service/user.service";
 
 export function useUserAbout() {
   const { data, isPending } = useQuery({

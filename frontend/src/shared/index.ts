@@ -37,3 +37,4 @@ export { api } from "./api";
 
 //lib
 export { getHour } from "./lib/date/getHour";
+export { getUserName } from "./lib/getUserName";
