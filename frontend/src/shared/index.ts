@@ -2,7 +2,7 @@ export * from "./ui/text";
 export { Button } from "./ui/button/button";
 export { IconButton } from "./ui/button/IconButton";
 export { Tag } from "./ui/tag/Tag";
-export { Field } from "./ui/field/Fild";
+export { Field } from "./ui/field/Field";
 export { Loader } from "./ui/loader/loader";
 export * from "./routes/routes";
 export { API } from "./config/api";
@@ -27,6 +27,7 @@ export { useCreateChatModal } from "./hooks/useCreateChatModal";
 export { CheckBox } from "./ui/checkBox/checkBox";
 export { PrimeryLink } from "./ui/link/primeryLink";
 export { Stub } from "./ui/stub/stub";
+export { FileField } from "./ui/field/fileField";
 
 // hook
 export { useIntersection } from "./hooks/useIntersection";

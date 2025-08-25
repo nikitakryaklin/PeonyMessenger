@@ -1,7 +1,7 @@
 import { MicIcon, Paperclip, Send, Smile } from "lucide-react";
 import { useEffect, useId, useRef } from "react";
 import { useDialogForm } from "../hook/useDialogForm";
-import { IconButton } from "@/shared";
+import { FileField, IconButton } from "@/shared";
 
 export const DialogForm = ({
   chatId,
@@ -17,6 +17,8 @@ export const DialogForm = ({
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   const textMessageId = useId();
+  const inputFile = useId();
+
   const { onSubmit, register } = useDialogForm(chatId, dialog);
 
   const hendleClick = () => {
@@ -45,7 +47,10 @@ export const DialogForm = ({
       onSubmit={onSubmit}
       className="bg-[var(--white)] h-16 flex gap-4 px-5 items-center"
     >
-      <Paperclip />
+      <label htmlFor={inputFile} className=" cursor-pointer">
+        <Paperclip />
+        <FileField id={inputFile} />
+      </label>
       <label htmlFor={textMessageId} className="flex-1 flex gap-2">
         <input
           className="w-full focus:outline-0"

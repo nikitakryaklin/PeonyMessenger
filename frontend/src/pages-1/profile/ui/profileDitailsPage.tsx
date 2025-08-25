@@ -48,7 +48,10 @@ export function ProfileDitailsPage({ data }: { data: IAbout }) {
                 </button>
               ),
               save: (
-                <button className="flex items-center gap-1 cursor-pointer">
+                <button
+                  className="flex items-center gap-1 cursor-pointer"
+                  onClick={() => setIsAvtion("edit")}
+                >
                   <ArrowLeftFromLine size={15} />
                   <Text text="Calcel" />
                 </button>
@@ -56,9 +59,8 @@ export function ProfileDitailsPage({ data }: { data: IAbout }) {
             }[isAction]
           }
         </div>
-
-        {isAction === "save" && <ProfileEditForm mutate={updateAboutMutate} />}
       </div>
+      {isAction === "save" && <ProfileEditForm mutate={updateAboutMutate} />}
     </>
   );
 }
