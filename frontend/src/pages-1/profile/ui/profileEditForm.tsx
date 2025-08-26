@@ -1,13 +1,21 @@
 "use client";
 
-import { Button, Field, FileField, IAbout, Text } from "@/shared";
+import { Button, Field, FileField, IAbout, Text, usePreview } from "@/shared";
 import { ReactNode, useId, useRef } from "react";
 import { useFormEditAbout } from "../hook/useFormEditAbout";
 import { UseMutateFunction } from "@tanstack/react-query";
 import { IAboutMutate } from "../model/formEdit-interface";
 
-export const ProfileEditForm = ({ mutate }: { mutate: IAboutMutate }) => {
-  const { onSubmit, register } = useFormEditAbout(mutate);
+export const ProfileEditForm = ({
+  mutate,
+  setPreview,
+}: {
+  mutate: IAboutMutate;
+  setPreview: (url: string | null) => void;
+}) => {
+  const { onSubmit, register, watch } = useFormEditAbout(mutate);
+  usePreview(watch("avatar"), setPreview);
+
   const id = useId();
 
   return (
@@ -20,7 +28,7 @@ export const ProfileEditForm = ({ mutate }: { mutate: IAboutMutate }) => {
           className="w-full h-9 flex items-center justify-center border rounded-lg my-[-0.5rem] mb-2"
         >
           <Text text="Choose an avatar" />
-          <FileField id={id} />
+          <FileField id={id} {...register("avatar")} />
         </label>
         <Button
           type="submit"

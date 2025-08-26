@@ -1,4 +1,10 @@
-import { api, IAbout, IUser, LOCAL_STORAGE } from "@/shared";
+import {
+  api,
+  IAbout,
+  IUser,
+  LOCAL_STORAGE,
+  uploadFilesService,
+} from "@/shared";
 
 export const userService = {
   findUsersByUserName: async (username = "") =>
@@ -10,28 +16,44 @@ export const userService = {
       )}&filters[username][$contains]=${username}`
     ),
 
-  getAbout: () =>
+  getAbout: async () =>
     api().get<{ data: IAbout[] }>(
       `aboouts/?filters[user][id][$eq]=${localStorage.getItem(
         LOCAL_STORAGE.userId
       )}&populate=avatar`
     ),
 
-  createAbout: (data: { name: string }) =>
-    api().post<{ data: IAbout }, any>("aboouts", {
+  createAbout: async (data: {
+    name: string | null;
+    avatar: FormData | null;
+  }) => {
+    const fileId = data.avatar ? await uploadFilesService(data.avatar) : null;
+    const isName = !!data.name;
+
+    return api().post<{ data: IAbout }, any>("aboouts", {
       data: {
         user: localStorage.getItem(LOCAL_STORAGE.userId),
-        name: data.name,
+        ...(isName && { name: data.name }),
+        ...(fileId && { avatar: fileId[0].id }),
       },
-    }),
+    });
+  },
 
-  updateAbout: (data: { name: string }) =>
-    api().put<{ data: IAbout }>(
+  updateAbout: async (data: {
+    name: string | null;
+    avatar: FormData | null;
+  }) => {
+    const fileId = data.avatar ? await uploadFilesService(data.avatar) : null;
+    const isName = !!data.name;
+
+    return api().put<{ data: IAbout }>(
       `aboouts/${localStorage.getItem(LOCAL_STORAGE.aboutDocumentId)}`,
       {
         data: {
-          name: data.name,
+          ...(isName && { name: data.name }),
+          ...(fileId && { avatar: fileId[0].id }),
         },
       }
-    ),
+    );
+  },
 };

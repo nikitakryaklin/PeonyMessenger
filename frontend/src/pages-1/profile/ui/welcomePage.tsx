@@ -7,8 +7,11 @@ import {
 } from "@/shared";
 import { ProfileEditForm } from "./profileEditForm";
 import { useCreateAboutMutation } from "@/features";
+import { useState } from "react";
 
 export const WelcomePage = () => {
+  const [preview, setPreview] = useState<string | null>(null);
+
   const { createAboutMutate, isPendingCreateAbout } = useCreateAboutMutation();
 
   return (
@@ -21,7 +24,7 @@ export const WelcomePage = () => {
         <Text text="Enter information about your self" />
       </div>
 
-      <ProfileEditForm mutate={createAboutMutate} />
+      <ProfileEditForm mutate={createAboutMutate} setPreview={setPreview} />
     </div>
   );
 };

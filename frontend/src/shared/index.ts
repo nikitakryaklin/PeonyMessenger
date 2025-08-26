@@ -31,10 +31,12 @@ export { FileField } from "./ui/field/fileField";
 
 // hook
 export { useIntersection } from "./hooks/useIntersection";
+export { usePreview } from "./hooks/usePreview";
 
 //api
 export { useSocket } from "./api";
 export { api } from "./api";
+export { uploadFilesService } from "./api/service/uploadFiles.service";
 
 //lib
 export { getHour } from "./lib/date/getHour";

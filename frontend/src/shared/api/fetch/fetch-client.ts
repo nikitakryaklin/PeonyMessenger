@@ -83,13 +83,15 @@ export class FetchClient {
   // Record<string, string>
 
   public post<T, K>(endpoint: string, body?: K, options: RequestOptions = {}) {
+    const isFormData = body instanceof FormData;
+
     return this.request<T>(endpoint, "POST", {
       ...options,
       headers: {
-        "Content-Type": "application/json",
+        ...(isFormData ? {} : { "Content-Type": "application/json" }), // убрать Content-Type если FormData
         ...(options?.headers || {}),
       },
-      ...(!!body && { body: JSON.stringify(body) }),
+      ...(!!body && (isFormData ? { body } : { body: JSON.stringify(body) })),
     });
   }
 

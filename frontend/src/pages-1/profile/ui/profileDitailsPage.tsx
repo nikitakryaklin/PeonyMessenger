@@ -3,6 +3,7 @@
 import { AvatarSquare } from "@/entities";
 import {
   Button,
+  getImageUrl,
   getUserName,
   IAbout,
   LOCAL_STORAGE,
@@ -16,13 +17,22 @@ import { useUpdateAboutMutation } from "@/features";
 
 export function ProfileDitailsPage({ data }: { data: IAbout }) {
   const [isAction, setIsAvtion] = useState<"edit" | "save">("edit");
+  const [preview, setPreview] = useState<string | null>(null);
 
   const { updateAboutMutate, isPendingUpdateAbout } = useUpdateAboutMutation();
+
+  const onCancel = () => {
+    setIsAvtion("edit");
+    setPreview(null);
+  };
 
   return (
     <>
       <div className="w-full px-4">
-        <AvatarSquare url={data?.avatar?.[0].url} />
+        {!preview && (
+          <AvatarSquare url={getImageUrl(data?.avatar?.[0].url || "")} />
+        )}
+        {preview && <AvatarSquare url={preview} />}
       </div>
 
       <div className="w-full px-4 flex justify-between">
@@ -50,17 +60,19 @@ export function ProfileDitailsPage({ data }: { data: IAbout }) {
               save: (
                 <button
                   className="flex items-center gap-1 cursor-pointer"
-                  onClick={() => setIsAvtion("edit")}
+                  onClick={onCancel}
                 >
                   <ArrowLeftFromLine size={15} />
-                  <Text text="Calcel" />
+                  <Text text="Cancel" />
                 </button>
               ),
             }[isAction]
           }
         </div>
       </div>
-      {isAction === "save" && <ProfileEditForm mutate={updateAboutMutate} />}
+      {isAction === "save" && (
+        <ProfileEditForm mutate={updateAboutMutate} setPreview={setPreview} />
+      )}
     </>
   );
 }
