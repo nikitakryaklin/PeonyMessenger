@@ -8,7 +8,7 @@ export const usePreview = (
 ) => {
   useEffect(() => {
     if (!file || file.length === 0) {
-      setPreview(null);
+      //   setPreview(null);
       return;
     }
 

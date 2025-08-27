@@ -1,3 +1,5 @@
+import { SettingsPage } from "@/pages-1";
+
 export default function Page() {
-  return <div>setting</div>;
+  return <SettingsPage />;
 }

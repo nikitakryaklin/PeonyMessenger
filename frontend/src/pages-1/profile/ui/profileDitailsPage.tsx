@@ -6,6 +6,7 @@ import {
   getImageUrl,
   getUserName,
   IAbout,
+  Loader,
   LOCAL_STORAGE,
   SubText,
   Text,
@@ -71,7 +72,11 @@ export function ProfileDitailsPage({ data }: { data: IAbout }) {
         </div>
       </div>
       {isAction === "save" && (
-        <ProfileEditForm mutate={updateAboutMutate} setPreview={setPreview} />
+        <ProfileEditForm
+          mutate={updateAboutMutate}
+          setPreview={setPreview}
+          isLoading={isPendingUpdateAbout}
+        />
       )}
     </>
   );

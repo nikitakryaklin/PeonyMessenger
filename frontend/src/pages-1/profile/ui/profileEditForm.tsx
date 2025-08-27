@@ -7,9 +7,11 @@ import { UseMutateFunction } from "@tanstack/react-query";
 import { IAboutMutate } from "../model/formEdit-interface";
 
 export const ProfileEditForm = ({
+  isLoading,
   mutate,
   setPreview,
 }: {
+  isLoading: boolean;
   mutate: IAboutMutate;
   setPreview: (url: string | null) => void;
 }) => {
@@ -25,7 +27,7 @@ export const ProfileEditForm = ({
         <Text text="Avatar" />
         <label
           htmlFor={id}
-          className="w-full h-9 flex items-center justify-center border rounded-lg my-[-0.5rem] mb-2"
+          className="w-full h-9 flex items-center justify-center border rounded-lg my-[-0.5rem] mb-2 cursor-pointer"
         >
           <Text text="Choose an avatar" />
           <FileField id={id} {...register("avatar")} />
@@ -34,6 +36,7 @@ export const ProfileEditForm = ({
           type="submit"
           text="Save"
           className="bg-[var(--primery)] w-full hover:bg-[var(--primery-light)]"
+          promise={{ loading: isLoading, color: "#000" }}
         />
       </form>
     </div>

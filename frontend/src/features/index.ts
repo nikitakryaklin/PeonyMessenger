@@ -26,3 +26,6 @@ export { useGetContact } from "./contacts/api/get/useGetContact";
 export { useSearchGroup } from "./group/api/list/api/useSearchGroup";
 export { useCreateGroup } from "./group/api/create/api/useCreateGroup";
 export { useGetGroupById } from "./group/api/get/api/useGetGroupById";
+
+//treme
+export { Treme } from "./theme/ui/treme";

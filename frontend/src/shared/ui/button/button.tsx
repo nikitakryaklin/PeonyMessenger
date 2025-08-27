@@ -1,6 +1,7 @@
 import clsx from "clsx";
 import { ButtonHTMLAttributes, ReactNode } from "react";
 import { Loader } from "../loader/loader";
+import { color } from "motion";
 
 export const Button = ({
   text,
@@ -13,6 +14,7 @@ export const Button = ({
   icon?: ReactNode;
   promise?: {
     loading: boolean;
+    color?: string;
   };
 } & ButtonHTMLAttributes<HTMLButtonElement>) => {
   return (
@@ -25,7 +27,9 @@ export const Button = ({
     >
       {icon && icon}
       {!promise?.loading && <>{text}</>}
-      {promise?.loading && <Loader />}
+      {promise?.loading && (
+        <Loader {...(promise.color ? { color: promise.color } : {})} />
+      )}
     </button>
   );
 };
