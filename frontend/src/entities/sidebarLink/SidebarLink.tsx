@@ -36,7 +36,10 @@ export const SidebarLink = ({
             <div className={clsx("flex items-center justify-center")}>
               {icon}
             </div>
-            <LinkTitle text={text} className="whitespace-nowrap" />
+            <LinkTitle
+              text={text}
+              className="whitespace-nowrap text-[var(--black)]"
+            />
           </div>
           {tag}
         </>
@@ -49,7 +52,8 @@ export const SidebarLink = ({
       href={href}
       className={clsx(
         "group w-full h-14 px-[5%] flex justify-between items-center hover:bg-[var(--primery-light)] transition-colors duration-200",
-        isClose && "justify-center"
+        isClose && "justify-center",
+        className
       )}
     >
       {render(isClose)}

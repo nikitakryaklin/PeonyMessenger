@@ -28,6 +28,8 @@ export { CheckBox } from "./ui/checkBox/checkBox";
 export { PrimeryLink } from "./ui/link/primeryLink";
 export { Stub } from "./ui/stub/stub";
 export { FileField } from "./ui/field/fileField";
+export { ColorField } from "./ui/field/colorField";
+export { RangeField } from "./ui/field/rangeField";
 
 // hook
 export { useIntersection } from "./hooks/useIntersection";

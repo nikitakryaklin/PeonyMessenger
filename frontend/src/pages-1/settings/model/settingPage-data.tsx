@@ -1,11 +1,26 @@
+import { BellRing, MessageCircleHeart, ServerIcon } from "lucide-react";
 import { nanoid } from "nanoid";
 
-// export const SETTINGS_PAGE_DATA = [
-//     {
-//         id: nanoid()
-//         text: '',
-//         value: ''
-//         link: ''
-//         icon:
-//     }
-// ]
+export const SETTINGS_PAGE_DATA = [
+  {
+    id: nanoid(),
+    text: "Natification and sounds",
+    value: "natification",
+    link: "#",
+    icon: <BellRing />,
+  },
+  {
+    id: nanoid(),
+    text: "Data and storage",
+    value: "storage",
+    link: "#",
+    icon: <ServerIcon />,
+  },
+  {
+    id: nanoid(),
+    text: "Customize chats",
+    value: "natification",
+    link: "#",
+    icon: <MessageCircleHeart />,
+  },
+];
