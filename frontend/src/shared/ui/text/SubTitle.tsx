@@ -5,9 +5,10 @@ export const SubTitle = ({ text, className }: { text: string } & IHeading) => {
   return (
     <h3
       className={clsx(
-        "text-[var(--black)] text-[2rem] leading-[140%] text-semibold",
+        "text-[var(--black)]  leading-[140%] text-semibold",
         className
       )}
+      style={{ fontSize: `calc(2rem*var(--text-scale))` }}
     >
       {text}
     </h3>

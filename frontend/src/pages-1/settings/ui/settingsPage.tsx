@@ -7,7 +7,7 @@ import { li } from "motion/react-client";
 import { SidebarLink } from "@/entities";
 import { Earth } from "lucide-react";
 import { I18n } from "@/features/i18n/ui/i18n";
-import { useCutomizeStore } from "./cutomizeStore";
+import { ChangeColors, ChangeTextScale, ResetButton } from "@/features";
 
 export const SettingsPage = () => {
   const textSize = useId();
@@ -15,21 +15,12 @@ export const SettingsPage = () => {
 
   const [currentColor, setCurrentColor] = useState("#e0b8ff");
 
-  const setCurrentIndex = useCutomizeStore((s) => s.setCurrentindex);
-  const currenIndex = useCutomizeStore((s) => s.currenIndex);
-  //   const [currentText, setCurrentText] = useState();
-
   const onColor = (e: ChangeEvent<HTMLInputElement>) => {
     document.documentElement.style.setProperty("--primery", e.target.value);
     document.documentElement.style.setProperty(
       "--primery-light",
       e.target.value
     );
-    setCurrentIndex(e.target.value);
-  };
-
-  const onText = (e: ChangeEvent<HTMLInputElement>) => {
-    setCurrentIndex(e.target.value);
   };
 
   return (
@@ -54,24 +45,13 @@ export const SettingsPage = () => {
           tag={<I18n color={{ bg: "--primery", text: "--black" }} />}
         />
       </ul>
-      <form className="px-3 flex flex-col">
-        <RangeField
-          title="Text size"
-          id={textSize}
-          min={"0.8"}
-          step={"0.1"}
-          max={"1.2"}
-          value={currenIndex}
-          onChange={onText}
-        />
+      <div className="px-3 flex flex-col">
+        <ChangeTextScale />
 
-        <ColorField
-          text="Change primery color"
-          currentColor={currentColor}
-          id={colorPicker}
-          onColor={onColor}
-        />
-      </form>
+        <ChangeColors />
+
+        <ResetButton />
+      </div>
     </div>
   );
 };

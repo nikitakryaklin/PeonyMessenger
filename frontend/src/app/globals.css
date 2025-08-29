@@ -11,6 +11,7 @@
   --white: #ffffff;
   --green: #41d4a8;
   --red: #ff4b4a;
+  --text-scale: 1;
 }
 
 @theme inline {
@@ -25,6 +26,7 @@
   --white: var(--white);
   --red: var(--red);
   --green: var(--color-green-400);
+  --text-scale: var(--text-scale);
 }
 
 /* @media (prefers-color-scheme: dark) { */

@@ -29,3 +29,8 @@ export { useGetGroupById } from "./group/api/get/api/useGetGroupById";
 
 //treme
 export { Treme } from "./theme/ui/treme";
+
+//customize
+export { ChangeTextScale } from "./customize/ui/changeTextScale";
+export { ChangeColors } from "./customize/ui/changeColors";
+export { ResetButton } from "./customize/ui/resetButton";

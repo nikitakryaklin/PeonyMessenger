@@ -7,10 +7,10 @@ import {
   useCreateContactsMutation,
   useFindUsers,
 } from "@/features";
-import { PageWrapper } from "@/shared";
+import { Loader, PageWrapper } from "@/shared";
 import { CreateDialog, Sidebar } from "@/widgets";
 import { Header } from "@/widgets";
-import { ChangeEvent, ReactNode, Suspense, useState } from "react";
+import { ReactNode, Suspense, useState } from "react";
 
 export const AccountPage = ({
   children,
@@ -68,7 +68,7 @@ export const AccountPage = ({
             />
           </Modal>
           <div className="w-3/4 min-w-3/4 max-w-[60vw] h-[calc(100dvh-96px)] bg-[var(--primery-light)] ml-auto">
-            <Suspense fallback={<>loading...</>}>{panel}</Suspense>
+            <Suspense fallback={<Loader />}>{panel}</Suspense>
           </div>
         </main>
       </div>

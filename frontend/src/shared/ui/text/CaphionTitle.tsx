@@ -8,9 +8,10 @@ export const CaphionTitle = ({
   return (
     <h4
       className={clsx(
-        "text-[var(--black)] text-[1.5rem] leading-[140%] text-bold",
+        "text-[var(--black)]  leading-[140%] text-bold",
         className
       )}
+      style={{ fontSize: `calc(1.5rem*var(--text-scale))` }}
     >
       {text}
     </h4>

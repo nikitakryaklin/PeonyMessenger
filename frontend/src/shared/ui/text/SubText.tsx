@@ -9,9 +9,10 @@ export const SubText = ({
   return (
     <p
       className={clsx(
-        "text-[var(--grey)] text-[0.875rem] leading-[140%] text-medium",
+        "text-[var(--grey)]  leading-[140%] text-medium",
         className
       )}
+      style={{ fontSize: `calc(0.875rem*var(--text-scale))` }}
     >
       {text}
     </p>

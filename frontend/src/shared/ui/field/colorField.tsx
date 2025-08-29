@@ -6,12 +6,10 @@ export const ColorField = ({
   value,
   text,
   currentColor,
-  onColor,
   ...inputProps
 }: {
   text: string;
   currentColor: string;
-  onColor: (e: ChangeEvent<HTMLInputElement>) => void;
 } & HTMLProps<HTMLInputElement>) => {
   return (
     <label
@@ -28,7 +26,6 @@ export const ColorField = ({
           type="color"
           value={currentColor}
           className=" appearance-none"
-          onChange={(e: ChangeEvent<HTMLInputElement>) => onColor(e)}
           {...inputProps}
         />
       </div>
