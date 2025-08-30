@@ -3,14 +3,10 @@
 import { Button, IconButton } from "@/shared";
 import { TREME_DATA } from "../model/treme-data";
 import clsx from "clsx";
-import { useState } from "react";
+import { useTheme } from "../hook/useTreme";
 
-export const Treme = ({ size }: { size: "s" | "l" }) => {
-  const [treme, setTreme] = useState<"light" | "dark">("light");
-
-  const handleClick = (treme: "light" | "dark") => {
-    setTreme(treme);
-  };
+export const Theme = ({ size }: { size: "s" | "l" }) => {
+  const { theme, handleClick } = useTheme();
 
   return (
     <div
@@ -31,7 +27,7 @@ export const Treme = ({ size }: { size: "s" | "l" }) => {
                   icon={el.icon}
                   className={clsx(
                     "flex gap-2",
-                    treme === el.value &&
+                    theme === el.value &&
                       "bg-[var(--white)] transition-colors duration-150 ease-in-out"
                   )}
                   onClick={() => handleClick(el.value)}
@@ -41,13 +37,12 @@ export const Treme = ({ size }: { size: "s" | "l" }) => {
           ),
           s: (
             <IconButton
-              icon={TREME_DATA[treme].icon}
+              icon={TREME_DATA[theme].icon}
               onClick={() =>
                 handleClick(
-                  TREME_DATA[treme].value === "light" ? "dark" : "light"
+                  TREME_DATA[theme].value === "light" ? "dark" : "light"
                 )
               }
-              //   className="bg-[var(--white)] rounded-xl transition-colors duration-300 ease-in-out hover:bg-neutral-300"
             />
           ),
         }[size]

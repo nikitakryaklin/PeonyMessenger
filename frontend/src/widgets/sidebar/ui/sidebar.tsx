@@ -8,7 +8,7 @@ import { useState } from "react";
 import { SidebarGroup } from "./sidebarGroup";
 import { SIDEBAR_DATA } from "../config/sedibar-data";
 import { m } from "motion/react";
-import { Treme, useCreateChatModal } from "@/features";
+import { Theme, useCreateChatModal } from "@/features";
 
 export const Sidebar = () => {
   const [isClose, setIsClose] = useState(false);
@@ -80,7 +80,7 @@ export const Sidebar = () => {
       <SidebarGroup isClose={isClose} data={SIDEBAR_DATA.recommendation} />
 
       <div className="h-24 bg-[var(--light-gray)] mt-auto flex items-center justify-center">
-        <Treme size={isClose ? "s" : "l"} />
+        <Theme size={isClose ? "s" : "l"} />
       </div>
     </m.aside>
   );

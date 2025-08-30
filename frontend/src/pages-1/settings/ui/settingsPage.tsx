@@ -10,19 +10,6 @@ import { I18n } from "@/features/i18n/ui/i18n";
 import { ChangeColors, ChangeTextScale, ResetButton } from "@/features";
 
 export const SettingsPage = () => {
-  const textSize = useId();
-  const colorPicker = useId();
-
-  const [currentColor, setCurrentColor] = useState("#e0b8ff");
-
-  const onColor = (e: ChangeEvent<HTMLInputElement>) => {
-    document.documentElement.style.setProperty("--primery", e.target.value);
-    document.documentElement.style.setProperty(
-      "--primery-light",
-      e.target.value
-    );
-  };
-
   return (
     <div>
       <ul>

@@ -28,7 +28,7 @@ export { useCreateGroup } from "./group/api/create/api/useCreateGroup";
 export { useGetGroupById } from "./group/api/get/api/useGetGroupById";
 
 //treme
-export { Treme } from "./theme/ui/treme";
+export { Theme } from "./theme/ui/theme";
 
 //customize
 export { ChangeTextScale } from "./customize/ui/changeTextScale";
