@@ -30,7 +30,7 @@ export function ChatItem({
         <div className="h-full w-full flex flex-col justify-center gap-2">
           <Text
             text={userName}
-            className="font-bold max-w-4/5 overflow-hidden whitespace-nowrap overflow-ellipsis"
+            className="font-bold max-w-4/5 overflow-hidden whitespace-nowrap overflow-ellipsis text-[var(--gray)]"
           />
           <SubText
             text={lastMessage}
@@ -39,9 +39,9 @@ export function ChatItem({
         </div>
         {date && (
           <>
-            <div className="h-full w-full flex flex-col items-center">
-              {getHour(date)}
-              <Tag children={2} />
+            <div className="h-full w-full flex flex-col items-center gap-2">
+              <SubText text={getHour(date)} />
+              <Tag children={<SubText text={"2"} />} />
             </div>
           </>
         )}

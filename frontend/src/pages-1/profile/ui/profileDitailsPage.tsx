@@ -54,7 +54,7 @@ export function ProfileDitailsPage({ data }: { data: IAbout }) {
                   className="flex items-center gap-1 cursor-pointer"
                   onClick={() => setIsAvtion("save")}
                 >
-                  <EditIcon size={15} />
+                  <EditIcon size={15} stroke="var(--black)" />
                   <Text text="Edit" />
                 </button>
               ),
@@ -63,7 +63,7 @@ export function ProfileDitailsPage({ data }: { data: IAbout }) {
                   className="flex items-center gap-1 cursor-pointer"
                   onClick={onCancel}
                 >
-                  <ArrowLeftFromLine size={15} />
+                  <ArrowLeftFromLine size={15} stroke="var(--black)" />
                   <Text text="Cancel" />
                 </button>
               ),

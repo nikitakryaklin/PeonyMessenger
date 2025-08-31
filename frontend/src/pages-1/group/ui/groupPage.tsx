@@ -20,9 +20,9 @@ export const GroupPage = ({ id }: { id: string }) => {
         description: `${group.participants.length} members`,
         options: (
           <div className="flex gap-4">
-            <Search />
-            <Star />
-            <EllipsisVertical />
+            <Search stroke="var(--black)" />
+            <Star stroke="var(--black)" />
+            <EllipsisVertical stroke="var(--black)" />
           </div>
         ),
       }}

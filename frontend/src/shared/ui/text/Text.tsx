@@ -5,7 +5,8 @@ export const Text = ({ text, className }: { text: string } & IText) => {
   return (
     <p
       className={clsx(
-        `text-[var(--grey)] leading-[140%] text-medium`,
+        `leading-[140%] text-medium`,
+        !className && "text-[var(--gray)]",
         className
       )}
       style={{ fontSize: `calc(1rem*var(--text-scale))` }}

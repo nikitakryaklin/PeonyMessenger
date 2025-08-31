@@ -67,9 +67,10 @@ export const RegisterForm = () => {
         promise={{ loading: isLoading }}
         onClick={() => formAction()}
         className={clsx(
-          "bg-[var(--black)] text-[var(--white)] w-full h-12",
+          "bg-[var(--black)] w-full h-12",
           disabled && "bg-[var(--gray)] cursor-default"
         )}
+        textClasses="text-[var(--white)]"
       />
     </form>
   );

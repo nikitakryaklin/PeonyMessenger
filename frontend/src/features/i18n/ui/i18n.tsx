@@ -16,9 +16,9 @@ export const I18n = ({ color = { bg: "--black", text: "--white" } }) => {
           onClick={() => setLanguage(el.id)}
           className={clsx(
             "h-11 w-11 border transition-colors duration-200",
-            language === el.id &&
-              `bg-[var(${color.bg})] text-[var(${color.text})]`
+            language === el.id && `bg-[var(${color.bg})]`
           )}
+          textClasses={clsx(language === el.id && `text-[var(${color.text})]`)}
         />
       ))}
     </div>

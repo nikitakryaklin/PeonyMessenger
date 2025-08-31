@@ -7,10 +7,11 @@ export const useTheme = () => {
 
   const handleClick = (theme: "light" | "dark") => {
     setTheme(theme);
-    document.documentElement.style.setProperty("color-scheme", theme);
   };
 
-  useEffect(() => {}, [theme]);
+  useEffect(() => {
+    document.documentElement.setAttribute("data-theme", theme);
+  }, [theme]);
 
   return { theme, handleClick };
 };

@@ -32,7 +32,7 @@ export const Field = ({
       <label
         htmlFor={id}
         className={clsx(
-          "w-full border p-1.5  my-0.5 rounded-[0.5rem] flex items-center gap-1",
+          "w-full border border-[var(--black)] p-1.5  my-0.5 rounded-[0.5rem] flex items-center gap-1",
           isError && "border-[var(--red)]",
           className
         )}
@@ -45,7 +45,7 @@ export const Field = ({
           {...(onChange ? { onChange: (e) => onChange(e) } : {})}
           {...inputProps}
           className={clsx(
-            "outline-none w-full",
+            "outline-none w-full text-[var(--black)] placeholder:text-[var(--black)]",
             isError && "placeholder:text-[var(--red)]"
           )}
         />

@@ -20,7 +20,7 @@ export const Sidebar = () => {
   return (
     <m.aside
       className={clsx(
-        "bg-[var(--white)] min-h-[100dvh] border-r flex flex-col"
+        "bg-[var(--white)] min-h-[100dvh] border-r border-[var(--gray)] flex flex-col"
       )}
       animate={{ width: isClose ? 74 : 400 }}
       transition={{
@@ -31,7 +31,7 @@ export const Sidebar = () => {
     >
       <div
         className={clsx(
-          "h-24 flex px-3 bg-[var(--light-gray)] border-b items-center",
+          "h-24 flex px-3 bg-[var(--light-gray)] border-b border-[var(--gray)] items-center",
           !isClose && "justify-between",
           isClose && "justify-center"
         )}
@@ -42,7 +42,7 @@ export const Sidebar = () => {
             "transition-transform duration-300",
             isClose && "rotate-180"
           )}
-          icon={<ArrowLeft />}
+          icon={<ArrowLeft style={{ stroke: "var(--black)" }} />}
           onClick={() => setIsClose(!isClose)}
         />
       </div>

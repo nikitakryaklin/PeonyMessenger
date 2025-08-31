@@ -7,20 +7,20 @@ export const SETTINGS_PAGE_DATA = [
     text: "Natification and sounds",
     value: "natification",
     link: "#",
-    icon: <BellRing />,
+    icon: <BellRing style={{ stroke: "var(--black)" }} />,
   },
   {
     id: nanoid(),
     text: "Data and storage",
     value: "storage",
     link: "#",
-    icon: <ServerIcon />,
+    icon: <ServerIcon style={{ stroke: "var(--black)" }} />,
   },
   {
     id: nanoid(),
     text: "Customize chats",
     value: "natification",
     link: "#",
-    icon: <MessageCircleHeart />,
+    icon: <MessageCircleHeart style={{ stroke: "var(--black)" }} />,
   },
 ];

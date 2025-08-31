@@ -25,7 +25,7 @@ export const SettingsPage = () => {
         ))}
         <SidebarLink
           text="Language"
-          icon={<Earth />}
+          icon={<Earth style={{ stroke: "var(--black)" }} />}
           href="#"
           isClose={false}
           className="hover:bg-[var(--white)]"

@@ -1,25 +1,35 @@
 @import "tailwindcss";
 
 :root {
-  color-scheme: dark;
+  /* color-scheme: light dark; */
   /* --background: #f3f1f2; */
   /* --foreground: #171717; */
-  --black: light-dark(#161313, #ffffff);
+  /* --black: light-dark(#161313, #ffffff);
   --white: light-dark(#ffffff, #3b3939);
   --gray: light-dark(#3b3939, #f3f1f2);
   --light-gray: light-dark(#f3f1f2, #161313);
-  --primery: light-dark(#e0b8ff, #e0b8ff);
-  --primery-light: light-dark(#f5e7ff, #f5e7ff);
+  --primery: light-dark(#e0b8ff, #e0b8ff); */
+  /* --primery-light: light-dark(#f5e7ff, #f5e7ff); */
   --green: #41d4a8;
   --red: #ff4b4a;
   --text-scale: 1;
+  --black: #161313;
+  --gray: #3b3939;
+  --light-gray: #f3f1f2;
+  --primery: #e0b8ff;
+  --primery-light: #f5e7ff;
+  --white: #ffffff;
 }
-/* --black: #161313; */
-/* --gray: #3b3939; */
-/* --light-gray: #f3f1f2; */
-/* --primery: #e0b8ff; */
-/* --primery-light: #f5e7ff; */
-/* --white: #ffffff; */
+
+:root[data-theme="dark"] {
+  --black: #ffffff;
+  --white: #3b3939;
+  --gray: #f3f1f2;
+  --light-gray: #161313;
+  --red: #96180f;
+  --primery: #6f4f87;
+  --primery-light: #a66cd0;
+}
 
 @theme inline {
   --color-background: var(--background);
@@ -36,21 +46,13 @@
   --text-scale: var(--text-scale);
 }
 
-/* @media (prefers-color-scheme: dark) { */
-/* :root { */
-/* --background: #0a0a0a;
-    --foreground: #ededed; */
-/* }
-} */
-
 body {
-  background-color: var(--background);
+  /* background-color: var(--gray); */
   font-family: var(--font-dm-sans), Helvetica;
-  /* min-height: 97vh; */
 }
 
 input:-webkit-autofill {
-  box-shadow: 0 0 0px 1000px var(--background) inset !important;
+  box-shadow: 0 0 0px 1000px var(--white) inset !important;
 }
 
 input[type="color"]::-webkit-color-swatch,

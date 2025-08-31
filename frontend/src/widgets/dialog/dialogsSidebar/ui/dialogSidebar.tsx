@@ -24,12 +24,12 @@ export const DialogSidebar = ({
   return (
     <div className="size-full flex flex-col min-w-72">
       <div className="flex justify-between px-2 items-center">
-        <Text text={`All ${title}`} className="font-bold" />
+        <Text text={`All ${title}`} className="font-bold text-[var(--gray)]" />
         {actions}
       </div>
 
       <Field
-        icon={<Search />}
+        icon={<Search stroke="var(--black)" />}
         type="search"
         elementClassName="px-2 my-2"
         value={searchParams}

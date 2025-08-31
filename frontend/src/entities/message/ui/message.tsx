@@ -16,12 +16,15 @@ export const Message = ({
   return (
     <div
       className={clsx(
-        "bg-[var(--white)] flex flex-col px-2 py-1 rounded-xl max-w-3/5",
+        "bg-[var(--white)] flex gap-1 justify-between px-4 py-2 rounded-xl max-w-3/5 items-end",
         className
       )}
     >
       {title}
-      <Text text={text} className="whitespace-normal break-words" />
+      <Text
+        text={text}
+        className="whitespace-normal break-words text-[var(--black)] max-w-9/10"
+      />
       <SubText text={getHour(createdAt)} />
     </div>
   );

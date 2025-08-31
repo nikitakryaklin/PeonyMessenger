@@ -11,9 +11,11 @@ export const Theme = ({ size }: { size: "s" | "l" }) => {
   return (
     <div
       className={clsx(
-        "bg-neutral-300 flex h-12 rounded-xl items-center justify-center",
+        "flex h-12 rounded-xl items-center justify-center",
         size === "l" && "w-4/5 px-1",
-        size === "s" && "w-3/4 aspect-square"
+        size === "s" && "w-3/4 aspect-square",
+        theme === "light" && "bg-neutral-300",
+        theme === "dark" && "bg-neutral-500"
       )}
     >
       {

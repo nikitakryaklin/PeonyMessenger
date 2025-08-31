@@ -48,22 +48,22 @@ export const DialogForm = ({
       className="bg-[var(--white)] h-16 flex gap-4 px-5 items-center"
     >
       <label htmlFor={inputFile} className=" cursor-pointer">
-        <Paperclip />
+        <Paperclip stroke="var(--black)" />
         <FileField id={inputFile} />
       </label>
       <label htmlFor={textMessageId} className="flex-1 flex gap-2">
         <input
-          className="w-full focus:outline-0"
+          className="w-full focus:outline-0 text-[var(--black)] placeholder:text-[var(--gray)]"
           id={textMessageId}
           type="text"
           placeholder="White a message..."
           {...register("message")}
           onInput={onInput}
         />
-        <Smile />
+        <Smile stroke="var(--black)" />
       </label>
-      <MicIcon />
-      <IconButton icon={<Send />} onClick={hendleClick} />
+      <MicIcon stroke="var(--black)" />
+      <IconButton icon={<Send stroke="var(--black)" />} onClick={hendleClick} />
     </form>
   );
 };

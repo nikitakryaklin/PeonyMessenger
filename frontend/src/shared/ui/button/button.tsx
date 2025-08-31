@@ -6,11 +6,13 @@ import { Text } from "../text";
 export const Button = ({
   text,
   className,
+  textClasses,
   icon,
   promise,
   ...buttonProps
 }: {
   text: string;
+  textClasses?: string;
   icon?: ReactNode;
   promise?: {
     loading: boolean;
@@ -26,7 +28,7 @@ export const Button = ({
       {...buttonProps}
     >
       {icon && icon}
-      {!promise?.loading && <Text text={text} />}
+      {!promise?.loading && <Text text={text} className={textClasses} />}
       {promise?.loading && (
         <Loader {...(promise.color ? { color: promise.color } : {})} />
       )}

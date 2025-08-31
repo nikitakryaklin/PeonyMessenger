@@ -16,6 +16,7 @@ export const Logout = ({ className }: { className?: string }) => {
       )}
       text={!isLoading ? "Logout" : "Logout..."}
       icon={<LogOut size={20} style={{ stroke: "var(--red)" }} />}
+      textClasses="text-[var(--red)]"
     />
   );
 };

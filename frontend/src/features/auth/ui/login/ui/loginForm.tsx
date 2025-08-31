@@ -21,7 +21,10 @@ export const LoginForm = () => {
           type="password"
           {...register("password", { ...getValidateError("Password") })}
         />
-        <Link href={"#"} className="underline text-xs ml-auto ">
+        <Link
+          href={"#"}
+          className="underline text-xs text-[var(--black)] ml-auto "
+        >
           Forgot password?
         </Link>
       </div>
@@ -39,9 +42,10 @@ export const LoginForm = () => {
         disabled={isLoading}
         promise={{ loading: isLoading }}
         className={clsx(
-          "bg-[var(--black)] text-[var(--white)] w-full h-12",
+          "bg-[var(--black)] w-full h-12",
           isLoading && "bg-[var(--gray)] cursor-default"
         )}
+        textClasses="text-[var(--white)]"
       />
     </form>
   );

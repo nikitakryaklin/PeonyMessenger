@@ -20,10 +20,10 @@ export const ChatPage = ({ id }: { id: string }) => {
         description: "",
         options: (
           <div className="flex gap-4">
-            <Phone />
-            <Search />
-            <Star />
-            <EllipsisVertical />
+            <Phone stroke="var(--black)" />
+            <Search stroke="var(--black)" />
+            <Star stroke="var(--black)" />
+            <EllipsisVertical stroke="var(--black)" />
           </div>
         ),
       }}

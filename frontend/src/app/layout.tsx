@@ -21,7 +21,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${DMSans.variable} antialiased`}>
+      <body className={`${DMSans.variable} antialiased bg-[var(--white)]`}>
         <MainPrivider>{children}</MainPrivider>
         <div id="modal-root"></div>
       </body>

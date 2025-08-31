@@ -17,13 +17,13 @@ export const SIDEBAR_DATA = {
       id: nanoid(),
       text: "My chats",
       link: ROUTES.chat,
-      icon: <MessageCircleMore />,
+      icon: <MessageCircleMore style={{ stroke: "var(--black)" }} />,
     },
     {
       id: nanoid(),
       text: "My Groups",
       link: ROUTES.group,
-      icon: <UsersIcon />,
+      icon: <UsersIcon style={{ stroke: "var(--black)" }} />,
     },
   ],
 
@@ -32,31 +32,41 @@ export const SIDEBAR_DATA = {
       id: nanoid(),
       text: "Profile",
       link: ROUTES.account,
-      icon: <UserIcon />,
+      icon: <UserIcon style={{ stroke: "var(--black)" }} />,
     },
     {
       id: nanoid(),
       text: "Blocked users",
       link: ROUTES.blocked_users,
-      icon: <BanIcon />,
+      icon: <BanIcon style={{ stroke: "var(--black)" }} />,
     },
     {
       id: nanoid(),
       text: "Settings",
       link: ROUTES.setting,
-      icon: <SettingsIcon />,
+      icon: <SettingsIcon style={{ stroke: "var(--black)" }} />,
     },
   ],
   help: [
-    { id: nanoid(), text: "Help", link: ROUTES.help, icon: <HelpCircle /> },
-    { id: nanoid(), text: "Info", link: ROUTES.info, icon: <Info /> },
+    {
+      id: nanoid(),
+      text: "Help",
+      link: ROUTES.help,
+      icon: <HelpCircle style={{ stroke: "var(--black)" }} />,
+    },
+    {
+      id: nanoid(),
+      text: "Info",
+      link: ROUTES.info,
+      icon: <Info style={{ stroke: "var(--black)" }} />,
+    },
   ],
   recommendation: [
     {
       id: nanoid(),
       text: "Recommendation",
       link: ROUTES.recommendation,
-      icon: <RotateCcwSquare />,
+      icon: <RotateCcwSquare style={{ stroke: "var(--black)" }} />,
     },
   ],
 };

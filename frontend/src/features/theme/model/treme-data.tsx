@@ -7,12 +7,12 @@ export const TREME_DATA: ITremeData = {
     id: nanoid(),
     text: "Light",
     value: "light",
-    icon: <Sun />,
+    icon: <Sun stroke="var(--black)" />,
   },
   dark: {
     id: nanoid(),
     text: "Dark",
     value: "dark",
-    icon: <MoonStar />,
+    icon: <MoonStar stroke="var(--black)" />,
   },
 };
