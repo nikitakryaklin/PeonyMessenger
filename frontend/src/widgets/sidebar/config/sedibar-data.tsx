@@ -43,7 +43,7 @@ export const SIDEBAR_DATA = {
     {
       id: nanoid(),
       text: "Settings",
-      link: ROUTES.setting,
+      link: ROUTES.setting.home,
       icon: <SettingsIcon style={{ stroke: "var(--black)" }} />,
     },
   ],

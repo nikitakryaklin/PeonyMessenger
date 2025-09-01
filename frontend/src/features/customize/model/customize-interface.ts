@@ -9,11 +9,13 @@ export interface ICustomizeText {
 export interface ICustomizeColor {
   primery: string;
   primeryLight: string;
+  isSave: boolean;
+  setIsSave: (isSave: boolean) => void;
   setColors: (colorName: TColorName, currentColor: string) => void;
   resetColor: () => void;
 }
 
 export type TColorName = keyof Omit<
   ICustomizeColor,
-  "setColors" | "resetColor"
+  "isSave" | "setIsSave" | "setColors" | "resetColor"
 >;

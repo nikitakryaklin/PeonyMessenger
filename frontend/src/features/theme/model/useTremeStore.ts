@@ -1,3 +1,4 @@
+import { LOCAL_STORAGE } from "@/shared";
 import { create, StateCreator } from "zustand";
 import { persist } from "zustand/middleware";
 
@@ -16,5 +17,5 @@ const storeCreate: StateCreator<IThemeStore> = (set) => ({
 });
 
 export const useThemeStore = create<IThemeStore>()(
-  persist(storeCreate, { name: "theme" })
+  persist(storeCreate, { name: LOCAL_STORAGE.theme })
 );

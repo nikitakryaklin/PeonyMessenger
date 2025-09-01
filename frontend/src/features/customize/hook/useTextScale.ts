@@ -1,6 +1,6 @@
 "use client";
 
-import { ChangeEvent, useEffect, useId } from "react";
+import { ChangeEvent, useEffect, useId, useState } from "react";
 import { useCustomizeTextStore } from "../model/useCustomizeTextStore";
 import { TTextScale } from "../model/customize-interface";
 
@@ -19,10 +19,12 @@ export const useTextScale = () => {
     setTextScale(value);
   };
 
-  useEffect(() => {
+  const onSaveTextScale = () => {
     const style = document.documentElement.style;
     style.setProperty("--text-scale", textScale);
-  }, [textScale]);
+  };
+
+  // useEffect(() => {}, [textScale]);
 
   return {
     textOptions: {
@@ -30,5 +32,6 @@ export const useTextScale = () => {
       textScale,
     },
     onTextScale,
+    onSaveTextScale,
   };
 };

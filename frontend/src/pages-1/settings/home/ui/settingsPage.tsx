@@ -7,7 +7,7 @@ import { li } from "motion/react-client";
 import { SidebarLink } from "@/entities";
 import { Earth } from "lucide-react";
 import { I18n } from "@/features/i18n/ui/i18n";
-import { ChangeColors, ChangeTextScale, ResetButton } from "@/features";
+import { SettingsWrapper } from "./settingsWrapper";
 
 export const SettingsPage = () => {
   return (
@@ -32,13 +32,6 @@ export const SettingsPage = () => {
           tag={<I18n color={{ bg: "--primery", text: "--black" }} />}
         />
       </ul>
-      <div className="px-3 flex flex-col">
-        <ChangeTextScale />
-
-        <ChangeColors />
-
-        <ResetButton />
-      </div>
     </div>
   );
 };

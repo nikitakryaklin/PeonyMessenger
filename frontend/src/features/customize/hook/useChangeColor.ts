@@ -3,15 +3,20 @@
 import { ChangeEvent, useEffect, useId } from "react";
 import { TColorName } from "../model/customize-interface";
 import { useCustomizeColorStore } from "../model/useCustomizeColorStore";
+import { LOCAL_STORAGE } from "@/shared";
 
 export const useChangeColor = () => {
   const primeryId = useId();
   const primeryLightId = useId();
 
-  const setColor = useCustomizeColorStore((s) => s.setColors);
   const primery = useCustomizeColorStore((s) => s.primery);
   const primeryLight = useCustomizeColorStore((s) => s.primeryLight);
+  const isSave = useCustomizeColorStore((s) => s.isSave);
+  const setIsSave = useCustomizeColorStore((s) => s.setIsSave);
+  const setColor = useCustomizeColorStore((s) => s.setColors);
   const resetColor = useCustomizeColorStore((s) => s.resetColor);
+
+  const theme = localStorage.getItem(LOCAL_STORAGE.theme);
 
   const onColor = (colorName: TColorName, e: ChangeEvent<HTMLInputElement>) => {
     const colorValue = e.target.value;
@@ -19,13 +24,40 @@ export const useChangeColor = () => {
     setColor(colorName, colorValue);
   };
 
-  useEffect(() => {
+  const mutationObserver = new MutationObserver(() => {
+    const root = document.documentElement;
+    const primery = getComputedStyle(root).getPropertyValue("--primery");
+    const primeryLight =
+      getComputedStyle(root).getPropertyValue("--primery-light");
+
+    setColor("primery", primery);
+    setColor("primeryLight", primeryLight);
+  });
+
+  mutationObserver.observe(document.documentElement, {
+    attributes: true,
+    attributeFilter: ["data-theme", "style"],
+  });
+
+  const saveColorSettings = () => {
     document.documentElement.style.setProperty("--primery", primery);
-  }, [primery]);
+    document.documentElement.style.setProperty("--primery-light", primeryLight);
+    setIsSave(true);
+  };
 
   useEffect(() => {
-    document.documentElement.style.setProperty("--primery-light", primeryLight);
-  }, [primeryLight]);
+    if (isSave) {
+      document.documentElement.style.setProperty("--primery", primery);
+      document.documentElement.style.setProperty(
+        "--primery-light",
+        primeryLight
+      );
+    }
+  }, [isSave]);
+
+  // useEffect(() => {
+  //   resetColor();
+  // }, [theme]);
 
   return {
     primeryId,
@@ -36,5 +68,6 @@ export const useChangeColor = () => {
     },
     onColor,
     resetColor,
+    saveColorSettings,
   };
 };

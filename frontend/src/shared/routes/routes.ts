@@ -1,9 +1,15 @@
+const settingHelper = "/account/settings";
+
 export const ROUTES = {
   home: "/",
   login: "/auth/login",
   register: "/auth/register",
   account: "/account/profile",
-  setting: "/account/settings",
+  setting: {
+    home: settingHelper,
+    customize: settingHelper + "/customize",
+    storage: settingHelper + "/storage",
+  },
   group: "/account/group",
   blocked_users: "/account/blocked_users",
   help: "/account/help",

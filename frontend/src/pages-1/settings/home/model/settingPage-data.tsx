@@ -1,3 +1,4 @@
+import { ROUTES } from "@/shared";
 import { BellRing, MessageCircleHeart, ServerIcon } from "lucide-react";
 import { nanoid } from "nanoid";
 
@@ -20,7 +21,7 @@ export const SETTINGS_PAGE_DATA = [
     id: nanoid(),
     text: "Customize chats",
     value: "natification",
-    link: "#",
+    link: ROUTES.setting.customize,
     icon: <MessageCircleHeart style={{ stroke: "var(--black)" }} />,
   },
 ];

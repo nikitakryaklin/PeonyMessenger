@@ -31,6 +31,7 @@ export { useGetGroupById } from "./group/api/get/api/useGetGroupById";
 export { Theme } from "./theme/ui/theme";
 
 //customize
-export { ChangeTextScale } from "./customize/ui/changeTextScale";
-export { ChangeColors } from "./customize/ui/changeColors";
-export { ResetButton } from "./customize/ui/resetButton";
+export { Customize } from "./customize/ui/customize";
+// export { ChangeTextScale } from "./customize/ui/changeTextScale";
+// export { ChangeColors } from "./customize/ui/changeColors";
+// export { ResetButton } from "./customize/ui/resetButton";
