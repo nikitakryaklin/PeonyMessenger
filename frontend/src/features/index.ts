@@ -32,6 +32,4 @@ export { Theme } from "./theme/ui/theme";
 
 //customize
 export { Customize } from "./customize/ui/customize";
-// export { ChangeTextScale } from "./customize/ui/changeTextScale";
-// export { ChangeColors } from "./customize/ui/changeColors";
-// export { ResetButton } from "./customize/ui/resetButton";
+export { usePublicApiCustomize } from "./customize/hook/usePublicApiCustomize";

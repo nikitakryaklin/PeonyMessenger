@@ -9,6 +9,7 @@ export type {
   TMessage,
 } from "./message/model/massage-interface";
 export { MessageContainer } from "./message/ui/message-container";
+export { Message } from "./message/ui/message";
 export { useMessageGetByChatId } from "./message/api/useMessageGetByChatId";
 export { useSendMessage } from "./message/api/useSendMessage";
 export { useMessageSubscription } from "./message/hook/useMessageSubscription";

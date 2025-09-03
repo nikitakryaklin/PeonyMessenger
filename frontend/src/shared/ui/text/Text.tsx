@@ -1,7 +1,11 @@
 import { IText } from "./text-interface";
 import clsx from "clsx";
 
-export const Text = ({ text, className }: { text: string } & IText) => {
+export const Text = ({
+  text,
+  className,
+  ...textProps
+}: { text: string } & IText) => {
   return (
     <p
       className={clsx(
@@ -10,6 +14,7 @@ export const Text = ({ text, className }: { text: string } & IText) => {
         className
       )}
       style={{ fontSize: `calc(1rem*var(--text-scale))` }}
+      {...textProps}
     >
       {text}
     </p>

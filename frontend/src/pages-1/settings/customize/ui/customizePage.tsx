@@ -1,23 +1,17 @@
 "use client";
 
-import { Customize } from "@/features";
+import { Customize, usePublicApiCustomize } from "@/features";
 import { SettingsWrapper } from "../../home/ui/settingsWrapper";
-import { useChangeColor } from "@/features/customize/hook/useChangeColor";
-import { useTextScale } from "@/features/customize/hook/useTextScale";
 
 export const CustomizePage = () => {
-  const { saveColorSettings } = useChangeColor();
-  const { onSaveTextScale } = useTextScale();
-
-  const onSave = () => {
-    onSaveTextScale();
-    saveColorSettings();
-  };
+  const { onSaveCustomize, onResetCustomize } = usePublicApiCustomize();
 
   return (
     <SettingsWrapper
       title="Customize chats"
-      option={<SettingsWrapper.button onActions={onSave} />}
+      resetText="Reset customize settings"
+      reset={onResetCustomize}
+      option={<SettingsWrapper.button onActions={onSaveCustomize} />}
     >
       <Customize />
     </SettingsWrapper>

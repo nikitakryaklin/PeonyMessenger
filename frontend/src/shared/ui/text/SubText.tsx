@@ -5,6 +5,7 @@ import clsx from "clsx";
 export const SubText = ({
   text,
   className,
+  ...textProps
 }: { text: string } & PropsWithChildren<IText>) => {
   return (
     <p
@@ -13,6 +14,7 @@ export const SubText = ({
         className
       )}
       style={{ fontSize: `calc(0.875rem*var(--text-scale))` }}
+      {...textProps}
     >
       {text}
     </p>

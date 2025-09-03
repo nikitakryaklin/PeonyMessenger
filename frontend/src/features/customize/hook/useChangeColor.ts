@@ -39,7 +39,7 @@ export const useChangeColor = () => {
     attributeFilter: ["data-theme", "style"],
   });
 
-  const saveColorSettings = () => {
+  const onSaveColorSettings = () => {
     document.documentElement.style.setProperty("--primery", primery);
     document.documentElement.style.setProperty("--primery-light", primeryLight);
     setIsSave(true);
@@ -68,6 +68,6 @@ export const useChangeColor = () => {
     },
     onColor,
     resetColor,
-    saveColorSettings,
+    onSaveColorSettings,
   };
 };

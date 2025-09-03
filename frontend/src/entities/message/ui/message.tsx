@@ -1,5 +1,6 @@
 import { getHour, SubText, Text } from "@/shared";
 import clsx from "clsx";
+import { style } from "motion/react-client";
 import { ReactNode } from "react";
 
 export const Message = ({
@@ -7,12 +8,19 @@ export const Message = ({
   className,
   title,
   createdAt,
+  textModification,
 }: {
   text: string;
   className: string;
   createdAt: string;
   title?: ReactNode;
+  textModification?: {
+    text: string;
+    subText: string;
+  };
 }) => {
+  console.log(textModification);
+
   return (
     <div
       className={clsx(
@@ -24,8 +32,16 @@ export const Message = ({
       <Text
         text={text}
         className="whitespace-normal break-words text-[var(--black)] max-w-9/10"
+        {...(textModification && {
+          style: { fontSize: textModification.text },
+        })}
       />
-      <SubText text={getHour(createdAt)} />
+      <SubText
+        text={getHour(createdAt)}
+        {...(textModification && {
+          style: { fontSize: textModification.subText },
+        })}
+      />
     </div>
   );
 };

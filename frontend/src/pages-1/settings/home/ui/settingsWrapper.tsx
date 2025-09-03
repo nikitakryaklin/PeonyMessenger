@@ -5,16 +5,20 @@ import { ReactNode } from "react";
 
 export const SettingsWrapper = ({
   title,
+  resetText,
+  reset,
   option,
   children,
 }: {
   title: string;
+  resetText: string;
+  reset: () => void;
   option: ReactNode;
   children: ReactNode;
 }) => {
   return (
-    <div className="w-full px-3 py-1 flex flex-col">
-      <div className="flex justify-between h-10 items-center mb-5">
+    <div className="w-full px-3 py-1 flex flex-col gap-5">
+      <div className="flex justify-between h-10 items-center">
         <Link
           href={ROUTES.setting.home}
           className="flex gap-2 items-center cursor-pointer"
@@ -25,6 +29,11 @@ export const SettingsWrapper = ({
         {option}
       </div>
       {children}
+      <Button
+        text={resetText}
+        onClick={reset}
+        className="h-11 border-2 border-[var(--red)] w-full"
+      />
     </div>
   );
 };
