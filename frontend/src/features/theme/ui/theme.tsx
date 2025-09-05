@@ -6,7 +6,7 @@ import clsx from "clsx";
 import { useTheme } from "../hook/useTreme";
 
 export const Theme = ({ size }: { size: "s" | "l" }) => {
-  const { theme, handleClick } = useTheme();
+  const { theme, onChangeTheme } = useTheme();
 
   return (
     <div
@@ -32,7 +32,7 @@ export const Theme = ({ size }: { size: "s" | "l" }) => {
                     theme === el.value &&
                       "bg-[var(--white)] transition-colors duration-150 ease-in-out"
                   )}
-                  onClick={() => handleClick(el.value)}
+                  onClick={() => onChangeTheme(el.value)}
                 />
               ))}
             </>
@@ -41,7 +41,7 @@ export const Theme = ({ size }: { size: "s" | "l" }) => {
             <IconButton
               icon={TREME_DATA[theme].icon}
               onClick={() =>
-                handleClick(
+                onChangeTheme(
                   TREME_DATA[theme].value === "light" ? "dark" : "light"
                 )
               }

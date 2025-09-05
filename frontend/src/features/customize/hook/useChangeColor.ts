@@ -3,7 +3,7 @@
 import { ChangeEvent, useEffect, useId } from "react";
 import { TColorName } from "../model/customize-interface";
 import { useCustomizeColorStore } from "../model/useCustomizeColorStore";
-import { LOCAL_STORAGE } from "@/shared";
+import { LOCAL_STORAGE, PRIMERY_COLORS } from "@/shared";
 
 export const useChangeColor = () => {
   const primeryId = useId();
@@ -45,6 +45,18 @@ export const useChangeColor = () => {
     setIsSave(true);
   };
 
+  const onResetColors = (theme: "light" | "dark") => {
+    document.documentElement.style.setProperty(
+      "--primery",
+      PRIMERY_COLORS.primery[theme]
+    );
+    document.documentElement.style.setProperty(
+      "--primery-light",
+      PRIMERY_COLORS.primeryLight[theme]
+    );
+    resetColor(theme);
+  };
+
   useEffect(() => {
     if (isSave) {
       document.documentElement.style.setProperty("--primery", primery);
@@ -54,10 +66,6 @@ export const useChangeColor = () => {
       );
     }
   }, [isSave]);
-
-  // useEffect(() => {
-  //   resetColor();
-  // }, [theme]);
 
   return {
     primeryId,
@@ -69,5 +77,6 @@ export const useChangeColor = () => {
     onColor,
     resetColor,
     onSaveColorSettings,
+    onResetColors,
   };
 };

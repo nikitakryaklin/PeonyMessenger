@@ -29,6 +29,7 @@ export { useGetGroupById } from "./group/api/get/api/useGetGroupById";
 
 //treme
 export { Theme } from "./theme/ui/theme";
+export { useTheme } from "./theme/hook/useTreme";
 
 //customize
 export { Customize } from "./customize/ui/customize";

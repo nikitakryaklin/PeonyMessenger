@@ -7,8 +7,6 @@ import { SubText } from "../../text";
 import clsx from "clsx";
 import { percentCounter } from "@/shared/lib/math/percentCounter";
 
-type TValue = string | number;
-
 export const RangeField = ({
   title,
   id,
@@ -20,9 +18,9 @@ export const RangeField = ({
   ...inpytProps
 }: {
   title: string;
-  min: TValue;
-  max: TValue;
-  value: TValue;
+  min: string;
+  max: string;
+  value: string;
   className?: string;
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
 } & HTMLProps<HTMLInputElement>) => {
@@ -30,14 +28,12 @@ export const RangeField = ({
 
   const onInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     onChange(e);
-    setPercent(
-      percentCounter<TValue>(e.target.min, e.target.max, e.target.value)
-    );
+    setPercent(percentCounter(e.target.min, e.target.max, e.target.value));
   };
 
   useEffect(() => {
-    setPercent(percentCounter<TValue>(min, max, value));
-  }, []);
+    setPercent(percentCounter(min, max, value));
+  }, [value, min, max]);
 
   return (
     <div className="h-15">

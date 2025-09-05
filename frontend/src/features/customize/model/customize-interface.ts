@@ -12,7 +12,7 @@ export interface ICustomizeColor {
   isSave: boolean;
   setIsSave: (isSave: boolean) => void;
   setColors: (colorName: TColorName, currentColor: string) => void;
-  resetColor: () => void;
+  resetColor: (theme: string) => void;
 }
 
 export type TColorName = keyof Omit<

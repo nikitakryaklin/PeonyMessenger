@@ -1,7 +1,7 @@
 import { create, createStore, StateCreator } from "zustand";
 import { ICustomizeColor } from "./customize-interface";
 import { persist } from "zustand/middleware";
-import { LOCAL_STORAGE } from "@/shared";
+import { LOCAL_STORAGE, PRIMERY_COLORS } from "@/shared";
 
 const defaultColors: Record<
   keyof Omit<
@@ -24,8 +24,10 @@ const createColorStore: StateCreator<ICustomizeColor> = (set, get) => ({
   setColors: (colorName, currentColor) => {
     set({ [colorName]: currentColor });
   },
-  resetColor: () => {
-    Object.entries(defaultColors).forEach((el) => set({ [el[0]]: el[1] }));
+  resetColor: (theme) => {
+    Object.keys(defaultColors).forEach((el) =>
+      set({ [el]: PRIMERY_COLORS[el][theme] })
+    );
     set({ isSave: false });
   },
 });

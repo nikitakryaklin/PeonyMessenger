@@ -6,8 +6,7 @@ export { Field } from "./ui/field/Field";
 export { Loader } from "./ui/loader/loader";
 export * from "./routes/routes";
 export { API } from "./config/api";
-export { AUTH_ROUTES } from "./config/authRoutes";
-export { LOCAL_STORAGE } from "./config/localStorage";
+
 export { getValidateError } from "./lib/getValidateError";
 export { QueryClientCastomProvider } from "./providers/queryClientCastomProvider";
 export { useMutliStepForm } from "./hooks/useMutliStepForm";
@@ -43,3 +42,8 @@ export { uploadFilesService } from "./api/service/uploadFiles.service";
 //lib
 export { getHour } from "./lib/date/getHour";
 export { getUserName } from "./lib/getUserName";
+
+//config
+export { PRIMERY_COLORS } from "./config/primeryColors";
+export { AUTH_ROUTES } from "./config/authRoutes";
+export { LOCAL_STORAGE } from "./config/localStorage";

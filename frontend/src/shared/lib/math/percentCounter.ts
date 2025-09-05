@@ -1,7 +1,7 @@
 export const percentCounter = <T>(
-  min: T | number,
-  max: T | number,
-  value: T | number
+  min: string | number,
+  max: string | number,
+  value: string | number
 ) => {
   const min_N = Number(min);
   const max_N = Number(max);

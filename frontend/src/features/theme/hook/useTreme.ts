@@ -1,3 +1,5 @@
+"use client";
+
 import { useEffect } from "react";
 import { useThemeStore } from "../model/useTremeStore";
 import { LOCAL_STORAGE } from "@/shared";
@@ -6,7 +8,7 @@ export const useTheme = () => {
   const theme = useThemeStore((s) => s.theme);
   const setTheme = useThemeStore((s) => s.setTheme);
 
-  const handleClick = (theme: "light" | "dark") => {
+  const onChangeTheme = (theme: "light" | "dark") => {
     setTheme(theme);
     document.documentElement.style.setProperty("--theme", theme);
   };
@@ -24,5 +26,5 @@ export const useTheme = () => {
     localStorage.removeItem(LOCAL_STORAGE.colorStore);
   }, [theme]);
 
-  return { theme, handleClick };
+  return { theme, onChangeTheme };
 };

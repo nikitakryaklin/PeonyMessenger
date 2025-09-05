@@ -1,24 +1,18 @@
-import { useCustomizeColorStore } from "../model/useCustomizeColorStore";
-import { useCustomizeTextStore } from "../model/useCustomizeTextStore";
 import { useChangeColor } from "./useChangeColor";
 import { useTextScale } from "./useTextScale";
 
 export function usePublicApiCustomize() {
-  const resetColor = useCustomizeColorStore((s) => s.resetColor);
-
-  const resetText = useCustomizeTextStore((s) => s.resetTextScale);
-
-  const { onSaveColorSettings } = useChangeColor();
-  const { onSaveTextScale } = useTextScale();
+  const { onSaveColorSettings, onResetColors } = useChangeColor();
+  const { onSaveTextScale, onResetTextScale } = useTextScale();
 
   const onSaveCustomize = () => {
     onSaveColorSettings();
     onSaveTextScale();
   };
 
-  const onResetCustomize = () => {
-    resetColor();
-    resetText();
+  const onResetCustomize = (theme: "light" | "dark") => {
+    onResetColors(theme);
+    onResetTextScale();
   };
 
   return { onSaveCustomize, onResetCustomize };

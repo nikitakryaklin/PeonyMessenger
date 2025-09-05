@@ -6,4 +6,5 @@ export const LOCAL_STORAGE = {
   userName: "user_name",
   colorStore: "color-store",
   theme: "theme",
+  textScale: "textScale",
 };

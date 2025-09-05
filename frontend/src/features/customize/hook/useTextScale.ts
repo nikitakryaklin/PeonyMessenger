@@ -3,12 +3,15 @@
 import { ChangeEvent, useEffect, useId, useState } from "react";
 import { useCustomizeTextStore } from "../model/useCustomizeTextStore";
 import { TTextScale } from "../model/customize-interface";
+import { LOCAL_STORAGE } from "@/shared";
 
 export const useTextScale = () => {
   const textScaleId = useId();
+  const style = document.documentElement.style;
 
   const textScale = useCustomizeTextStore((s) => s.textScale);
   const setTextScale = useCustomizeTextStore((s) => s.setTextScale);
+  const resetTextScale = useCustomizeTextStore((s) => s.resetTextScale);
 
   const onTextScale = (e: ChangeEvent<HTMLInputElement>) => {
     const validValue: TTextScale[] = ["0.8", "0.9", "1", "1.1", "1.2"];
@@ -20,11 +23,20 @@ export const useTextScale = () => {
   };
 
   const onSaveTextScale = () => {
-    const style = document.documentElement.style;
     style.setProperty("--text-scale", textScale);
   };
 
-  // useEffect(() => {}, [textScale]);
+  const onResetTextScale = () => {
+    resetTextScale();
+    style.setProperty("--text-scale", "1");
+  };
+
+  useEffect(() => {
+    const isTextScaleSave = localStorage.getItem(LOCAL_STORAGE.textScale);
+    if (isTextScaleSave) {
+      setTextScale(textScale);
+    }
+  }, [textScale]);
 
   return {
     textOptions: {
@@ -33,5 +45,6 @@ export const useTextScale = () => {
     },
     onTextScale,
     onSaveTextScale,
+    onResetTextScale,
   };
 };

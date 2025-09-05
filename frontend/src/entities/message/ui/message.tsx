@@ -19,8 +19,6 @@ export const Message = ({
     subText: string;
   };
 }) => {
-  console.log(textModification);
-
   return (
     <div
       className={clsx(
