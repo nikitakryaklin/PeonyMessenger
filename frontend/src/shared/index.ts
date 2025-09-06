@@ -33,6 +33,7 @@ export { RangeField } from "./ui/field/rangeField/rangeField";
 // hook
 export { useIntersection } from "./hooks/useIntersection";
 export { usePreview } from "./hooks/usePreview";
+export { useQueryCacheSize } from "./hooks/useQueryCacheSize";
 
 //api
 export { useSocket } from "./api";

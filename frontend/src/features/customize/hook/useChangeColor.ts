@@ -3,7 +3,8 @@
 import { ChangeEvent, useEffect, useId } from "react";
 import { TColorName } from "../model/customize-interface";
 import { useCustomizeColorStore } from "../model/useCustomizeColorStore";
-import { LOCAL_STORAGE, PRIMERY_COLORS } from "@/shared";
+import { PRIMERY_COLORS } from "@/shared";
+import { useQueryClient } from "@tanstack/react-query";
 
 export const useChangeColor = () => {
   const primeryId = useId();
@@ -15,8 +16,6 @@ export const useChangeColor = () => {
   const setIsSave = useCustomizeColorStore((s) => s.setIsSave);
   const setColor = useCustomizeColorStore((s) => s.setColors);
   const resetColor = useCustomizeColorStore((s) => s.resetColor);
-
-  const theme = localStorage.getItem(LOCAL_STORAGE.theme);
 
   const onColor = (colorName: TColorName, e: ChangeEvent<HTMLInputElement>) => {
     const colorValue = e.target.value;

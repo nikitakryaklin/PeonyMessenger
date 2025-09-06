@@ -14,7 +14,7 @@ export const SETTINGS_PAGE_DATA = [
     id: nanoid(),
     text: "Data and storage",
     value: "storage",
-    link: "#",
+    link: ROUTES.setting.storage,
     icon: <ServerIcon style={{ stroke: "var(--black)" }} />,
   },
   {

@@ -6,15 +6,15 @@ import { ReactNode } from "react";
 export const SettingsWrapper = ({
   title,
   resetText,
-  reset,
   option,
   children,
+  reset,
 }: {
   title: string;
   resetText: string;
-  reset: () => void;
-  option: ReactNode;
+  option?: ReactNode;
   children: ReactNode;
+  reset: () => void;
 }) => {
   return (
     <div className="w-full px-3 py-1 flex flex-col gap-5">

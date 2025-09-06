@@ -14,3 +14,4 @@ export { GroupPage } from "./group/ui/groupPage";
 // settings
 export { SettingsPage } from "./settings/home/ui/settingsPage";
 export { CustomizePage } from "./settings/customize/ui/customizePage";
+export { StoragePage } from "./settings/storage/ui/storagePage";
