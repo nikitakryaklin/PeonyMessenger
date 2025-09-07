@@ -5,6 +5,7 @@ import { SettingsWrapper } from "../../home/ui/settingsWrapper";
 import { li } from "motion/react-client";
 import { Trash2, User2Icon, UsersIcon } from "lucide-react";
 import { useQueryClient } from "@tanstack/react-query";
+import { getSize } from "@/shared/lib/ getSize";
 
 export const StoragePage = () => {
   const { queryCacheInMB } = useQueryCacheSize();
@@ -26,7 +27,9 @@ export const StoragePage = () => {
       name: "group",
       keys: ["group", "groupList"],
     },
-  ];
+  ]
+    .sort((a, b) => b.size - a.size)
+    .filter((el) => el.size !== 0);
 
   const deleteCache = (keys: string[]) => {
     keys.forEach(
@@ -40,25 +43,30 @@ export const StoragePage = () => {
     <SettingsWrapper
       title="Data and storage"
       resetText="Delete all files"
+      disabled={cache.length === 0}
       reset={() => {}}
     >
       <ul>
-        {cache
-          .sort((a, b) => b.size - a.size)
-          .map((el) => (
+        {cache.length !== 0 ? (
+          cache.map((el) => (
             <li key={el.id} className="flex justify-between items-center px-3">
               <div className="flex gap-2 items-center">
                 {el.icon} <Text text={el.name} />
               </div>
               <div className="flex gap-2 items-center">
-                <SubText text={el.size + " bt"} />
+                <SubText text={getSize(el.size)} />
                 <IconButton
                   icon={<Trash2 stroke="var(--red)" />}
                   onClick={() => deleteCache(el.keys)}
                 />
               </div>
             </li>
-          ))}
+          ))
+        ) : (
+          <div className="size-full py-4">
+            <Text text="No cache" className="text-center text-[var(--black)]" />
+          </div>
+        )}
       </ul>
     </SettingsWrapper>
   );

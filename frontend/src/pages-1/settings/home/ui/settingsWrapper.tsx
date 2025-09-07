@@ -1,4 +1,5 @@
 import { Button, ROUTES, Text } from "@/shared";
+import clsx from "clsx";
 import { ArrowLeftFromLineIcon, CheckIcon } from "lucide-react";
 import Link from "next/link";
 import { ReactNode } from "react";
@@ -8,12 +9,14 @@ export const SettingsWrapper = ({
   resetText,
   option,
   children,
+  disabled,
   reset,
 }: {
   title: string;
   resetText: string;
   option?: ReactNode;
   children: ReactNode;
+  disabled?: boolean;
   reset: () => void;
 }) => {
   return (
@@ -32,7 +35,9 @@ export const SettingsWrapper = ({
       <Button
         text={resetText}
         onClick={reset}
-        className="h-11 border-2 border-[var(--red)] w-full"
+        className={clsx("h-11 border-2 border-[var(--red)] w-full")}
+        disabled={disabled}
+        textClasses="text-[var(--red)]"
       />
     </div>
   );

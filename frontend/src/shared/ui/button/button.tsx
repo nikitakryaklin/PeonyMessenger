@@ -9,6 +9,7 @@ export const Button = ({
   textClasses,
   icon,
   promise,
+  disabled = false,
   ...buttonProps
 }: {
   text: string;
@@ -22,7 +23,9 @@ export const Button = ({
   return (
     <button
       className={clsx(
-        "w-[80%] rounded-[0.5rem] h-10 flex justify-center items-center gap-0 cursor-pointer whitespace-nowrap",
+        "w-[80%] rounded-[0.5rem] h-10 flex justify-center items-center gap-0 whitespace-nowrap",
+        !disabled && "cursor-pointer ",
+        disabled && "cursor-default ",
         className
       )}
       {...buttonProps}
