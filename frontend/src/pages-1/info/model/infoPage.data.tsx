@@ -1,3 +1,4 @@
+import { ROUTES } from "@/shared";
 import { BookText, Globe, Mail } from "lucide-react";
 import { nanoid } from "nanoid";
 
@@ -17,7 +18,7 @@ export const INFO_PAGE_DATA = [
   {
     id: nanoid(),
     text: "Rules if Usage",
-    url: "/rules",
+    url: ROUTES.rules,
     icon: <BookText size={15} style={{ stroke: "var(--gray)" }} />,
   },
 ];

@@ -20,3 +20,5 @@ export const PublicHeader = () => {
     </header>
   );
 };
+
+// fixed bg-[var(--white)] w-full top-0

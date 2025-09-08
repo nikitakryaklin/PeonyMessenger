@@ -7,7 +7,6 @@ export const HomePage = () => {
       <Link href={ROUTES.login}>sing in</Link>
       <Link href={ROUTES.register}>sing up</Link>
       <Link href={ROUTES.account}>account</Link>
-      <Link href={ROUTES.setting}>setting</Link>
       <Link href={ROUTES.chatById(321)}>chat</Link>
     </div>
   );
