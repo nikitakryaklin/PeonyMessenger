@@ -1,10 +1,12 @@
+import { ReactNode } from "react";
 import { IHeading } from "./text-interface";
 import clsx from "clsx";
 
 export const CaphionTitle = ({
   text,
   className,
-}: { text: string } & IHeading) => {
+  ...titleProps
+}: { text: string | ReactNode } & IHeading) => {
   return (
     <h4
       className={clsx(
@@ -12,6 +14,7 @@ export const CaphionTitle = ({
         className
       )}
       style={{ fontSize: `calc(1.5rem*var(--text-scale))` }}
+      {...titleProps}
     >
       {text}
     </h4>

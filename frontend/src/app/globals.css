@@ -37,6 +37,10 @@
   --text-scale: var(--text-scale);
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   /* background-color: var(--gray); */
   font-family: var(--font-dm-sans), Helvetica;

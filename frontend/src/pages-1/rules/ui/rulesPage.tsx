@@ -1,68 +1,105 @@
 "use client";
 
-import { MainTitle } from "@/shared";
-import { HTMLProps } from "react";
-import ReactMarkdown from "react-markdown";
-import remarkGfm from "remark-gfm";
+import {
+  CaphionTitle,
+  LinkTitle,
+  Markdonw,
+  SubTitle,
+  Text,
+  Title,
+  useIntersection,
+  useScrollToTop,
+} from "@/shared";
+import clsx from "clsx";
+import { useEffect, useRef, useState } from "react";
 
 export const RulesPage = ({ content }: { content: string }) => {
+  const RefScroll = useRef<HTMLDivElement>(null);
+  const RefMarkdown = useRef<HTMLDivElement>(null);
+
+  const { visible, onScroll } = useScrollToTop(RefScroll);
+
+  const [heading, setHeading] = useState<
+    { text: string; link: string; id: string; level: Number }[]
+  >([]);
+
+  const [isActive, setIsActive] = useState<string | undefined>("");
+
+  const test = (e: IntersectionObserverEntry) => {
+    setIsActive(e.target.id);
+  };
+
+  const onderverRef = useIntersection(test, {
+    rootMargin: "-60px 0px -80% 0px",
+    threshold: 0,
+  });
+
+  useEffect(() => {
+    if (!RefMarkdown.current) return;
+
+    const heading = RefMarkdown.current.querySelectorAll("h3, h4");
+    const newHeaders = Array.from(heading).map((el) => ({
+      id: el.id,
+      text: el.textContent,
+      link: `#${el.textContent.replace(/ /g, "")}`,
+      level: Number(el.tagName.replace("H", "")),
+    }));
+
+    setHeading(newHeaders);
+  }, [RefMarkdown]);
+
   return (
-    <div className="h-full">
-      <div className="w-2/3  mx-auto">
-        <ReactMarkdown
-          remarkPlugins={[remarkGfm]}
-          components={{
-            h1: (props: any) => (
-              <h1
-                className="text-[calc(3.5rem*var(--text-scale))] leading-[120%] text-bold text-[var(--black)]"
-                {...props}
-              />
-            ),
-            h2: (props: any) => (
-              <h2
-                className="text-[var(--black)] my-4  leading-[120%] text-semibold text-[calc(2.5rem*var(--text-scale))]"
-                {...props}
-              />
-            ),
-            h3: (props: any) => (
-              <h3
-                className="leading-[140%] text-semibold text-[calc(2rem*var(--text-scale))] my-3 text-[var(--black)]"
-                {...props}
-              />
-            ),
-            h4: (props: any) => (
-              <h3
-                className="leading-[140%] text-bold text-[calc(1.5rem*var(--text-scale))] my-2 text-[var(--black)]"
-                {...props}
-              />
-            ),
-            p: (props: any) => (
-              <p
-                className="my-2 text-[var(--black)] leading-[140%] text-medium text-[calc(1rem*var(--text-scale))]"
-                {...props}
-              />
-            ),
-            li: ({ children, ...props }: any) => (
-              <li className="ml-6 list-disc my-1 text-[var(--black)] leading-[140%] text-[calc(1rem*var(--text-scale))] marker:text-[var(--primery)]">
-                {children}
-              </li>
-            ),
-            blockquote: (props: any) => (
-              <blockquote
-                className="border-l-4 border-[var(--primery)] mb-10 pl-4  mt-2"
-                {...props}
-              />
-            ),
-            a: (props: any) => (
-              <a
-                className="text-[var(--primery)] leading-[140%] text-medium text-[calc(1rem*var(--text-scale))]"
-                {...props}
-              />
-            ),
-          }}
+    <div
+      ref={RefScroll}
+      className="max-h-[87dvh] overflow-y-scroll scroll-smooth"
+    >
+      {/*  */}
+
+      {visible && (
+        <button
+          onClick={onScroll}
+          className="group w-1/6 left-0 top-24 fixed h-screen cursor-pointer"
         >
-          {content}
-        </ReactMarkdown>
+          <div className="w-30 p-4 h-full text-[var(--primery)] transition-colors duration-200 group-hover:bg-[var(--primery-light)] ">
+            <LinkTitle text="Go up" className=" text-[var(--primery)] " />
+          </div>
+        </button>
+      )}
+
+      {/*  */}
+
+      <aside className="fixed top-24 right-60">
+        <ul>
+          {heading.map((el, idx) => (
+            <li
+              key={idx}
+              className={clsx(
+                "max-w-50 overflow-hidden text-ellipsis  pl-5 hover:border-l-3 hover:border-[var(--primery-light)]",
+                isActive === el.id && "border-l-3 border-[var(--primery)]"
+              )}
+            >
+              <a
+                href={el.link}
+                className={clsx(
+                  "text-nowrap  overflow-hidden text-ellipsis text-[var(--primery)]",
+                  el.level === 3 && "font-bold",
+                  el.level === 4 && "text-[0.875rem] font-normal pl-2"
+                )}
+              >
+                {el.text}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </aside>
+
+      {/*  */}
+
+      <div
+        ref={RefMarkdown}
+        className="w-4/5 xl:w-1/2 mx-auto mb-11 scroll-smooth"
+      >
+        <Markdonw Ref={onderverRef} content={content} />
       </div>
     </div>
   );

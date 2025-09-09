@@ -23,7 +23,10 @@ export function DialogMessages({
   const { isPendingMessage, nextPage } = useMessageGetByChatId(params);
   const { messages } = useMessageGetByChatId(params);
 
-  const observerRef = useIntersection(nextPage.fetchNextPage);
+  const nextPagefetchNextPage = (e: any) => {
+    nextPage.fetchNextPage();
+  };
+  const observerRef = useIntersection(nextPagefetchNextPage);
 
   useMessageSubscription(params);
 

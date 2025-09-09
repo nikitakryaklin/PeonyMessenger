@@ -1,7 +1,11 @@
+import { ReactNode } from "react";
 import { IHeading } from "./text-interface";
 import clsx from "clsx";
 
-export const Title = ({ text, className }: { text: string } & IHeading) => {
+export const Title = ({
+  text,
+  className,
+}: { text: string | ReactNode } & IHeading) => {
   return (
     <h2
       className={clsx(

@@ -1,3 +1,4 @@
+import { ReactNode } from "react";
 import { IText } from "./text-interface";
 import clsx from "clsx";
 
@@ -5,7 +6,7 @@ export const Text = ({
   text,
   className,
   ...textProps
-}: { text: string } & IText) => {
+}: { text: string | ReactNode } & IText) => {
   return (
     <p
       className={clsx(
