@@ -51,7 +51,7 @@ export const SIDEBAR_DATA = {
     {
       id: nanoid(),
       text: "Help",
-      link: ROUTES.help,
+      link: ROUTES.faq,
       icon: <HelpCircle style={{ stroke: "var(--black)" }} />,
     },
     {

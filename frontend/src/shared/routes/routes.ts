@@ -3,6 +3,7 @@ const settingHelper = "/account/settings";
 export const ROUTES = {
   home: "/",
   rules: "/rules",
+  faq: "/faq",
 
   login: "/auth/login",
   register: "/auth/register",
@@ -14,7 +15,6 @@ export const ROUTES = {
     storage: settingHelper + "/storage",
   },
   blocked_users: "/account/blocked_users",
-  help: "/account/help",
   info: "/account/info",
   recommendation: "/account/recommendation",
 

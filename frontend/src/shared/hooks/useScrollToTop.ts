@@ -3,7 +3,7 @@
 import { RefObject, useEffect, useState } from "react";
 
 export const useScrollToTop = (Ref: RefObject<HTMLDivElement | null>) => {
-  const [visible, setIsVisible] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
   const visibleValue = 300;
 
   useEffect(() => {
@@ -26,5 +26,5 @@ export const useScrollToTop = (Ref: RefObject<HTMLDivElement | null>) => {
     Ref.current.scrollTo({ top: 0, behavior: "smooth" });
   };
 
-  return { visible, onScroll };
+  return { isVisible, onScroll };
 };

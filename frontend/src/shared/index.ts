@@ -45,6 +45,9 @@ export { uploadFilesService } from "./api/service/uploadFiles.service";
 export { getHour } from "./lib/date/getHour";
 export { getUserName } from "./lib/getUserName";
 
+// server
+export { getMarkdonw } from "./lib/getMarkdonw";
+
 //config
 export { PRIMERY_COLORS } from "./config/primeryColors";
 export { AUTH_ROUTES } from "./config/authRoutes";
