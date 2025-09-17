@@ -1,7 +1,11 @@
-import { MicIcon, Paperclip, Send, Smile } from "lucide-react";
+import { MicIcon, Paperclip, Send, StopCircle, Trash2 } from "lucide-react";
 import { useEffect, useId, useRef } from "react";
 import { useDialogForm } from "../hook/useDialogForm";
-import { FileField, IconButton } from "@/shared";
+import { AudioPlayer, FileField, IconButton, Text } from "@/shared";
+import { useVoiceRecorder } from "@/features";
+import { Timer } from "@/shared";
+import { DialogFormInput } from "./dialog.form.input";
+import { Controller } from "react-hook-form";
 
 export const DialogForm = ({
   chatId,
@@ -16,10 +20,23 @@ export const DialogForm = ({
 }) => {
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
-  const textMessageId = useId();
   const inputFile = useId();
 
-  const { onSubmit, register } = useDialogForm(chatId, dialog);
+  const {
+    url,
+    recordingStatus,
+    audiBlob,
+    duration,
+    onStartRecording,
+    onStopRecording,
+    onDeleteAutio,
+  } = useVoiceRecorder();
+
+  const { onSubmit, register, reset, control } = useDialogForm(
+    chatId,
+    dialog,
+    onDeleteAutio
+  );
 
   const hendleClick = () => {
     scrollToBottom("smooth");
@@ -51,19 +68,66 @@ export const DialogForm = ({
         <Paperclip stroke="var(--black)" />
         <FileField id={inputFile} />
       </label>
-      <label htmlFor={textMessageId} className="flex-1 flex gap-2">
-        <input
-          className="w-full focus:outline-0 text-[var(--black)] placeholder:text-[var(--gray)]"
-          id={textMessageId}
-          type="text"
-          placeholder="White a message..."
-          {...register("message")}
-          onInput={onInput}
-        />
-        <Smile stroke="var(--black)" />
-      </label>
-      <MicIcon stroke="var(--black)" />
-      <IconButton icon={<Send stroke="var(--black)" />} onClick={hendleClick} />
+
+      {
+        {
+          idle: (
+            <>
+              <DialogFormInput {...register("message")} onInput={onInput} />
+
+              <IconButton
+                icon={<MicIcon stroke="var(--black)" />}
+                onClick={onStartRecording}
+                type={"button"}
+              />
+            </>
+          ),
+          recording: (
+            <>
+              <div className="w-full flex justify-between items-center px-5 bg-[var(--primery-light)] h-9 py-1 rounded-2xl animate-pulse">
+                <Text text="Recording..." />
+                <Timer />
+              </div>
+              <Controller
+                name="voise"
+                control={control}
+                render={({ field }) => (
+                  <IconButton
+                    icon={<StopCircle stroke="var(--red)" />}
+                    onClick={() => {
+                      onStopRecording();
+                      field.onChange({
+                        blob: audiBlob,
+                        duration: duration.current,
+                      });
+                    }}
+                    type={"button"}
+                  />
+                )}
+              />
+            </>
+          ),
+          stopped: (
+            <>
+              <AudioPlayer src={url} duration={duration.current} />
+              <IconButton
+                icon={<Trash2 stroke="var(--black)" />}
+                onClick={() => {
+                  onDeleteAutio();
+                  reset();
+                }}
+                type={"button"}
+              />
+            </>
+          ),
+        }[recordingStatus]
+      }
+
+      <IconButton
+        type="submit"
+        icon={<Send stroke="var(--black)" />}
+        onClick={hendleClick}
+      />
     </form>
   );
 };

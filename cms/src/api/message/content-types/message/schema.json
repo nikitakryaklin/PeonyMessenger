@@ -25,6 +25,14 @@
       "relation": "manyToOne",
       "target": "plugin::users-permissions.user",
       "inversedBy": "messages"
+    },
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "text",
+        "voice",
+        "photo"
+      ]
     }
   }
 }

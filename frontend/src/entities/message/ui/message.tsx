@@ -1,16 +1,21 @@
-import { getHour, SubText, Text } from "@/shared";
+"use client";
+
+import { AudioPlayer, getHour, getImageUrl, SubText, Text } from "@/shared";
 import clsx from "clsx";
 import { style } from "motion/react-client";
-import { ReactNode } from "react";
+import { ReactNode, useEffect, useState } from "react";
+import { TTypeMessage } from "../model/massage-interface";
 
 export const Message = ({
   text,
+  type,
   className,
   title,
   createdAt,
   textModification,
 }: {
-  text: string;
+  text: any;
+  type: TTypeMessage;
   className: string;
   createdAt: string;
   title?: ReactNode;
@@ -19,6 +24,17 @@ export const Message = ({
     subText: string;
   };
 }) => {
+  const [audio, setAudio] = useState(null);
+
+  useEffect(() => {
+    if (type === "voice") {
+      const text_json = JSON.parse(text);
+      console.log(text_json);
+      // setAudio(JSON.parse(text));
+      setAudio(text_json);
+    }
+  }, []);
+
   return (
     <div
       className={clsx(
@@ -27,13 +43,29 @@ export const Message = ({
       )}
     >
       {title}
-      <Text
-        text={text}
-        className="whitespace-normal break-words text-[var(--black)] max-w-9/10"
-        {...(textModification && {
-          style: { fontSize: textModification.text },
-        })}
-      />
+      {
+        {
+          text: (
+            <Text
+              text={text}
+              className="whitespace-normal break-words text-[var(--black)] max-w-9/10"
+              {...(textModification && {
+                style: { fontSize: textModification.text },
+              })}
+            />
+          ),
+          // voice: (
+          //   <AudioPlayer
+          //     //@ts-ignore
+          //     src={getImageUrl(audio.url)}
+          //     //@ts-ignore
+          //     duration={audio.duration}
+          //   />
+          // ),
+          voice: <>dsa</>,
+          photo: <>dsa</>,
+        }[type]
+      }
       <SubText
         text={getHour(createdAt)}
         {...(textModification && {

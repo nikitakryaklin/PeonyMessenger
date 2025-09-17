@@ -2,15 +2,18 @@ import { ReactNode, RefObject } from "react";
 import { Message } from "./message";
 import { SubText } from "@/shared";
 import clsx from "clsx";
+import { TTypeMessage } from "../model/massage-interface";
 
 export function MessageContainer({
   text,
+  type,
   isIncoming,
   createdAt,
   Ref,
   info,
 }: {
   text: string;
+  type: TTypeMessage;
   isIncoming: boolean;
   createdAt: string;
   Ref?: (el: HTMLDivElement | null) => void;
@@ -30,6 +33,7 @@ export function MessageContainer({
       {isIncoming && <>{info?.avatar}</>}
       <Message
         text={text}
+        type={type}
         createdAt={createdAt}
         className={clsx(
           isIncoming && Message.left,

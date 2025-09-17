@@ -34,3 +34,6 @@ export { useTheme } from "./theme/hook/useTreme";
 //customize
 export { Customize } from "./customize/ui/customize";
 export { usePublicApiCustomize } from "./customize/hook/usePublicApiCustomize";
+
+//voice-message
+export { useVoiceRecorder } from "./voice-message/hook/useVoiceRecorder";

@@ -1,11 +1,11 @@
 import { api } from "@/shared";
-import { TMessage } from "../model/massage-interface";
+import { TMessage, TTypeMessage } from "../model/massage-interface";
 
 export const sendMessage = (data: {
   massage: string;
+  type: TTypeMessage;
   chat: number | string;
   sender: number;
 }) => {
-  console.log(data);
   return api().post<{ data: TMessage }, any>("messages", { data });
 };

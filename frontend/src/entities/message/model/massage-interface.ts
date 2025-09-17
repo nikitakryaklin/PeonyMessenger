@@ -1,9 +1,12 @@
 import { IAbout, IUser } from "@/shared";
 
+export type TTypeMessage = "text" | "voice" | "photo";
+
 export interface IMassageEntity {
   id: number;
   documentId: string;
   massage: string;
+  type: TTypeMessage;
   createdAt: string;
   updatedAt: string;
   publishedAt: string;

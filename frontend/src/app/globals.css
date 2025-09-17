@@ -54,3 +54,12 @@ input[type="color"]::-webkit-color-swatch,
 input[type="color"]::-moz-color-swatch {
   border: none;
 }
+
+audio::-webkit-media-controls-panel {
+  background-color: var(--white);
+  accent-color: var(--red) !important;
+}
+
+audio {
+  accent-color: var(--red) !important;
+}

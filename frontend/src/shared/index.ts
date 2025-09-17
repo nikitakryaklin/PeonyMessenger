@@ -30,12 +30,15 @@ export { FileField } from "./ui/field/fileField";
 export { ColorField } from "./ui/field/colorField";
 export { RangeField } from "./ui/field/rangeField/rangeField";
 export { Markdonw } from "./ui/markdown/ui/markdonw";
+export { AudioPlayer } from "./ui/audioPlayer/ui/audioPlayer";
+export { Timer } from "./ui/timer/timer";
 
 // hook
 export { useIntersection } from "./hooks/useIntersection";
 export { usePreview } from "./hooks/usePreview";
 export { useQueryCacheSize } from "./hooks/useQueryCacheSize";
 export { useScrollToTop } from "./hooks/useScrollToTop";
+
 //api
 export { useSocket } from "./api";
 export { api } from "./api";

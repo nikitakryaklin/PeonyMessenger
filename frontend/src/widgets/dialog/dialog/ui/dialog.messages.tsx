@@ -58,6 +58,7 @@ export function DialogMessages({
             <>
               {messages?.map((message, idx) => (
                 <MessageContainer
+                  type={message.type}
                   key={message.documentId}
                   text={message.massage}
                   createdAt={message.createdAt}
@@ -74,6 +75,7 @@ export function DialogMessages({
             <>
               {messages?.map((message, idx) => (
                 <MessageContainer
+                  type={message.type}
                   key={message.documentId}
                   text={message.massage}
                   createdAt={message.createdAt}
