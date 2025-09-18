@@ -40,7 +40,7 @@ export function AudioPlayer({
       <div
         ref={ref.progressRef}
         onClick={progress.onProgress}
-        className="w-full h-4/5 bg-[var(--primery-light)] flex px-5 py-1 rounded-2xl items-center justify-between transition-colors duration-150"
+        className="w-full min-w-44 h-4/5 bg-[var(--primery-light)] flex px-5 py-1 rounded-2xl items-center justify-between transition-colors duration-150"
         style={{
           background: `linear-gradient(90deg, var(--primery) ${progress.progressPercent}%, var(--primery-light) 0%)`,
         }}

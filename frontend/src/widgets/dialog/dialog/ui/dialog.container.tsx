@@ -54,6 +54,7 @@ export const DialogContainer = ({
           participants={participants}
         />
       </div>
+
       <DialogForm
         chatId={dialogId}
         dialog={params}

@@ -1,21 +1,17 @@
-import { ReactNode, RefObject } from "react";
+import { ReactNode } from "react";
 import { Message } from "./message";
 import { SubText } from "@/shared";
 import clsx from "clsx";
-import { TTypeMessage } from "../model/massage-interface";
+import { TMessage } from "../model/massage-interface";
 
 export function MessageContainer({
-  text,
-  type,
+  message,
   isIncoming,
-  createdAt,
   Ref,
   info,
 }: {
-  text: string;
-  type: TTypeMessage;
+  message: TMessage;
   isIncoming: boolean;
-  createdAt: string;
   Ref?: (el: HTMLDivElement | null) => void;
   info?: {
     avatar: ReactNode;
@@ -32,9 +28,8 @@ export function MessageContainer({
     >
       {isIncoming && <>{info?.avatar}</>}
       <Message
-        text={text}
-        type={type}
-        createdAt={createdAt}
+        message={message}
+        createdAt={message.createdAt}
         className={clsx(
           isIncoming && Message.left,
           !isIncoming && Message.right

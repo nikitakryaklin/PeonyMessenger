@@ -1,11 +1,14 @@
+"use client";
+
 import { MicIcon, Paperclip, Send, StopCircle, Trash2 } from "lucide-react";
-import { useEffect, useId, useRef } from "react";
-import { useDialogForm } from "../hook/useDialogForm";
-import { AudioPlayer, FileField, IconButton, Text } from "@/shared";
+import { useEffect, useId, useRef, useState } from "react";
+import { useDialogSendForm } from "../hook/useDialogSendForm";
+import { AudioPlayer, FileField, IconButton, Text, usePreview } from "@/shared";
 import { useVoiceRecorder } from "@/features";
 import { Timer } from "@/shared";
 import { DialogFormInput } from "./dialog.form.input";
 import { Controller } from "react-hook-form";
+import { AvatarSquare } from "@/entities";
 
 export const DialogForm = ({
   chatId,
@@ -32,11 +35,36 @@ export const DialogForm = ({
     onDeleteAutio,
   } = useVoiceRecorder();
 
-  const { onSubmit, register, reset, control } = useDialogForm(
+  const [photoURL, setPhotoURL] = useState<string | null>(null);
+  const [fromStatus, setFormStatus] = useState<
+    "idle" | "recording" | "stopped" | "photo"
+  >("idle");
+
+  const onDeletePhoto = () => {
+    setFormStatus("idle");
+  };
+
+  const { onSubmit, register, reset, control, watch } = useDialogSendForm(
     chatId,
     dialog,
-    onDeleteAutio
+    onDeleteAutio,
+    onDeletePhoto
   );
+
+  usePreview(watch("photo"), setPhotoURL);
+
+  useEffect(() => {
+    setFormStatus(recordingStatus);
+  }, [recordingStatus]);
+
+  useEffect(() => {
+    console.log("dsa");
+    if (photoURL) {
+      console.log("dsa2");
+
+      setFormStatus("photo");
+    }
+  }, [photoURL]);
 
   const hendleClick = () => {
     scrollToBottom("smooth");
@@ -62,18 +90,18 @@ export const DialogForm = ({
   return (
     <form
       onSubmit={onSubmit}
-      className="bg-[var(--white)] h-16 flex gap-4 px-5 items-center"
+      className="bg-[var(--white)] min-h-16 flex gap-4 px-5 items-center"
     >
       <label htmlFor={inputFile} className=" cursor-pointer">
         <Paperclip stroke="var(--black)" />
-        <FileField id={inputFile} />
+        <FileField id={inputFile} {...register("photo")} />
       </label>
 
       {
         {
           idle: (
             <>
-              <DialogFormInput {...register("message")} onInput={onInput} />
+              <DialogFormInput {...register("text")} onInput={onInput} />
 
               <IconButton
                 icon={<MicIcon stroke="var(--black)" />}
@@ -98,7 +126,7 @@ export const DialogForm = ({
                       onStopRecording();
                       field.onChange({
                         blob: audiBlob,
-                        duration: duration.current,
+                        duration: duration,
                       });
                     }}
                     type={"button"}
@@ -114,13 +142,29 @@ export const DialogForm = ({
                 icon={<Trash2 stroke="var(--black)" />}
                 onClick={() => {
                   onDeleteAutio();
+                  setFormStatus("idle");
                   reset();
                 }}
                 type={"button"}
               />
             </>
           ),
-        }[recordingStatus]
+          photo: (
+            <div className="w-full flex py-2 justify-between items-center">
+              <div className="size-40">
+                <AvatarSquare url={photoURL!} />
+              </div>
+              <IconButton
+                icon={<Trash2 stroke="var(--black)" />}
+                onClick={() => {
+                  setFormStatus("idle");
+                  reset();
+                }}
+                type={"button"}
+              />
+            </div>
+          ),
+        }[fromStatus]
       }
 
       <IconButton

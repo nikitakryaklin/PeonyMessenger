@@ -11,9 +11,6 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "massage": {
-      "type": "text"
-    },
     "chat": {
       "type": "relation",
       "relation": "manyToOne",
@@ -33,6 +30,9 @@
         "voice",
         "photo"
       ]
+    },
+    "content": {
+      "type": "json"
     }
   }
 }

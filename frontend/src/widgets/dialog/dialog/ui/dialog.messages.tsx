@@ -8,6 +8,7 @@ import {
 import { Loader, LOCAL_STORAGE, Stub, useIntersection } from "@/shared";
 import { RefObject } from "react";
 import { TParticipants } from "../model/dialog-interface";
+import { TTypeMessage } from "@/entities/message/model/massage-interface";
 
 export function DialogMessages({
   type,
@@ -58,10 +59,8 @@ export function DialogMessages({
             <>
               {messages?.map((message, idx) => (
                 <MessageContainer
-                  type={message.type}
+                  message={message}
                   key={message.documentId}
-                  text={message.massage}
-                  createdAt={message.createdAt}
                   isIncoming={
                     localStorage.getItem(LOCAL_STORAGE.userDocumentId) !==
                     message.sender.documentId
@@ -75,10 +74,8 @@ export function DialogMessages({
             <>
               {messages?.map((message, idx) => (
                 <MessageContainer
-                  type={message.type}
+                  message={message}
                   key={message.documentId}
-                  text={message.massage}
-                  createdAt={message.createdAt}
                   info={{
                     avatar: (
                       <AvatarCircle

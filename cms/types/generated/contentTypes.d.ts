@@ -520,6 +520,7 @@ export interface ApiMessageMessage extends Struct.CollectionTypeSchema {
   };
   attributes: {
     chat: Schema.Attribute.Relation<'manyToOne', 'api::chat.chat'>;
+    content: Schema.Attribute.JSON;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -529,7 +530,6 @@ export interface ApiMessageMessage extends Struct.CollectionTypeSchema {
       'api::message.message'
     > &
       Schema.Attribute.Private;
-    massage: Schema.Attribute.Text;
     publishedAt: Schema.Attribute.DateTime;
     sender: Schema.Attribute.Relation<
       'manyToOne',

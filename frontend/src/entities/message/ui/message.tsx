@@ -2,20 +2,18 @@
 
 import { AudioPlayer, getHour, getImageUrl, SubText, Text } from "@/shared";
 import clsx from "clsx";
-import { style } from "motion/react-client";
-import { ReactNode, useEffect, useState } from "react";
+import { ReactNode } from "react";
 import { TTypeMessage } from "../model/massage-interface";
+import { AvatarSquare } from "@/entities/avatar/avatarSquare";
 
 export const Message = ({
-  text,
-  type,
+  message,
   className,
   title,
   createdAt,
   textModification,
 }: {
-  text: any;
-  type: TTypeMessage;
+  message: TTypeMessage;
   className: string;
   createdAt: string;
   title?: ReactNode;
@@ -24,16 +22,41 @@ export const Message = ({
     subText: string;
   };
 }) => {
-  const [audio, setAudio] = useState(null);
-
-  useEffect(() => {
-    if (type === "voice") {
-      const text_json = JSON.parse(text);
-      console.log(text_json);
-      // setAudio(JSON.parse(text));
-      setAudio(text_json);
+  const renderMessage = () => {
+    switch (message.type) {
+      case "text":
+        return (
+          <Text
+            text={message.content.text}
+            className="whitespace-normal break-words text-[var(--black)] max-w-9/10"
+            {...(textModification && {
+              style: { fontSize: textModification.text },
+            })}
+          />
+        );
+      case "voice":
+        return (
+          <AudioPlayer
+            src={getImageUrl(message.content.url)}
+            duration={message.content.duration}
+          />
+        );
+      case "photo":
+        return (
+          <div className="size-40">
+            <AvatarSquare url={getImageUrl(message.content.url)} />
+          </div>
+        );
+      // case "file":
+      //   return (
+      //     <>
+      //       {message.content.url} {message.content.name}
+      //     </>
+      //   );
+      default:
+        break;
     }
-  }, []);
+  };
 
   return (
     <div
@@ -43,29 +66,7 @@ export const Message = ({
       )}
     >
       {title}
-      {
-        {
-          text: (
-            <Text
-              text={text}
-              className="whitespace-normal break-words text-[var(--black)] max-w-9/10"
-              {...(textModification && {
-                style: { fontSize: textModification.text },
-              })}
-            />
-          ),
-          // voice: (
-          //   <AudioPlayer
-          //     //@ts-ignore
-          //     src={getImageUrl(audio.url)}
-          //     //@ts-ignore
-          //     duration={audio.duration}
-          //   />
-          // ),
-          voice: <>dsa</>,
-          photo: <>dsa</>,
-        }[type]
-      }
+      {renderMessage()}
       <SubText
         text={getHour(createdAt)}
         {...(textModification && {

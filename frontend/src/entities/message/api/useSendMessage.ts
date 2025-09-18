@@ -14,7 +14,7 @@ export function useSendMessage(chatId: number, dialog: string) {
       onMutate(data) {
         socket.emit("message", {
           dialog: dialog,
-          massage: data.massage,
+          content: data.content,
           type: data.type,
           createdAt: new Date().toISOString(),
           documentId: Date.now().toString(),
