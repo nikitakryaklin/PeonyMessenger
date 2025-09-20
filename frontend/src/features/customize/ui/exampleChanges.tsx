@@ -24,13 +24,16 @@ export const ExampleChanges = () => {
         style={{ background: colors.primeryLight }}
       >
         <Message
-          text={"Good morning!"}
+          message={{ type: "text", content: { text: "Good morning!" } }}
           className={clsx(Message.right, "min-w-4/5")}
           createdAt={dateToIso}
           textModification={textModification}
         />
         <Message
-          text={"Good morning! Haw are you?"}
+          message={{
+            type: "text",
+            content: { text: "Good morning! Haw are you?" },
+          }}
           className={clsx(Message.left, "self-end min-w-4/5")}
           createdAt={dateToIso}
           textModification={textModification}
