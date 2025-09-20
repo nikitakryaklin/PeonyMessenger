@@ -30,7 +30,6 @@ export const ChatPage = ({ id }: { id: string }) => {
       type="chat"
       dialogId={chat.id}
       params={id}
-      participants={chat.participants}
     />
   );
 };

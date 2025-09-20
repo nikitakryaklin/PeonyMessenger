@@ -13,12 +13,10 @@ import { AvatarSquare } from "@/entities";
 export const DialogForm = ({
   chatId,
   dialog,
-  scrollToBottom,
   onMessage,
 }: {
   chatId: number;
   dialog: string;
-  scrollToBottom: (variant: ScrollBehavior) => void;
   onMessage: (isTyping: boolean) => void;
 }) => {
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
@@ -66,10 +64,6 @@ export const DialogForm = ({
     }
   }, [photoURL]);
 
-  const hendleClick = () => {
-    scrollToBottom("smooth");
-  };
-
   const onInput = () => {
     onMessage(true);
 
@@ -90,9 +84,12 @@ export const DialogForm = ({
   return (
     <form
       onSubmit={onSubmit}
-      className="bg-[var(--white)] min-h-16 flex gap-4 px-5 items-center"
+      className="bg-[var(--white)] min-h-16 flex gap-4 px-5 py-2 items-end"
     >
-      <label htmlFor={inputFile} className=" cursor-pointer">
+      <label
+        htmlFor={inputFile}
+        className=" size-11 cursor-pointer flex items-center"
+      >
         <Paperclip stroke="var(--black)" />
         <FileField id={inputFile} {...register("photo")} />
       </label>
@@ -150,7 +147,7 @@ export const DialogForm = ({
             </>
           ),
           photo: (
-            <div className="w-full flex py-2 justify-between items-center">
+            <div className="w-full flex  justify-between items-end h-full">
               <div className="size-40">
                 <AvatarSquare url={photoURL!} />
               </div>
@@ -167,11 +164,7 @@ export const DialogForm = ({
         }[fromStatus]
       }
 
-      <IconButton
-        type="submit"
-        icon={<Send stroke="var(--black)" />}
-        onClick={hendleClick}
-      />
+      <IconButton type="submit" icon={<Send stroke="var(--black)" />} />
     </form>
   );
 };

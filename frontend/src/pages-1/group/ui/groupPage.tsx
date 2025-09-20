@@ -1,9 +1,9 @@
 "use client";
 
-import { useChatGetById, useGetGroupById } from "@/features";
+import { useGetGroupById } from "@/features";
 import { filtredParticipants } from "@/shared";
 import { DialogContainer } from "@/widgets";
-import { EllipsisVertical, Phone, Search, Star } from "lucide-react";
+import { EllipsisVertical, Search, Star } from "lucide-react";
 
 export const GroupPage = ({ id }: { id: string }) => {
   const { group, isGroupPending } = useGetGroupById(id);
@@ -29,7 +29,6 @@ export const GroupPage = ({ id }: { id: string }) => {
       type="group"
       dialogId={group.id}
       params={id}
-      participants={group.participants}
     />
   );
 };

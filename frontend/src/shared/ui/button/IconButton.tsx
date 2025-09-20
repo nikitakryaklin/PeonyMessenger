@@ -13,7 +13,7 @@ export const IconButton = ({
   return (
     <button
       className={clsx(
-        "w-11 h-11 items-center flex justify-center cursor-pointer",
+        "size-11 items-center flex justify-center cursor-pointer",
         className
       )}
       type={type}

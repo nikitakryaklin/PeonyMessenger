@@ -10,7 +10,7 @@ export const DialogHeader = ({
   actions: ReactNode;
 }) => {
   return (
-    <div className="bg-[var(--white)] h-24 w-full flex justify-between items-center px-5">
+    <div className="bg-[var(--white)] h-20 min-h-20 max-h-20 w-full flex justify-between items-center px-5">
       <div className="flex gap-4 items-center h-3/5">
         <AvatarCircle url={info.avatar} />
         <div className="flex flex-col">

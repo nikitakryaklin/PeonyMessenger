@@ -2,7 +2,7 @@
 
 import { ReactNode } from "react";
 import { DialogForm } from "./dialog.form";
-import { DialogMessages } from "./dialog.messages";
+import { DialogMessages } from "./dialog-messages/ui/dialog.messages";
 import { useScrollToBottom } from "../hook/useScrollToBottom";
 import { SubText } from "@/shared";
 import { DialogHeader } from "./dialog.header";
@@ -14,7 +14,6 @@ export const DialogContainer = ({
   dialogId,
   params,
   type,
-  participants,
 }: {
   headerInfo: {
     avatar: string;
@@ -22,13 +21,10 @@ export const DialogContainer = ({
     description: string | "";
     options: ReactNode;
   };
-  participants: TParticipants;
   dialogId: number;
   params: string;
   type: "chat" | "group";
 }) => {
-  const { meessagesFildRef, scrollToBottom } = useScrollToBottom();
-
   const { onMessage, isTypingServer } = useDialogSubscription(params);
 
   return (
@@ -46,21 +42,11 @@ export const DialogContainer = ({
         actions={headerInfo.options}
       />
 
-      <div className=" pb-3 flex-1 flex flex-col justify-end max-h-5/6 relative">
-        <DialogMessages
-          Ref={meessagesFildRef}
-          type={type}
-          params={params}
-          participants={participants}
-        />
+      <div className=" pb-3 flex-1 flex flex-col justify-end relative overflow-hidden">
+        <DialogMessages type={type} params={params} />
       </div>
 
-      <DialogForm
-        chatId={dialogId}
-        dialog={params}
-        scrollToBottom={scrollToBottom}
-        onMessage={onMessage}
-      />
+      <DialogForm chatId={dialogId} dialog={params} onMessage={onMessage} />
     </div>
   );
 };
