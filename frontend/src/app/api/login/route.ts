@@ -6,7 +6,7 @@ export async function POST(request: any) {
   const body = await request.json();
   const { identifier, password } = body;
 
-  const strapiRes = await fetch(`${process.env.API_URL}/api/auth/local`, {
+  const strapiRes = await fetch(`${process.env.API_URL}/auth/local`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
