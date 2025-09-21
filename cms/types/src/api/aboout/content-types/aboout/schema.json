@@ -1,0 +1,37 @@
+{
+  "kind": "collectionType",
+  "collectionName": "aboouts",
+  "info": {
+    "singularName": "aboout",
+    "pluralName": "aboouts",
+    "displayName": "about"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "avatar": {
+      "type": "media",
+      "multiple": true,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "user": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "about"
+    },
+    "dateOfBirth": {
+      "type": "date"
+    }
+  }
+}
