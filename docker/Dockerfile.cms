@@ -1,11 +1,24 @@
-FROM node:20
+FROM node:20-alpine AS builder
 
-WORKDIR /usr/app
+WORKDIR /app
 
 COPY package*.json ./
 
-RUN npm ci --force
+RUN npm install --legacy-peer-deps
 
 COPY . .
 
-CMD ["npm", "run", "develop"]
+RUN npm run build
+
+FROM node:20-alpine
+
+WORKDIR /app
+
+COPY package*.json ./
+RUN npm install --production --legacy-peer-deps
+
+COPY --from=builder /app ./
+
+EXPOSE 1337
+
+CMD ["npm", "run", "start"]

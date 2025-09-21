@@ -1,22 +1,22 @@
 services:
-  # frontend:
-  #   platform: linux/arm64
-  #   build:
-  #     context: ../frontend
-  #     dockerfile: ../docker/Dockerfile.frontend
-  #   ports:
-  #     - "3000:3000"
-  #   volumes:
-  #     - ../frontend:/usr/app:cached
-  #     # - /usr/app/node_modules
-  #   environment:
-  #     NEXT_PUBLIC_API_HOST: cms
-  #     API_URL: ${API_URL}
-  #     # NEXT_PUBLIC_API_URL:
-  #     # NEXT_PUBLIC_SERVER_URL: ${SERVER_URL}
-  #   networks:
-  #     - strapi
-  #     - server
+  frontend:
+    platform: linux/arm64
+    build:
+      context: ../frontend
+      dockerfile: ../docker/Dockerfile.frontend
+    ports:
+      - "3000:3000"
+    volumes:
+      - ../frontend:/usr/app:cached
+      # - /usr/app/node_modules
+    environment:
+      NEXT_PUBLIC_API_HOST: ${API_HOST}
+      API_URL: ${API_URL}
+      NEXT_PUBLIC_API_URL: ${API_URL}
+      NEXT_PUBLIC_SERVER_URL: ${SERVER_URL}
+    networks:
+      - strapi
+      - server
   server:
     platform: linux/arm64
     build:
@@ -42,19 +42,20 @@ services:
       - ../cms:/usr/app
       - /usr/app/node_modules
     environment:
-      APP_KEYS: ${APP_KEYS}
+      DATABASE_URL: ${DATABASE_URL}
       API_TOKEN_SALT: ${API_TOKEN_SALT}
       ADMIN_JWT_SECRET: ${ADMIN_JWT_SECRET}
-      TRANSFER_TOKEN_SALT: ${TRANSFER_TOKEN_SALT}
-      ENCRYPTION_KEY: ${ENCRYPTION_KEY}
-      DATABASE_PASSWORD: ${DATABASE_PASSWORD}
-      DATABASE_USERNAME: ${DATABASE_USERNAME}
-      DATABASE_NAME: ${DATABASE_NAME}
-      DATABASE_HOST: db
-      DATABASE_CLIENT: postgres
-      DATABASE_PORT: 5432
-      DATABASE_SSL: false
-      NODE_ENV: ${NODE_ENV}
+      # APP_KEYS: ${APP_KEYS}
+      # TRANSFER_TOKEN_SALT: ${TRANSFER_TOKEN_SALT}
+      # ENCRYPTION_KEY: ${ENCRYPTION_KEY}
+      # DATABASE_PASSWORD: ${DATABASE_PASSWORD}
+      # DATABASE_USERNAME: ${DATABASE_USERNAME}
+      # DATABASE_NAME: ${DATABASE_NAME}
+      # DATABASE_HOST: db
+      # DATABASE_CLIENT: postgres
+      # DATABASE_PORT: 5432
+      # DATABASE_SSL: false
+      # NODE_ENV: ${NODE_ENV}
 
     networks:
       - strapi
@@ -71,7 +72,6 @@ services:
       - db:/var/lib/postgresql/data
     networks:
       - strapi
-
 networks:
   strapi:
   server:
