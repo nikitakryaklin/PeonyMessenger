@@ -5,7 +5,7 @@ export async function POST(request: any) {
   const { email, username, password } = body;
 
   const strapiRes = await fetch(
-    "http://localhost:1337/api/auth/local/register",
+    `${process.env.API_URL}/api/auth/local/register`,
     {
       method: "POST",
       headers: {
