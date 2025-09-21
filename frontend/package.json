@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbopack",
+    "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
@@ -25,12 +25,12 @@
     "remark-gfm": "^4.0.1",
     "socket.io-client": "^4.8.1",
     "wavesurfer.js": "^7.10.1",
-    "zustand": "^5.0.6"
+    "zustand": "^5.0.6",
+    "@tanstack/query-async-storage-persister": "^5.83.0",
+    "@tanstack/react-query-persist-client": "^5.83.0"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
-    "@tanstack/query-async-storage-persister": "^5.83.0",
-    "@tanstack/react-query-persist-client": "^5.83.0",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",

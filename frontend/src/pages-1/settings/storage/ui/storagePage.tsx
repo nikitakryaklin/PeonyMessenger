@@ -28,6 +28,7 @@ export const StoragePage = () => {
                 <SubText text={getSize(el.size)} />
 
                 <IconButton
+                  type="button"
                   icon={<Trash2 stroke="var(--red)" />}
                   onClick={() => onDeleteCache(el.keys, el.id)}
                 />

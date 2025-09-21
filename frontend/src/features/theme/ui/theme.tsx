@@ -40,6 +40,7 @@ export const Theme = ({ size }: { size: "s" | "l" }) => {
           s: (
             <IconButton
               icon={TREME_DATA[theme].icon}
+              type="button"
               onClick={() =>
                 onChangeTheme(
                   TREME_DATA[theme].value === "light" ? "dark" : "light"

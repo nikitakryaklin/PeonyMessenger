@@ -1,10 +1,12 @@
 import { NextResponse } from "next/server";
 
+const route = process.env.API_URL || "http://localhost:1337";
+
 export async function POST(request: any) {
   const body = await request.json();
   const { identifier, password } = body;
 
-  const strapiRes = await fetch("http://localhost:1337/api/auth/local", {
+  const strapiRes = await fetch(`http://localhost:1337/api/auth/local`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -32,7 +34,7 @@ export async function POST(request: any) {
   } else {
     return NextResponse.json(
       { error: data.error?.message || "Ошибка входа" },
-      { status: 401 },
+      { status: 401 }
     );
   }
 }

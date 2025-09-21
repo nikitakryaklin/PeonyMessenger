@@ -1,7 +1,6 @@
 import { ChatPage } from "@/pages-1";
 
-export default async function Page({ params }: { params: { id?: string } }) {
-  const { id } = await params;
-
-  return <ChatPage id={id as string} />;
+export default async function Page({ params }: any) {
+  const { id } = await params; // await "разворачивает" Promise, если он есть
+  return <ChatPage id={id} />;
 }

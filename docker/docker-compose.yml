@@ -8,11 +8,29 @@ services:
   #     - "3000:3000"
   #   volumes:
   #     - ../frontend:/usr/app:cached
-  #     - /usr/app/node_modules
+  #     # - /usr/app/node_modules
   #   environment:
+  #     NEXT_PUBLIC_API_HOST: cms
   #     API_URL: ${API_URL}
+  #     # NEXT_PUBLIC_API_URL:
+  #     # NEXT_PUBLIC_SERVER_URL: ${SERVER_URL}
   #   networks:
   #     - strapi
+  #     - server
+  server:
+    platform: linux/arm64
+    build:
+      context: ../server
+      dockerfile: ../docker/Dockerfile.server
+    ports:
+      - "4000:4000"
+    volumes:
+      - ../server:/usr/app:cached
+      - /usr/app/node_modules
+    environment:
+      API_URL: ${API_URL}
+    networks:
+      - strapi
   cms:
     platform: linux/arm64
     build:
@@ -56,5 +74,6 @@ services:
 
 networks:
   strapi:
+  server:
 volumes:
   db:

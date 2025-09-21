@@ -30,7 +30,8 @@ export const ChatList = ({
               ? chat.name
               : filtredParticipants(chat.participants)[0].username
           }
-          lastMessage={chat.messages[0]?.massage || "no messages"}
+          // lastMessage={chat.messages[0]?.content || "no messages"}
+          lastMessage={"no messages"}
           date={chat?.messages[0]?.publishedAt}
         />
       ))}

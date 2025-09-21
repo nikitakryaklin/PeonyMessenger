@@ -12,6 +12,7 @@ export const PublicHeader = () => {
       {step === 1 && <Logo />}
       {step > 1 && (
         <IconButton
+          type="button"
           onClick={prevStep}
           icon={<ArrowLeft stroke="var(--black)" />}
         />

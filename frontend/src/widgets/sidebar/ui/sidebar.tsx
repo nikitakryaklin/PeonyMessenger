@@ -38,6 +38,7 @@ export const Sidebar = () => {
       >
         {!isClose && <Logo />}
         <IconButton
+          type="button"
           className={clsx(
             "transition-transform duration-300",
             isClose && "rotate-180"

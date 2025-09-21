@@ -1,3 +1,3 @@
 export const getImageUrl = (url: string) => {
-  return `http://localhost:1337${url}`;
+  return `${process.env.NEXT_PUBLIC_API_URL}${url}`;
 };
