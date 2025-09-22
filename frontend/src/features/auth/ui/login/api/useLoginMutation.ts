@@ -12,7 +12,8 @@ export const useLoginMutation = () => {
     mutationFn: authService.login,
 
     async onSuccess(data) {
-      await router.replace(ROUTES.account);
+      // await router.replace(ROUTES.account);
+      window.location.href = ROUTES.account;
       await authService.setUserToLocalStorage(data);
     },
   });

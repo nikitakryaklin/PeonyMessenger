@@ -13,7 +13,7 @@ export function middleware(request: NextRequest) {
 
   const isPublic = isRoot || isAuthPage;
   if (!isPublic && !token) {
-    return NextResponse.redirect(new URL("/auth/login", request.url));
+    return NextResponse.redirect(new URL("/", request.url));
   }
 
   return NextResponse.next();

@@ -18,7 +18,8 @@ export const useLogoutMutation = () => {
       localStorage.removeItem(LOCAL_STORAGE.userDocumentId);
       localStorage.removeItem(LOCAL_STORAGE.aboutDocumentId);
       localStorage.removeItem(LOCAL_STORAGE.userName);
-      router.replace(ROUTES.home);
+      // router.replace(ROUTES.home);
+      window.location.href = ROUTES.home;
     },
   });
 

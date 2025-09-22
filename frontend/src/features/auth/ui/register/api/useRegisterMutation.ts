@@ -13,7 +13,8 @@ export function useRegisterMutation() {
 
     async onSuccess(data) {
       await authService.setUserToLocalStorage(data);
-      await router.replace(ROUTES.account);
+      // await router.replace(ROUTES.account);
+      window.location.href = ROUTES.account;
     },
   });
 
