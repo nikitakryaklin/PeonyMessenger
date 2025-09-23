@@ -4,14 +4,16 @@ export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
   const token = request.cookies.get("token")?.value;
 
-  const isRoot = pathname === "/" || "/faq" || "/rules";
+  const isRoot = pathname === "/";
   const isAuthPage = pathname.startsWith("/auth");
+  const isFaqPage = pathname.startsWith("/faq");
+  const isRulesPage = pathname.startsWith("/rules");
 
   if (isAuthPage && token) {
     return NextResponse.redirect(new URL("/account/profile", request.url));
   }
 
-  const isPublic = isRoot || isAuthPage;
+  const isPublic = isRoot || isAuthPage || isFaqPage || isRulesPage;
   if (!isPublic && !token) {
     return NextResponse.redirect(new URL("/", request.url));
   }

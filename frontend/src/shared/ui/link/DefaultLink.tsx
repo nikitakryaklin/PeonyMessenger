@@ -9,10 +9,10 @@ export const DefaultLink = ({
 }: {
   text: string;
   href: string;
-  className: string;
+  className?: string;
 }) => {
   return (
-    <Link href={href} className={clsx("", className)}>
+    <Link href={href} className={clsx("underline", className)}>
       {text}
     </Link>
   );
