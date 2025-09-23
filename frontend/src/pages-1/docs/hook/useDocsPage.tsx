@@ -1,23 +1,21 @@
 "use client";
 
-import { useIntersection, useScrollToTop } from "@/shared";
+import { useIntersection } from "@/shared";
 import { useEffect, useRef, useState } from "react";
 import { INavigation } from "../model/navigation-inrerface";
-import { GoUp } from "../ui/goUp";
 import { Navigation } from "../ui/navigation";
 
 export const useDocsPage = () => {
   const RefScroll = useRef<HTMLDivElement>(null);
   const RefMarkdown = useRef<HTMLDivElement>(null);
 
-  const { isVisible, onScroll } = useScrollToTop(RefScroll);
-
   const [heading, setHeading] = useState<INavigation[]>([]);
 
   const [isActive, setIsActive] = useState<string | undefined>("");
 
   const useIntersectionCallback = (e: IntersectionObserverEntry) => {
-    setIsActive(e.target.id);
+    const newId = e.target.id;
+    setIsActive((prev) => (prev === newId ? prev : newId));
   };
 
   const onderverRef = useIntersection(useIntersectionCallback, {
@@ -40,7 +38,6 @@ export const useDocsPage = () => {
   }, [RefMarkdown]);
 
   return {
-    GoUp: <GoUp isVisible={isVisible} onScroll={onScroll} />,
     Navigation: <Navigation heading={heading} isActive={isActive} />,
     refs: {
       RefScroll,

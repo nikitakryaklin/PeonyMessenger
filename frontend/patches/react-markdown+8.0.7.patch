@@ -1,0 +1,24 @@
+diff --git a/node_modules/react-markdown/lib/complex-types.d.ts b/node_modules/react-markdown/lib/complex-types.d.ts
+index f67d04a..f13dcce 100644
+--- a/node_modules/react-markdown/lib/complex-types.d.ts
++++ b/node_modules/react-markdown/lib/complex-types.d.ts
+@@ -18,7 +18,7 @@ export type ReactMarkdownProps = {
+   siblingCount?: number
+ }
+ export type NormalComponents = {
+-  [TagName in keyof JSX.IntrinsicElements]:
+-    | keyof JSX.IntrinsicElements
++  [TagName in keyof React.JSX.IntrinsicElements]:
++    | keyof React.JSX.IntrinsicElements
+     | ComponentType<ComponentPropsWithoutRef<TagName> & ReactMarkdownProps>
+ }
+diff --git a/node_modules/react-markdown/lib/complex-types.ts b/node_modules/react-markdown/lib/complex-types.ts
+index 5319a88..efd64bf 100644
+--- a/node_modules/react-markdown/lib/complex-types.ts
++++ b/node_modules/react-markdown/lib/complex-types.ts
+@@ -1,4 +1,4 @@
+-import type {ReactNode, ComponentType, ComponentPropsWithoutRef} from 'react'
++import type {ReactNode, ComponentType, ComponentPropsWithoutRef, JSX} from 'react'
+ import type {Position} from 'unist'
+ import type {Element} from 'hast'
+ 

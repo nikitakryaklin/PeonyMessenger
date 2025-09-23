@@ -29,7 +29,7 @@ export { Stub } from "./ui/stub/stub";
 export { FileField } from "./ui/field/fileField";
 export { ColorField } from "./ui/field/colorField";
 export { RangeField } from "./ui/field/rangeField/rangeField";
-// export { Markdonw } from "./ui/markdown/ui/markdonw";
+export { Markdonw } from "./ui/markdown/ui/markdonw";
 export { AudioPlayer } from "./ui/audioPlayer/ui/audioPlayer";
 export { Timer } from "./ui/timer/timer";
 

@@ -1,13 +1,14 @@
-import { LinkTitle } from "@/shared";
+import { LinkTitle, useScrollToTop } from "@/shared";
 import { ChevronUp } from "lucide-react";
+import { RefObject } from "react";
 
 export function GoUp({
-  isVisible,
-  onScroll,
+  RefScroll,
 }: {
-  isVisible: boolean;
-  onScroll: () => void;
+  RefScroll: RefObject<HTMLDivElement | null>;
 }) {
+  const { isVisible, onScroll } = useScrollToTop(RefScroll);
+
   if (!isVisible) return null;
 
   return (

@@ -4,7 +4,7 @@ export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
   const token = request.cookies.get("token")?.value;
 
-  const isRoot = pathname === "/";
+  const isRoot = pathname === "/" || "/faq" || "/rules";
   const isAuthPage = pathname.startsWith("/auth");
 
   if (isAuthPage && token) {
