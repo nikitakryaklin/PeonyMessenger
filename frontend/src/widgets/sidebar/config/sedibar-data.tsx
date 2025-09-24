@@ -34,12 +34,12 @@ export const SIDEBAR_DATA = {
       link: ROUTES.account,
       icon: <UserIcon style={{ stroke: "var(--black)" }} />,
     },
-    {
-      id: nanoid(),
-      text: "Blocked users",
-      link: ROUTES.blocked_users,
-      icon: <BanIcon style={{ stroke: "var(--black)" }} />,
-    },
+    // {
+    //   id: nanoid(),
+    //   text: "Blocked users",
+    //   link: ROUTES.blocked_users,
+    //   icon: <BanIcon style={{ stroke: "var(--black)" }} />,
+    // },
     {
       id: nanoid(),
       text: "Settings",
@@ -61,12 +61,12 @@ export const SIDEBAR_DATA = {
       icon: <Info style={{ stroke: "var(--black)" }} />,
     },
   ],
-  recommendation: [
-    {
-      id: nanoid(),
-      text: "Recommendation",
-      link: ROUTES.recommendation,
-      icon: <RotateCcwSquare style={{ stroke: "var(--black)" }} />,
-    },
-  ],
+  // recommendation: [
+  //   {
+  //     id: nanoid(),
+  //     text: "Recommendation",
+  //     link: ROUTES.recommendation,
+  //     icon: <RotateCcwSquare style={{ stroke: "var(--black)" }} />,
+  //   },
+  // ],
 };

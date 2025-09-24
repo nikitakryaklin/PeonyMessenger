@@ -1,19 +1,11 @@
 "use client";
 
-import { CaphionTitle, Text } from "@/shared";
+import { CaphionTitle } from "@/shared";
 import { ChatList, DialogSidebar } from "@/widgets";
 import { useMyChatPage } from "../hook/useMyChatPage";
-import { useAdaptive } from "@/shared/providers/adaptiveProvider";
-import { useEffect } from "react";
 
 export const MyChatsPage = () => {
   const { chatList, value, setValue, onOpenCreateChatModal } = useMyChatPage();
-
-  const { setCurrentPage } = useAdaptive();
-
-  useEffect(() => {
-    setCurrentPage("dialog");
-  }, []);
 
   return (
     <DialogSidebar

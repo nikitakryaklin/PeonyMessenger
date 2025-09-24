@@ -1,13 +1,12 @@
 "use client";
 
-import { ReactNode } from "react";
+import { ReactNode, useEffect } from "react";
 import { DialogForm } from "./dialog.form";
 import { DialogMessages } from "./dialog-messages/ui/dialog.messages";
-import { useScrollToBottom } from "../hook/useScrollToBottom";
 import { SubText } from "@/shared";
 import { DialogHeader } from "./dialog.header";
-import { TParticipants } from "../model/dialog-interface";
 import { useDialogSubscription } from "../hook/useDialogSubscription";
+import { useAdaptive } from "@/shared/providers/adaptiveProvider";
 
 export const DialogContainer = ({
   headerInfo,
@@ -26,6 +25,12 @@ export const DialogContainer = ({
   type: "chat" | "group";
 }) => {
   const { onMessage, isTypingServer } = useDialogSubscription(params);
+
+  const { setCurrentPage } = useAdaptive();
+
+  useEffect(() => {
+    setCurrentPage("dialog");
+  }, []);
 
   return (
     <div className="flex flex-col h-full">

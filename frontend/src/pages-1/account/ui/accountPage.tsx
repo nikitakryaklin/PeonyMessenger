@@ -73,7 +73,7 @@ export const AccountPage = ({
           </Modal>
           <div
             className={clsx(
-              "w-[calc(100%-46px)] min-w-[calc(100%-46px)] max-w-[calc(100%-46px)] sm:w-3/4 sm:min-w-3/4 sm:max-w-[60vw] h-[calc(100dvh-96px)] bg-[var(--primery-light)] sm:ml-auto",
+              "w-full min-w-full max-w-full sm:w-3/4 sm:min-w-3/4 sm:max-w-[60vw] h-[calc(100dvh-96px)] bg-[var(--primery-light)] sm:ml-auto",
               isMobile && page !== "dialog" && "hidden"
             )}
           >

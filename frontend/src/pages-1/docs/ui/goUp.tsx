@@ -14,7 +14,7 @@ export function GoUp({
   return (
     <button
       onClick={onScroll}
-      className="group w-1/6 left-0 top-24 fixed h-screen cursor-pointer"
+      className="hidden sm:block group w-1/6 left-0 top-24 fixed h-screen cursor-pointer"
     >
       <div className="w-35 p-4 h-full text-[var(--primery)] transition-colors duration-200 group-hover:bg-[var(--primery-light)] ">
         <div className="flex gap-2 items-center">

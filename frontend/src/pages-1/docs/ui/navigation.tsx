@@ -9,7 +9,7 @@ export const Navigation = ({
   isActive: string | undefined;
 }) => {
   return (
-    <aside className="fixed top-24 right-60">
+    <aside className="hidden sm:fixed top-24 right-60">
       <ul>
         {heading.map((el, idx) => (
           <li
