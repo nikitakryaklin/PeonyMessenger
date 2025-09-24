@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "https://client.nikitakryaklin.ru/icon/favicon-180x180.png",
+        url: "https://client.nikitakryaklin.ru/favicon-180x180.png",
       },
     ],
   },
