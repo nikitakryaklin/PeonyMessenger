@@ -23,7 +23,7 @@ export function DialogMessages({
   return (
     <div
       ref={ref.meessagesFildRef}
-      className="flex flex-col-reverse overflow-y-auto min-h-full   px-5"
+      className="flex flex-col-reverse overflow-y-auto min-h-full  px-2 sm:px-5"
     >
       {
         {

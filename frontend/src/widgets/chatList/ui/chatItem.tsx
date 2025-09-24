@@ -1,5 +1,6 @@
 import { AvatarCircle } from "@/entities";
-import { getHour, ROUTES, SubText, Tag, Text } from "@/shared";
+import { getHour, SubText, Tag, Text } from "@/shared";
+import { useAdaptive } from "@/shared/providers/adaptiveProvider";
 import Link from "next/link";
 import { ReactNode } from "react";
 
@@ -18,12 +19,17 @@ export function ChatItem({
   date: string | undefined;
   tag?: ReactNode;
 }) {
+  const { setCurrentPage } = useAdaptive();
+
   return (
     <Link
       href={DialogIdUrl}
       className="group w-full h-18 flex items-center hover:bg-[var(--primery-light)] px-5"
     >
-      <div className="w-full grid grid-cols-[56px_1fr_40px] gap-2 h-14">
+      <div
+        className="w-full grid grid-cols-[56px_1fr_40px] gap-2 h-14"
+        onClick={() => setCurrentPage("dialog")}
+      >
         <div className="h-full w-full relative">
           <AvatarCircle url={avatar} />
         </div>

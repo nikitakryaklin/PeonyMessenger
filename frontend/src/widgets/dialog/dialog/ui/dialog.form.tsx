@@ -84,20 +84,19 @@ export const DialogForm = ({
   return (
     <form
       onSubmit={onSubmit}
-      className="bg-[var(--white)] min-h-16 flex gap-4 px-5 py-2 items-end"
+      className="bg-[var(--white)] min-h-16 flex  sm:gap-4 px-2 sm:px-5 py-2 items-end"
     >
-      <label
-        htmlFor={inputFile}
-        className=" size-11 cursor-pointer flex items-center"
-      >
-        <Paperclip stroke="var(--black)" />
-        <FileField id={inputFile} {...register("photo")} />
-      </label>
-
       {
         {
           idle: (
             <>
+              <label
+                htmlFor={inputFile}
+                className=" size-11 cursor-pointer flex items-center"
+              >
+                <Paperclip stroke="var(--black)" />
+                <FileField id={inputFile} {...register("photo")} />
+              </label>
               <DialogFormInput {...register("text")} onInput={onInput} />
 
               <IconButton
@@ -109,7 +108,7 @@ export const DialogForm = ({
           ),
           recording: (
             <>
-              <div className="w-full flex justify-between items-center px-5 bg-[var(--primery-light)] h-9 py-1 rounded-2xl animate-pulse">
+              <div className="w-full flex justify-between items-center sm:px-5 bg-[var(--primery-light)] h-9 py-1 rounded-2xl animate-pulse">
                 <Text text="Recording..." />
                 <Timer />
               </div>

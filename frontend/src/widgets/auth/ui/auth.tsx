@@ -12,7 +12,7 @@ export const AuthWidget = ({
   pageType: "login" | "register";
 }) => {
   return (
-    <div className="w-96 mt-24 mx-auto">
+    <div className="w-76 sm:w-96 mt-8 sm:mt-24 mx-auto">
       <Title text={AUTH_DATA.title[pageType]} className="text-center mb-2" />
       {pageType === "login" && (
         <Text

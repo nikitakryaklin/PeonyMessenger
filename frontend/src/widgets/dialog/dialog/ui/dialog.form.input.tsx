@@ -15,7 +15,7 @@ export const DialogFormInput = ({
         className="flex-1 flex min-h-11 items-center max-w-6/7  overflow-hidden"
       >
         <textarea
-          className="max-w-full max-h-40  focus:outline-0 text-[var(--black)]  placeholder:text-[var(--gray)] resize-none overflow-hidden field-sizing-content overflow-y-scroll"
+          className="max-w-50 sm:max-w-full max-h-40  focus:outline-0 text-[var(--black)]  placeholder:text-[var(--gray)] resize-none overflow-hidden field-sizing-content overflow-y-scroll"
           id={textMessageId}
           type="text"
           placeholder="White a message..."

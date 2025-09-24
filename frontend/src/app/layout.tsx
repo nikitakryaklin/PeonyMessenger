@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { DM_Sans } from "next/font/google";
 import "./globals.css";
 import { MainPrivider } from "./_mainPrivider";
@@ -11,10 +11,10 @@ const DMSans = DM_Sans({
 
 export const metadata: Metadata = {
   title: "Peony",
-  description: "Peony - the best messenger",
+  description: "Peony - Pick me messenger",
   openGraph: {
     title: "Peony",
-    description: "Peony - the best messenger",
+    description: "Peony - Pick me messenger",
     type: "website",
     images: [
       {
@@ -24,13 +24,15 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [
-      { url: "/icon/favicon.ico" },
-      { url: "/icon/favicon-16x16.png", sizes: "16x16", type: "image/png" },
-      { url: "/icon/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+      { url: "/favicon.ico", type: "image/x-icon" },
+      { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
+      { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+      { url: "/favicon-180x180.png", sizes: "180x180", type: "image/png" },
     ],
     apple: [
       {
-        url: "/icon/apple-touch-icon.png",
+        rel: "apple-touch-icon",
+        url: "/apple-touch-icon-180x180.png",
         sizes: "180x180",
         type: "image/png",
       },
@@ -38,12 +40,11 @@ export const metadata: Metadata = {
     other: [
       {
         rel: "mask-icon",
-        url: "/icon/apple-touch-icon.png",
+        url: "/apple-touch-icon-180x180.png",
         color: "#e0b8ff",
       },
     ],
   },
-  manifest: "/site.webmatifest",
 };
 
 export default function RootLayout({

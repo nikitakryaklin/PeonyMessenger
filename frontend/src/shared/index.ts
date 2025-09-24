@@ -8,7 +8,6 @@ export * from "./routes/routes";
 export { API } from "./config/api";
 
 export { getValidateError } from "./lib/getValidateError";
-export { QueryClientCastomProvider } from "./providers/queryClientCastomProvider";
 export { useMutliStepForm } from "./hooks/useMutliStepForm";
 export { PageWrapper } from "./ui/pageWrapper/pageWrapper";
 export { getTitleByPathName } from "./lib/getTitleByPathName";
@@ -55,3 +54,7 @@ export { getMarkdonw } from "./lib/getMarkdonw";
 export { PRIMERY_COLORS } from "./config/primeryColors";
 export { AUTH_ROUTES } from "./config/authRoutes";
 export { LOCAL_STORAGE } from "./config/localStorage";
+
+//providers
+export { QueryClientCastomProvider } from "./providers/queryClientCastomProvider";
+export { AdaptiveProvider } from "./providers/adaptiveProvider";

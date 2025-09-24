@@ -1,5 +1,6 @@
 import { SidebarLink } from "@/entities";
 import { SubText, Tag } from "@/shared";
+import { useAdaptive } from "@/shared/providers/adaptiveProvider";
 import clsx from "clsx";
 import { ReactNode } from "react";
 
@@ -20,8 +21,13 @@ export const SidebarGroup = ({
   className?: string;
   button?: ReactNode;
 }) => {
+  const { setCurrentPage } = useAdaptive();
+
   return (
-    <div className={clsx(" py-6", className)}>
+    <div
+      className={clsx("py-2 sm:py-6", className)}
+      onClick={() => setCurrentPage("page")}
+    >
       {data.map((el) => (
         <SidebarLink
           key={el.id}

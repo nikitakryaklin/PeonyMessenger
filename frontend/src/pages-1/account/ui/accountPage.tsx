@@ -8,8 +8,10 @@ import {
   useFindUsers,
 } from "@/features";
 import { Loader, PageWrapper } from "@/shared";
+import { useAdaptive } from "@/shared/providers/adaptiveProvider";
 import { CreateDialog, Sidebar } from "@/widgets";
 import { Header } from "@/widgets";
+import clsx from "clsx";
 import { ReactNode, Suspense, useState } from "react";
 
 export const AccountPage = ({
@@ -46,6 +48,8 @@ export const AccountPage = ({
     onCloseCreateChatModal();
   };
 
+  const { isMobile, page } = useAdaptive();
+
   return (
     <div className="flex">
       <Sidebar />
@@ -67,7 +71,12 @@ export const AccountPage = ({
               onClick={onCreateChatMetation}
             />
           </Modal>
-          <div className="w-3/4 min-w-3/4 max-w-[60vw] h-[calc(100dvh-96px)] bg-[var(--primery-light)] ml-auto">
+          <div
+            className={clsx(
+              "w-[calc(100%-46px)] min-w-[calc(100%-46px)] max-w-[calc(100%-46px)] sm:w-3/4 sm:min-w-3/4 sm:max-w-[60vw] h-[calc(100dvh-96px)] bg-[var(--primery-light)] sm:ml-auto",
+              isMobile && page !== "dialog" && "hidden"
+            )}
+          >
             <Suspense fallback={<Loader />}>{panel}</Suspense>
           </div>
         </main>
@@ -75,3 +84,4 @@ export const AccountPage = ({
     </div>
   );
 };
+// hidden sm:block

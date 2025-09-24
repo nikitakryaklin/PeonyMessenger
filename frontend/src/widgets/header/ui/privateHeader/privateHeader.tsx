@@ -9,7 +9,7 @@ export const PrivateHeader = () => {
   const title = getTitleByPathName(pathName);
 
   return (
-    <header className="h-24 bg-[var(--light-gray)] border-b border-[var(--gray)] flex items-center px-10 justify-between">
+    <header className="h-24 bg-[var(--light-gray)] border-b border-[var(--gray)] flex items-center px-5 sm:px-10 justify-between max-w-[calc(100%-46px)] sm:max-w-full">
       <CaphionTitle text={title} />
       <div className="h-16 relative">
         <UserAvatar />

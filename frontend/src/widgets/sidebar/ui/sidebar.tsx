@@ -4,18 +4,22 @@ import { Logo } from "@/entities";
 import { Button, IconButton } from "@/shared";
 import clsx from "clsx";
 import { ArrowLeft } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { SidebarGroup } from "./sidebarGroup";
 import { SIDEBAR_DATA } from "../config/sedibar-data";
 import { m } from "motion/react";
 import { Theme, useCreateChatModal } from "@/features";
+import { useAdaptive } from "@/shared/providers/adaptiveProvider";
 
 export const Sidebar = () => {
-  const [isClose, setIsClose] = useState(false);
+  const { isMobile } = useAdaptive();
+  const [isClose, setIsClose] = useState(isMobile);
 
   const onOpenCreateChatModal = useCreateChatModal(
     (s) => s.onOpenCreateChatModal
   );
+
+  useEffect(() => setIsClose(isMobile), [isMobile]);
 
   return (
     <m.aside
@@ -40,7 +44,7 @@ export const Sidebar = () => {
         <IconButton
           type="button"
           className={clsx(
-            "transition-transform duration-300",
+            "hidden sm:block transition-transform duration-300",
             isClose && "rotate-180"
           )}
           icon={<ArrowLeft style={{ stroke: "var(--black)" }} />}
@@ -52,8 +56,8 @@ export const Sidebar = () => {
         className="border-b border-[var(--gray)]"
         isClose={isClose}
         data={[
-          { ...SIDEBAR_DATA.chat[0], tag: "999" },
-          { ...SIDEBAR_DATA.chat[1], tag: "99" },
+          { ...SIDEBAR_DATA.chat[0], tag: "99" },
+          { ...SIDEBAR_DATA.chat[1], tag: "9" },
         ]}
         button={
           <Button
@@ -80,7 +84,7 @@ export const Sidebar = () => {
       />
       <SidebarGroup isClose={isClose} data={SIDEBAR_DATA.recommendation} />
 
-      <div className="h-24 bg-[var(--light-gray)] mt-auto flex items-center justify-center">
+      <div className="h-16 smh-24 bg-[var(--light-gray)] mt-auto flex items-center justify-center">
         <Theme size={isClose ? "s" : "l"} />
       </div>
     </m.aside>
