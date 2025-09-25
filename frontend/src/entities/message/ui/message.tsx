@@ -28,7 +28,7 @@ export const Message = ({
         return (
           <Text
             text={message.content.text}
-            className="whitespace-normal break-words text-[var(--black)] max-w-9/10"
+            className="whitespace-normal break-words break-all text-[var(--black)]"
             {...(textModification && {
               style: { fontSize: textModification.text },
             })}
@@ -61,12 +61,15 @@ export const Message = ({
   return (
     <div
       className={clsx(
-        "bg-[var(--white)] flex gap-1 justify-between px-2 sm:px-4 py-2 rounded-xl max-w-9/10  sm:max-w-4/5 items-end",
+        "bg-[var(--white)] flex gap-1 px-2 sm:px-4 py-2 rounded-xl h-auto max-w-9/10 items-end",
         className
       )}
     >
-      {title}
-      {renderMessage()}
+      <div className="flex-1 min-w-0">
+        {title}
+        {renderMessage()}
+      </div>
+
       <SubText
         text={getHour(createdAt)}
         {...(textModification && {
