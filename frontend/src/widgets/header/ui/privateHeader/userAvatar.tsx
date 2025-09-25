@@ -9,7 +9,7 @@ export const UserAvatar = () => {
   return (
     <>
       <button
-        className="h-full w-16 relative cursor-pointer"
+        className="h-full w-8 sm:w-16 relative cursor-pointer"
         onMouseEnter={onOpen}
         onMouseLeave={onClose}
       >

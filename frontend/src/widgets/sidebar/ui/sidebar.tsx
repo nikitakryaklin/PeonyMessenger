@@ -24,9 +24,10 @@ export const Sidebar = () => {
   return (
     <m.aside
       className={clsx(
-        "bg-[var(--white)] min-h-[100dvh] border-r border-[var(--gray)] flex flex-col"
+        "bg-[var(--white)] min-h-[100dvh] border-r border-[var(--gray)] flex flex-col "
+        // 'min-w-16 sm:min-w-[]'
       )}
-      animate={{ width: isClose ? 74 : 400 }}
+      animate={{ width: isClose ? 56 : 300 }}
       transition={{
         type: "spring",
         stiffness: 400,
@@ -35,7 +36,7 @@ export const Sidebar = () => {
     >
       <div
         className={clsx(
-          "h-24 flex px-3 bg-[var(--light-gray)] border-b border-[var(--gray)] items-center",
+          "h-14 sm:h-24 flex px-3 bg-[var(--light-gray)] border-b border-[var(--gray)] items-center",
           !isClose && "justify-between",
           isClose && "justify-center"
         )}

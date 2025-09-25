@@ -42,7 +42,6 @@ services:
       - ../cms:/usr/app
       - /usr/app/node_modules
     environment:
-      # DATABASE_URL: ${DATABASE_URL}
       API_TOKEN_SALT: ${API_TOKEN_SALT}
       ADMIN_JWT_SECRET: ${ADMIN_JWT_SECRET}
       APP_KEYS: ${APP_KEYS}
@@ -56,11 +55,13 @@ services:
       DATABASE_PORT: 5432
       DATABASE_SSL: false
       NODE_ENV: ${NODE_ENV}
-
     networks:
       - strapi
+    depends_on:
+      db:
+        condition: service_healthy
   db:
-    image: postgres:14.1-alpine
+    image: postgres:14.7
     restart: always
     ports:
       - "5432:5432"
@@ -68,10 +69,16 @@ services:
       POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
       POSTGRES_USER: ${DATABASE_USERNAME}
       POSTGRES_DB: ${DATABASE_NAME}
+      POSTGRES_HOST_AUTH_METHOD: trust
     volumes:
       - db:/var/lib/postgresql/data
     networks:
       - strapi
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
 networks:
   strapi:
   server:

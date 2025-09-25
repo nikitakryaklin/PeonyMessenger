@@ -8,7 +8,7 @@ export const PublicHeader = () => {
   const { step, prevStep } = usePublicRegisterFormStore();
 
   return (
-    <header className="flex justify-between h-24 items-center px-[max(5%,1.125rem)]">
+    <header className=" flex justify-between h-24 items-center px-[max(5%,1.125rem)]">
       {step === 1 && <Logo />}
       {step > 1 && (
         <IconButton

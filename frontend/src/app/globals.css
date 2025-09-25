@@ -39,11 +39,13 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 body {
   /* background-color: var(--gray); */
   font-family: var(--font-dm-sans), Helvetica;
+  overflow-x: hidden;
 }
 
 input:-webkit-autofill {

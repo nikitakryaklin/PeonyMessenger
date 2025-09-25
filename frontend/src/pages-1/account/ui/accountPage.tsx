@@ -51,11 +51,11 @@ export const AccountPage = ({
   const { isMobile, page } = useAdaptive();
 
   return (
-    <div className="flex w-[100wh] max-w-[100wh] min-w-[100wh]">
+    <div className="flex w-full max-w-full min-w-full">
       <Sidebar />
-      <div className="w-full">
+      <div className="flex-1">
         <Header />
-        <main className="w-full h-[calc(100dvh-96px)] flex">
+        <main className="w-full h-[calc(100dvh-56px)] sm:h-[calc(100dvh-96px)] flex">
           <PageWrapper>{children}</PageWrapper>
           <Modal
             onClose={onCloseCreateChatModal}
@@ -73,7 +73,7 @@ export const AccountPage = ({
           </Modal>
           <div
             className={clsx(
-              "w-full min-w-full max-w-full sm:w-3/4 sm:min-w-3/4 sm:max-w-[60vw] h-[calc(100dvh-96px)] bg-[var(--primery-light)] sm:ml-auto",
+              "flex-1 h-[calc(100dvh-56px)] sm:h-[calc(100dvh-96px)] bg-[var(--primery-light)] sm:ml-auto",
               isMobile && page !== "dialog" && "hidden"
             )}
           >
