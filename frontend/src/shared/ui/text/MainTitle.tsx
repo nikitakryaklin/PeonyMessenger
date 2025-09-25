@@ -8,7 +8,7 @@ export const MainTitle = ({ text, className }: { text: string } & IHeading) => {
         "leading-[120%] text-bold text-[var(--black)]",
         className
       )}
-      style={{ fontSize: `calc(3.5rem*var(--text-scale))` }}
+      style={{ fontSize: `calc(2.5rem*var(--text-scale))` }}
     >
       {text}
     </h1>

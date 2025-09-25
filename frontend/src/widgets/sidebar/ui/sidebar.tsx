@@ -82,7 +82,6 @@ export const Sidebar = () => {
         isClose={isClose}
         data={SIDEBAR_DATA.help}
       />
-      {/* <SidebarGroup isClose={isClose} data={SIDEBAR_DATA.recommendation} /> */}
 
       <div className="h-16 smh-24 bg-[var(--light-gray)] mt-auto flex items-center justify-center">
         <Theme size={isClose ? "s" : "l"} />

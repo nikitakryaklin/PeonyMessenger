@@ -7,6 +7,7 @@ import { SubText } from "@/shared";
 import { DialogHeader } from "./dialog.header";
 import { useDialogSubscription } from "../hook/useDialogSubscription";
 import { useAdaptive } from "@/shared/providers/adaptiveProvider";
+// import { unstable_ViewTransition as ViewTransition } from "react";
 
 export const DialogContainer = ({
   headerInfo,

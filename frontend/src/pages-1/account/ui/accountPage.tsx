@@ -51,7 +51,7 @@ export const AccountPage = ({
   const { isMobile, page } = useAdaptive();
 
   return (
-    <div className="flex">
+    <div className="flex w-[100wh] max-w-[100wh] min-w-[100wh]">
       <Sidebar />
       <div className="w-full">
         <Header />

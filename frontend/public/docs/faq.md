@@ -1,4 +1,4 @@
-## Telegram FAQ
+## Peony FAQ
 
 > This FAQ provides answers to basic questions about Peony. Check out our Advanced FAQ for more technical information.
 

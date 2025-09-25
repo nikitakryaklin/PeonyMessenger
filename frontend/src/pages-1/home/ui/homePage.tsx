@@ -1,6 +1,5 @@
 import { PrimeryLink, ROUTES } from "@/shared";
 import { DefaultLink } from "@/shared/ui/link/DefaultLink";
-import Link from "next/link";
 
 export const HomePage = () => {
   return (
