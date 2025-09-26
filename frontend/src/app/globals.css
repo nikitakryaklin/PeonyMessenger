@@ -35,6 +35,7 @@
   --red: var(--red);
   --green: var(--color-green-400);
   --text-scale: var(--text-scale);
+  --breakpoint-mobile: 850px;
 }
 
 html {

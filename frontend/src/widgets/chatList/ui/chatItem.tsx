@@ -1,6 +1,6 @@
 import { AvatarCircle } from "@/entities";
 import { getHour, SubText, Tag, Text } from "@/shared";
-import { useAdaptive } from "@/shared/providers/adaptiveProvider";
+import { useAdaptive } from "@/shared";
 import Link from "next/link";
 import { ReactNode } from "react";
 

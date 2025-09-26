@@ -18,7 +18,7 @@ export function PageWrapper({
   return (
     <div
       className={clsx(
-        "sm:block w-full sm:max-w-96 h-full bg-[var(--white)] pt-3 border-r border-[var(--gray)]",
+        "md:block w-full mobile:max-w-96 h-full bg-[var(--white)] pt-3 border-r border-[var(--gray)]",
         isMobile && page !== "page" && "hidden",
         className
       )}

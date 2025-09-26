@@ -58,3 +58,4 @@ export { LOCAL_STORAGE } from "./config/localStorage";
 //providers
 export { QueryClientCastomProvider } from "./providers/queryClientCastomProvider";
 export { AdaptiveProvider } from "./providers/adaptiveProvider";
+export { useAdaptive } from "./providers/adaptiveProvider";

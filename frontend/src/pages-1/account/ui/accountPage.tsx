@@ -55,7 +55,7 @@ export const AccountPage = ({
       <Sidebar />
       <div className="flex-1">
         <Header />
-        <main className="w-full h-[calc(100dvh-56px)] sm:h-[calc(100dvh-96px)] flex">
+        <main className="w-full h-[calc(100dvh-56px)] md:h-[calc(100dvh-96px)] flex">
           <PageWrapper>{children}</PageWrapper>
           <Modal
             onClose={onCloseCreateChatModal}
@@ -73,7 +73,7 @@ export const AccountPage = ({
           </Modal>
           <div
             className={clsx(
-              "flex-1 h-[calc(100dvh-56px)] sm:h-[calc(100dvh-96px)] bg-[var(--primery-light)] sm:ml-auto",
+              "flex-1 h-full bg-[var(--primery-light)] ",
               isMobile && page !== "dialog" && "hidden"
             )}
           >

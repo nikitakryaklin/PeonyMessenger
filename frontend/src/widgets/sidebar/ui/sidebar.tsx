@@ -9,7 +9,7 @@ import { SidebarGroup } from "./sidebarGroup";
 import { SIDEBAR_DATA } from "../config/sedibar-data";
 import { m } from "motion/react";
 import { Theme, useCreateChatModal } from "@/features";
-import { useAdaptive } from "@/shared/providers/adaptiveProvider";
+import { useAdaptive } from "@/shared";
 
 export const Sidebar = () => {
   const { isMobile } = useAdaptive();
@@ -25,7 +25,6 @@ export const Sidebar = () => {
     <m.aside
       className={clsx(
         "bg-[var(--white)] min-h-[100dvh] border-r border-[var(--gray)] flex flex-col "
-        // 'min-w-16 sm:min-w-[]'
       )}
       animate={{ width: isClose ? 56 : 300 }}
       transition={{
@@ -36,7 +35,7 @@ export const Sidebar = () => {
     >
       <div
         className={clsx(
-          "h-14 sm:h-24 flex px-3 bg-[var(--light-gray)] border-b border-[var(--gray)] items-center",
+          "h-14 md:h-24 flex px-3 bg-[var(--light-gray)] border-b border-[var(--gray)] items-center",
           !isClose && "justify-between",
           isClose && "justify-center"
         )}
@@ -45,7 +44,7 @@ export const Sidebar = () => {
         <IconButton
           type="button"
           className={clsx(
-            "hidden sm:block transition-transform duration-300",
+            "hidden mobile:block transition-transform duration-300",
             isClose && "rotate-180"
           )}
           icon={<ArrowLeft style={{ stroke: "var(--black)" }} />}
@@ -78,13 +77,9 @@ export const Sidebar = () => {
         isClose={isClose}
         data={SIDEBAR_DATA.nav}
       />
-      <SidebarGroup
-        className="border-b border-[var(--gray)]"
-        isClose={isClose}
-        data={SIDEBAR_DATA.help}
-      />
+      <SidebarGroup isClose={isClose} data={SIDEBAR_DATA.help} />
 
-      <div className="h-16 smh-24 bg-[var(--light-gray)] mt-auto flex items-center justify-center">
+      <div className="h-16 md:h-24 bg-[var(--light-gray)] mt-auto flex items-center justify-center">
         <Theme size={isClose ? "s" : "l"} />
       </div>
     </m.aside>

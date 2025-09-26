@@ -6,7 +6,7 @@ import { DialogMessages } from "./dialog-messages/ui/dialog.messages";
 import { SubText } from "@/shared";
 import { DialogHeader } from "./dialog.header";
 import { useDialogSubscription } from "../hook/useDialogSubscription";
-import { useAdaptive } from "@/shared/providers/adaptiveProvider";
+import { useAdaptive } from "@/shared";
 // import { unstable_ViewTransition as ViewTransition } from "react";
 
 export const DialogContainer = ({

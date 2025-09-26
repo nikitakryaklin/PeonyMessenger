@@ -12,7 +12,6 @@ interface IAdaptiveContext {
   page: "page" | "dialog";
   isMobile: boolean;
   setCurrentPage: (currentPage: "page" | "dialog") => void;
-  setCurrantIsMobile: (isMobile: boolean) => void;
 }
 
 const AdaptiveContext = createContext<IAdaptiveContext | undefined>(undefined);
@@ -33,24 +32,23 @@ export const AdaptiveProvider = ({ children }: { children: ReactNode }) => {
     setPage(currentPage);
   };
 
-  const setCurrantIsMobile = (isMobileCurrent: boolean) => {
-    if (isMobile === isMobileCurrent) return;
-
-    setIsMobile(isMobileCurrent);
-  };
+  const query = "(max-width: 850px)";
 
   useEffect(() => {
-    if (window.screen.width < 640) {
-      setIsMobile(true);
-    } else {
-      setIsMobile(false);
-    }
-  }, []);
+    if (typeof window === undefined) return;
+
+    const media = window.matchMedia(query);
+    setIsMobile(media.matches);
+
+    const listener = (e: MediaQueryListEvent) => setIsMobile(e.matches);
+
+    media.addEventListener("change", listener);
+
+    return () => media.removeEventListener("change", listener);
+  }, [query]);
 
   return (
-    <AdaptiveContext.Provider
-      value={{ page, isMobile, setCurrentPage, setCurrantIsMobile }}
-    >
+    <AdaptiveContext.Provider value={{ page, isMobile, setCurrentPage }}>
       {children}
     </AdaptiveContext.Provider>
   );

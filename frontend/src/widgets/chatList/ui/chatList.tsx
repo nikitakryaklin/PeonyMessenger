@@ -1,8 +1,6 @@
 import { IChat } from "@/features";
 import { ChatItem } from "./chatItem";
 import { filtredParticipants, ROUTES } from "@/shared";
-import { group } from "console";
-import { dialog } from "motion/react-client";
 
 export const ChatList = ({
   chats,
