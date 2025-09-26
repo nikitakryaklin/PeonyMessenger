@@ -1,7 +1,7 @@
 "use client";
 
 import { ReactNode, useEffect } from "react";
-import { DialogForm } from "./dialog.form";
+import { DialogForm } from "./dialog-form/ui/dialog.form";
 import { DialogMessages } from "./dialog-messages/ui/dialog.messages";
 import { SubText } from "@/shared";
 import { DialogHeader } from "./dialog.header";

@@ -27,7 +27,6 @@ export const DialogSidebar = ({
         <Text text={`All ${title}`} className="font-bold text-[var(--gray)]" />
         {actions}
       </div>
-
       <Field
         icon={<Search stroke="var(--black)" />}
         type="search"
@@ -36,7 +35,6 @@ export const DialogSidebar = ({
         onChange={setInputValue}
         disabled={isSearchSisabled}
       />
-
       {children}
     </div>
   );

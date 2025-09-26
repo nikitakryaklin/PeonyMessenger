@@ -1,6 +1,8 @@
+import { FileField, IconButton } from "@/shared";
+import { Paperclip } from "lucide-react";
 import { HTMLProps, useId } from "react";
 
-export const DialogFormInput = ({
+export const DialogFormText = ({
   onInput,
   ...inputProps
 }: {

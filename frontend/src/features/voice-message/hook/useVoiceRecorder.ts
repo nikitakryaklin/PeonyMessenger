@@ -4,11 +4,11 @@ import { useRef, useState } from "react";
 type TRecording = "idle" | "recording" | "stopped";
 
 export function useVoiceRecorder() {
-  const [url, setUrl] = useState("");
+  const [audioUrl, setAudioUrl] = useState("");
   const [recordingStatus, setRecordingStatus] = useState<TRecording>("idle");
   const mediaRecorderRef = useRef<MediaRecorder>(null);
   const audiChanks = useRef<Blob[]>([]);
-  const audiBlob = useRef<Blob>(null);
+  const audioBlob = useRef<Blob>(null);
   const duration = useRef<number>(0);
 
   const onStartRecording = async () => {
@@ -40,8 +40,8 @@ export function useVoiceRecorder() {
       });
 
       duration.current = durationAudio;
-      audiBlob.current = blob;
-      setUrl(audioUrl);
+      audioBlob.current = blob;
+      setAudioUrl(audioUrl);
       setRecordingStatus("stopped");
     };
 
@@ -53,20 +53,20 @@ export function useVoiceRecorder() {
     mediaRecorderRef.current?.stop();
   };
 
-  const onDeleteAutio = () => {
+  const onDeleteAudio = () => {
     audiChanks.current = [];
-    audiBlob.current = null;
-    setUrl("");
+    audioBlob.current = null;
+    setAudioUrl("");
     setRecordingStatus("idle");
   };
 
   return {
-    url,
+    audioUrl,
     recordingStatus,
-    audiBlob,
+    audioBlob,
     duration,
     onStartRecording,
     onStopRecording,
-    onDeleteAutio,
+    onDeleteAudio,
   };
 }
