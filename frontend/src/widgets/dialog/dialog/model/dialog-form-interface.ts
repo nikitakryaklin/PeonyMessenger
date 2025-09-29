@@ -5,3 +5,5 @@ export interface IDialodForm {
 }
 
 export type TDialogFormInputType = "text" | "voice" | "photo" | null;
+
+export type TInputStatus = "idle" | "typing" | "recording" | "choosing";

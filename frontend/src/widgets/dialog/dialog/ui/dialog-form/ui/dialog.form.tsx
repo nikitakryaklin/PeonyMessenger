@@ -11,15 +11,16 @@ import { DialogFormRecording } from "./dialog-form-recording";
 import { DialogFormVoice } from "./dialog-form-voice";
 import { DialogFromPhoto } from "./dialog-from-photo";
 import { useDialogForm } from "../hook/useDialogForm";
+import { TInputStatus } from "../../../model/dialog-form-interface";
 
 export const DialogForm = ({
   chatId,
   dialog,
-  onMessage,
+  setInputStatus,
 }: {
   chatId: number;
   dialog: string;
-  onMessage: (isTyping: boolean) => void;
+  setInputStatus: (status: TInputStatus) => void;
 }) => {
   const {
     photoURL,
@@ -46,32 +47,12 @@ export const DialogForm = ({
     setFormIdleStatus
   );
 
-  usePreview(watch("photo"), setPhotoURL);
-
-  // ------------------------- оставляем ее тут пока не переработаем на статусы
-  //
-
-  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
-
-  const onInput = () => {
-    onMessage(true);
-
-    if (timeoutRef.current) clearTimeout(timeoutRef.current);
-
-    timeoutRef.current = setTimeout(() => {
-      onMessage(false);
-    }, 1000);
+  const onSetPhotoUrl = (url: string | null) => {
+    setPhotoURL(url);
+    setInputStatus("idle");
   };
 
-  useEffect(() => {
-    return () => {
-      if (timeoutRef.current) clearTimeout(timeoutRef.current);
-      onMessage(false);
-    };
-  }, []);
-
-  //
-  // -------------------------
+  usePreview(watch("photo"), onSetPhotoUrl);
 
   useEffect(() => {
     setFormStatus(recordingStatus);
@@ -86,12 +67,20 @@ export const DialogForm = ({
         {
           idle: (
             <>
-              <DialogFormFile {...register("photo")} />
-              <DialogFormText {...register("text")} onInput={onInput} />
+              <DialogFormFile
+                {...register("photo")}
+                setInputStatus={setInputStatus}
+              />
+              <DialogFormText
+                {...register("text")}
+                setInputStatus={setInputStatus}
+              />
 
               <IconButton
                 icon={<MicIcon stroke="var(--black)" />}
-                onClick={onStartRecording}
+                onClick={() => {
+                  onStartRecording(), setInputStatus("recording");
+                }}
                 type={"button"}
               />
             </>
@@ -101,7 +90,9 @@ export const DialogForm = ({
               control={control}
               duration={duration}
               audioBlob={audioBlob}
-              onStopRecording={onStopRecording}
+              onStopRecording={() => {
+                onStopRecording(), setInputStatus("idle");
+              }}
             />
           ),
           stopped: (

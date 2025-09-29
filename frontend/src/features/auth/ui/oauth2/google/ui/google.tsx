@@ -11,7 +11,8 @@ export const OAuthGoogle = ({ className }: { className?: string }) => {
 
   const OAuth2 = async () => {
     window.location.href =
-      process.env.NEXT_PUBLIC_API_URL + "/api/connect/google";
+      process.env.NEXT_PUBLIC_API_URL +
+      "/api/connect/google?prompt=select_account";
   };
 
   useEffect(() => {

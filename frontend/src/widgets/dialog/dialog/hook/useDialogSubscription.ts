@@ -1,25 +1,22 @@
 import { LOCAL_STORAGE, useSocket } from "@/shared";
 import { useEffect, useState } from "react";
+import { TInputStatus } from "../model/dialog-form-interface";
 
 export const useDialogSubscription = (dialog: string) => {
-  const [isTypingLocal, setIsTypingLocal] = useState<boolean>(false);
-  const [isTypingServer, setIsTypingServer] = useState<boolean>(false);
+  const [inputServerStatus, setInputServerStatus] =
+    useState<TInputStatus>("idle");
+  const [inputLocalStatus, setInputLocalStatus] =
+    useState<TInputStatus>("idle");
 
   const socket = useSocket();
 
-  const onMessage = (isTyping: boolean) => {
-    setIsTypingLocal((prev) => (prev === isTyping ? prev : isTyping));
+  const onInput = (status: TInputStatus) => {
+    setInputLocalStatus((prev) => (prev === status ? prev : status));
   };
 
   useEffect(() => {
-    if (isTypingLocal === true) {
-      socket.emit("startTyping", { dialog: dialog });
-    }
-
-    if (isTypingLocal === false) {
-      socket.emit("endTyping", { dialog: dialog });
-    }
-  }, [isTypingLocal]);
+    socket.emit("status", { dialog: dialog, status: inputLocalStatus });
+  }, [inputLocalStatus]);
 
   useEffect(() => {
     socket.emit("join", {
@@ -27,12 +24,8 @@ export const useDialogSubscription = (dialog: string) => {
       userId: localStorage.getItem(LOCAL_STORAGE.userId)?.toString(),
     });
 
-    socket.on("startTyping", () => {
-      setIsTypingServer(true);
-    });
-
-    socket.on("endTyping", () => {
-      setIsTypingServer(false);
+    socket.on("status", (status) => {
+      setInputServerStatus(status.status);
     });
 
     return () => {
@@ -44,5 +37,5 @@ export const useDialogSubscription = (dialog: string) => {
     };
   }, [socket, dialog]);
 
-  return { isTypingServer, onMessage };
+  return { inputServerStatus, onInput };
 };

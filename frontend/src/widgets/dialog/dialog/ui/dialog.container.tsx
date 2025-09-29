@@ -25,7 +25,7 @@ export const DialogContainer = ({
   params: string;
   type: "chat" | "group";
 }) => {
-  const { onMessage, isTypingServer } = useDialogSubscription(params);
+  const { inputServerStatus, onInput } = useDialogSubscription(params);
 
   const { setCurrentPage } = useAdaptive();
 
@@ -41,7 +41,9 @@ export const DialogContainer = ({
           title: headerInfo.title,
           description: (
             <SubText
-              text={isTypingServer ? "typing..." : headerInfo.description}
+              text={
+                inputServerStatus !== "idle" ? inputServerStatus + "..." : ""
+              }
             />
           ),
         }}
@@ -52,7 +54,7 @@ export const DialogContainer = ({
         <DialogMessages type={type} params={params} />
       </div>
 
-      <DialogForm chatId={dialogId} dialog={params} onMessage={onMessage} />
+      <DialogForm chatId={dialogId} dialog={params} setInputStatus={onInput} />
     </div>
   );
 };

@@ -21,7 +21,8 @@ export const ChatList = ({
           key={idx}
           DialogIdUrl={dialogUrl[type](chat.documentId)}
           avatar={
-            filtredParticipants(chat.participants)[0].about?.avatar?.[0].url
+            filtredParticipants(chat.participants)[0].about?.avatar?.[0].url ||
+            ""
           }
           userName={
             chat.name
