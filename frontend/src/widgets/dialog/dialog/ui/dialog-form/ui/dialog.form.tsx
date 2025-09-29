@@ -48,7 +48,7 @@ export const DialogForm = ({
 
   usePreview(watch("photo"), setPhotoURL);
 
-  // ------------------------ оставляем ее тут пока не переработаем на статусы
+  // ------------------------- оставляем ее тут пока не переработаем на статусы
   //
 
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
@@ -80,7 +80,7 @@ export const DialogForm = ({
   return (
     <form
       onSubmit={onSubmit}
-      className="bg-[var(--white)] min-h-16 flex  md:gap-4 px-2 md:px-5 py-2 items-end"
+      className="bg-[var(--white)] min-h-16 flex  md:gap-4 px-2 md:px-5 py-2 items-end "
     >
       {
         {

@@ -1,5 +1,3 @@
-import { FileField, IconButton } from "@/shared";
-import { Paperclip } from "lucide-react";
 import { HTMLProps, useId } from "react";
 
 export const DialogFormText = ({
@@ -14,10 +12,10 @@ export const DialogFormText = ({
     <>
       <label
         htmlFor={textMessageId}
-        className="flex-1 flex min-h-11 items-center max-w-6/7  overflow-hidden"
+        className="flex-1 flex min-w-0 w-full min-h-11  max-h-40 items-center max-w-6/7  overflow-y-scroll"
       >
         <textarea
-          className="max-w-50 sm:max-w-full max-h-40  focus:outline-0 text-[var(--black)]  placeholder:text-[var(--gray)] resize-none overflow-hidden field-sizing-content overflow-y-scroll"
+          className="max-w-full  focus:outline-0 text-[var(--black)]  placeholder:text-[var(--gray)] resize-none overflow-hidden field-sizing-content overflow-y-scroll"
           id={textMessageId}
           type="text"
           placeholder="White a message..."

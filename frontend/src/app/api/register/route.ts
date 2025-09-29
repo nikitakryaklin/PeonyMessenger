@@ -19,7 +19,6 @@ export async function POST(request: any) {
     }
   );
 
-  console.log(strapiRes);
   const data = await strapiRes.json();
 
   if (strapiRes.ok) {

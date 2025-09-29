@@ -20,7 +20,11 @@ export const authService = {
   logout: () =>
     api(false, process.env.NEXT_PUBLIC_CLIENT_URL).post("api/logout"),
 
-  oauth: () => {},
+  oauth: async (access_token: string) =>
+    await api(false, process.env.NEXT_PUBLIC_CLIENT_URL).post<any, any>(
+      "api/auth/google",
+      { accessToken: access_token }
+    ),
 
   setUserToLocalStorage: ({ data }: IRegisterUser) => {
     localStorage.setItem(LOCAL_STORAGE.token, data.jwt);
