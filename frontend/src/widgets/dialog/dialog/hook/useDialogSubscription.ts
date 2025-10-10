@@ -8,32 +8,32 @@ export const useDialogSubscription = (dialog: string) => {
   const [inputLocalStatus, setInputLocalStatus] =
     useState<TInputStatus>("idle");
 
-  const socket = useSocket();
+  const socket = useSocket(localStorage.getItem(LOCAL_STORAGE.userDocumentId));
 
   const onInput = (status: TInputStatus) => {
     setInputLocalStatus((prev) => (prev === status ? prev : status));
   };
 
   useEffect(() => {
-    socket.emit("status", { dialog: dialog, status: inputLocalStatus });
+    socket?.emit("status", { dialog: dialog, status: inputLocalStatus });
   }, [inputLocalStatus]);
 
   useEffect(() => {
-    socket.emit("join", {
+    socket?.emit("join", {
       dialog: dialog,
       userId: localStorage.getItem(LOCAL_STORAGE.userId)?.toString(),
     });
 
-    socket.on("status", (status) => {
+    socket?.on("status", (status) => {
       setInputServerStatus(status.status);
     });
 
     return () => {
-      socket.off("message");
-      socket.off("startTyping");
-      socket.off("endTyping");
+      socket?.off("message");
+      socket?.off("startTyping");
+      socket?.off("endTyping");
 
-      socket.emit("leaveFromDialog", { dialog: dialog });
+      socket?.emit("leaveFromDialog", { dialog: dialog });
     };
   }, [socket, dialog]);
 

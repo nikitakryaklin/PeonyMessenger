@@ -1,4 +1,4 @@
-import { api, LOCAL_STORAGE } from "@/shared";
+import { api, LOCAL_STORAGE, useSocket } from "@/shared";
 import { IRegisterUser } from "../model/registeredUser-interface";
 import { ILoginForm } from "../ui/login/model/loginForm-interface";
 import { IRegisterForm } from "../ui/register/model/registerForm-interface";
@@ -27,6 +27,7 @@ export const authService = {
     ),
 
   setUserToLocalStorage: ({ data }: IRegisterUser) => {
+    useSocket(data.user.documentId);
     localStorage.setItem(LOCAL_STORAGE.token, data.jwt);
     localStorage.setItem(LOCAL_STORAGE.userId, `${data.user.id}`);
     localStorage.setItem(

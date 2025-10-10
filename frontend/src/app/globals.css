@@ -36,6 +36,11 @@
   --green: var(--color-green-400);
   --text-scale: var(--text-scale);
   --breakpoint-mobile: 850px;
+  --color-primery: var(--primery);
+  --color-primery-light: var(--primery-light);
+  --color-white: var(--white);
+  --color-green: var(--green);
+  --color-red: var(--red);
 }
 
 html {

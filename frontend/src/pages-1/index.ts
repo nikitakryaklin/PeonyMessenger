@@ -11,6 +11,7 @@ export { DefaultPage } from "./default/ui/defaultPage";
 export { MyGroupsPage } from "./myGroups/ui/MyGroupsPage";
 export { GroupPage } from "./group/ui/groupPage";
 export { DocsPage } from "./docs/ui/docsPage";
+export { CallPage } from "./call/ui/callPage";
 
 // settings
 export { SettingsPage } from "./settings/home/ui/settingsPage";

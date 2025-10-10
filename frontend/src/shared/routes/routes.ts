@@ -23,4 +23,6 @@ export const ROUTES = {
 
   group: "/account/group",
   groupById: (id: string | number) => `/account/group/${id}`,
+
+  callById: (id: string | number) => `/call/${id}`,
 } as const;

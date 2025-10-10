@@ -37,7 +37,7 @@ export { useIntersection } from "./hooks/useIntersection";
 export { usePreview } from "./hooks/usePreview";
 export { useQueryCacheSize } from "./hooks/useQueryCacheSize";
 export { useScrollToTop } from "./hooks/useScrollToTop";
-
+export { useStateWithCallback } from "./hooks/useStateWithCallback";
 //api
 export { useSocket } from "./api";
 export { api } from "./api";

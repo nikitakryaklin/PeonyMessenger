@@ -2,6 +2,8 @@
 
 import { Modal } from "@/entities";
 import {
+  IncomingCall,
+  useCalling,
   useCreateChatModal,
   useCreateChatMutation,
   useCreateContactsMutation,
@@ -50,6 +52,8 @@ export const AccountPage = ({
 
   const { isMobile, page } = useAdaptive();
 
+  const { isCalling } = useCalling();
+
   return (
     <div className="flex w-full max-w-full min-w-full">
       <Sidebar />
@@ -70,6 +74,9 @@ export const AccountPage = ({
               setSearchUser={setUserName}
               onClick={onCreateChatMetation}
             />
+          </Modal>
+          <Modal onClose={() => {}} isOpen={isCalling}>
+            <IncomingCall />
           </Modal>
           <div
             className={clsx(

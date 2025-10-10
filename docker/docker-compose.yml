@@ -17,20 +17,20 @@ services:
   #   networks:
   #     - strapi
   #     - server
-  server:
-    platform: linux/arm64
-    build:
-      context: ../server
-      dockerfile: ../docker/Dockerfile.server
-    ports:
-      - "4000:4000"
-    volumes:
-      - ../server:/usr/app:cached
-      - /usr/app/node_modules
-    environment:
-      API_URL: ${API_URL}
-    networks:
-      - strapi
+  # server:
+  #   platform: linux/arm64
+  #   build:
+  #     context: ../server
+  #     dockerfile: ../docker/Dockerfile.server
+  #   ports:
+  #     - "4000:4000"
+  #   volumes:
+  #     - ../server:/usr/app:cached
+  #     - /usr/app/node_modules
+  #   environment:
+  #     API_URL: ${API_URL}
+  #   networks:
+  #     - strapi
   cms:
     platform: linux/arm64
     build:

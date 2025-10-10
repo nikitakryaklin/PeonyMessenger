@@ -37,3 +37,10 @@ export { usePublicApiCustomize } from "./customize/hook/usePublicApiCustomize";
 
 //voice-message
 export { useVoiceRecorder } from "./voice-message/hook/useVoiceRecorder";
+
+//call
+export { useCalling, CallingProvider } from "./call/ui/callProvider";
+export { IncomingCall } from "./call/ui/incoming-call";
+export { useWebRTC } from "./call/hook/useWebRTC";
+export { useCapture } from "./call/hook/useCapture";
+export { SOCKET_ACTIONS } from "./call/config/socket-actions";

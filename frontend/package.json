@@ -15,6 +15,7 @@
     "@tanstack/react-query-persist-client": "^5.83.0",
     "clsx": "^2.1.1",
     "dayjs": "^1.11.13",
+    "freeice": "^2.2.2",
     "lucide-react": "^0.525.0",
     "motion": "^12.23.12",
     "nanoid": "^5.1.5",
