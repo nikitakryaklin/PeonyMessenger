@@ -1,16 +1,12 @@
-// const express = require("express");
 import express from "express";
 const app = express();
 
 const PORT = 4000;
 
-// const { createServer } = require("http");
 import { createServer } from "http";
 
-// const cors = require("cors");
 import cors from "cors";
 
-// const { Server } = require("socket.io");
 import { Server } from "socket.io";
 
 const http = createServer(app);
@@ -89,24 +85,30 @@ io.on("connection", (socket) => {
   });
 
   socket.on(SOCKET_ACTIONS.JOIN, ({ roomId }) => {
-    const clients = Array.from(io.sockets.adapter.rooms.get(roomId) || []);
+    const { rooms: joinedRooms } = socket;
 
+    if (Array.from(joinedRooms).includes(roomId)) {
+      return;
+    }
+
+    const clients = Array.from(io.sockets.adapter.rooms.get(roomId) || []);
     clients.forEach((client) => {
       io.to(client).emit(SOCKET_ACTIONS.ADD_PEER, {
-        peerID: socket.id,
-        createOffer: false,
+        peerId: socket.id,
+        isCreateOffer: false,
       });
 
       socket.emit(SOCKET_ACTIONS.ADD_PEER, {
         peerId: client,
-        createOffer: true,
+        isCreateOffer: true,
       });
     });
 
     socket.join(roomId);
   });
 
-  socket.on(SOCKET_ACTIONS.STOP_CALL, ({ rooms }) => {
+  socket.on(SOCKET_ACTIONS.STOP_CALL, () => {
+    const { rooms } = socket;
     Array.from(rooms).forEach((roomId) => {
       const clients = Array.from(io.sockets.adapter.rooms.get(roomId) || []);
 
@@ -117,8 +119,22 @@ io.on("connection", (socket) => {
           peerId: client,
         });
       });
-
+      console.log("stop call");
       socket.leave(roomId);
+    });
+  });
+
+  socket.on(SOCKET_ACTIONS.RELAY_SDP, ({ peerId, sessionDescription }) => {
+    io.to(peerId).emit(SOCKET_ACTIONS.SESSION_DESCRIPTION, {
+      peerId: socket.id,
+      sessionDescription,
+    });
+  });
+
+  socket.on(SOCKET_ACTIONS.RELAY_ICE, ({ peerId, iceCandidate }) => {
+    io.to(peerId).emit(SOCKET_ACTIONS.ICE_CANDIDATE, {
+      peerId: socket.id,
+      iceCandidate,
     });
   });
 

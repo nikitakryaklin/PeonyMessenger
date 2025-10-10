@@ -1,7 +1,7 @@
 "use client";
 
 import { AvatarCircle } from "@/entities";
-import { useCapture, useWebRTC } from "@/features";
+import { SOCKET_ACTIONS, useCapture, useWebRTC } from "@/features";
 import {
   getImageUrl,
   IconButton,
@@ -39,35 +39,34 @@ export const CallPage = ({
   //   const { videoRef, localMediaStream } = useCapture();
   const { clients, provideMediaRef } = useWebRTC(roomId);
 
-  const onCandeledCall = (status: "calling" | "connect") => {
-    if (status === "calling") {
-      socket.emit("cancelCall", { toUserId: callee.id });
-      router.replace(ROUTES.chat);
+  const onCandeledCall = () => {
+    if (clients.length > 1) socket.emit(SOCKET_ACTIONS.STOP_CALL);
+    router.replace(ROUTES.chat);
+    {
     }
 
-    if (status === "connect") {
-      socket.emit("stopCall", { toUserId: callee.id });
+    if (clients.length < 1) {
+      socket.emit("cancelCall", { toUserId: callee.id });
       router.replace(ROUTES.chat);
     }
   };
 
   useEffect(() => {
-    // socket.on("acceptCall", ({ status }) => {
-    //   setStatus(status);
-    // });
-
     socket.on("declineCall", () => {
       router.push(ROUTES.chat);
     });
 
-    socket.on("cancelCall", () => {
-      router.push(ROUTES.chat);
-    });
-
-    socket.on("stopCall", () => {
+    socket.on(SOCKET_ACTIONS.REMOVE_PEER, () => {
       router.push(ROUTES.chat);
     });
   }, [socket]);
+
+  useEffect(() => {
+    console.log(clients);
+  }, [clients]);
+
+  const isOneClient = (clientId: string) =>
+    clientId === "LOCAL_VIDEO" && clients.length > 1;
 
   return (
     <div className="h-[100dvh] relative p-2 flex flex-col justify-between items-start bg-transparent">
@@ -87,7 +86,7 @@ export const CallPage = ({
       </div>
 
       <div className=" absolute inset-0 z-[-1] bg-amber-200">
-        {clients?.map((clientId) => {
+        {clients?.map((clientId: string) => {
           return (
             <video
               key={clientId}
@@ -96,24 +95,16 @@ export const CallPage = ({
               }}
               autoPlay
               playsInline
-              // muted={clientId !== "LOCAL_VIDEO"}
+              muted={clientId === "LOCAL_VIDEO"}
               className={clsx(
                 "size-full object-cover",
-                clientId === "LOCAL_VIDEO" &&
-                  clients?.length === 2 &&
-                  "w-60 h-80 rounded-2xl m-4 mt-25"
+                isOneClient(clientId) && "w-60 h-80 rounded-2xl m-4 mt-25",
+                !isOneClient(clientId) && "absolute inset-0 z-[-1]"
               )}
               style={{ transform: "scaleX(-1)" }}
             />
           );
         })}
-        {/* <video
-          // ref={peerMediaElements}
-          // autoPlay
-          // playsInline
-          // className="size-full object-cover"
-          // style={{ transform: "scaleX(-1)" }}
-        /> */}
       </div>
 
       <div className="flex gap-4 mx-auto">
@@ -131,7 +122,7 @@ export const CallPage = ({
           icon={<PhoneMissed color="var(--white)" />}
           type={"button"}
           className="size-20 aspect-square bg-red-500/50 rounded-full backdrop-blur-xs hover:bg-red-500/70"
-          onClick={() => onCandeledCall(status)}
+          onClick={onCandeledCall}
         />
       </div>
     </div>
